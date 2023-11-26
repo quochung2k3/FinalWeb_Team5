@@ -8,9 +8,11 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.Serial;
 
 @WebServlet(urlPatterns = {"/login", "/register", "/waiting", "/logout"})
 public class LoginController extends HttpServlet {
+    @Serial
     private static final long serialVersionUID = 1L;
     IUserService service = new UserService();
 
