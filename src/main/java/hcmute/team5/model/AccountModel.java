@@ -1,6 +1,6 @@
 package hcmute.team5.model;
 
-public class UserModel extends AbstractModel {
+public class AccountModel extends AbstractModel {
     private String userName;
     private String fullName;
     private String passWord;
