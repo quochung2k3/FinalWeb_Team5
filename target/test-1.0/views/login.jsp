@@ -48,7 +48,7 @@
                                 </div>
                                 <form class="user" action="login" method="post">
                                     <div class="form-group">
-                                        <input name="username" type="text" class="form-control form-control-user"
+                                        <input name="username" type="email" class="form-control form-control-user"
                                                id="exampleInputEmail" aria-describedby="emailHelp"
                                                placeholder="Enter Email Address...">
                                     </div>
