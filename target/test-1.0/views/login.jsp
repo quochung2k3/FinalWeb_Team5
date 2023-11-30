@@ -46,14 +46,14 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                 </div>
-                                <form class="user" action="" method="">
+                                <form class="user">
                                     <div class="form-group">
-                                        <input name="" type="email" class="form-control form-control-user"
+                                        <input name="username" type="email" class="form-control form-control-user"
                                                id="exampleInputEmail" aria-describedby="emailHelp"
                                                placeholder="Enter Email Address...">
                                     </div>
                                     <div class="form-group">
-                                        <input name="" type="password" class="form-control form-control-user"
+                                        <input name="password" type="password" class="form-control form-control-user"
                                                id="exampleInputPassword" placeholder="Password">
                                     </div>
                                     <div class="form-group">
