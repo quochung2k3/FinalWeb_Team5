@@ -140,17 +140,6 @@
                         <i class="header__cart-icon fa-solid fa-cart-shopping"></i>
                         <span class="header__cart-notice">3</span>
                         <!-- No cart: header__cart-list--no-cart -->
-                        <div class="header__cart-list">
-                            <img src="<c:url value='/template/web/img/no-cart.png'/>" alt="" class="header__cart-no-cart-img">
-                            <span class="header__cart-list-no-cart-msg">Chưa có sản phẩm</span>
-                            <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
-                            <ul class="header__cart-list">
-                                <li class="header__cart-items">
-
-                                </li>
-                            </ul>
-                        </div>
-
                     </div>
                 </div>
             </div>
