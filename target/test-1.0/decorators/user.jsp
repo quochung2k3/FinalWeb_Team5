@@ -28,14 +28,14 @@
 </head>
 <body>
   <!-- Header-->
-<%--  <%@ include file="/common/user/header.jsp"%>--%>
+  <%@ include file="/common/user/header.jsp"%>
 
   <div>
     <dec:body/>
   </div>
 
   <!-- Footer-->
-<%--  <%@ include file="/common/user/footer.jsp"%>--%>
+  <%@ include file="/common/user/footer.jsp"%>
 
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
