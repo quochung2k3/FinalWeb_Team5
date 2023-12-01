@@ -61,7 +61,7 @@ public class LoginController extends HttpServlet {
                 }
             } else {
                 try {
-                    resp.sendRedirect(req.getContextPath() +"/product");
+                    resp.sendRedirect(req.getContextPath() +"/user-home");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -116,13 +116,13 @@ public class LoginController extends HttpServlet {
             account.setRoleId(2);
             service.insert(account);
             try {
-                resp.sendRedirect(req.getContextPath() +"/login");
+                resp.sendRedirect(req.getContextPath() +"/trang-chu");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
             try {
-                resp.sendRedirect(req.getContextPath() +"/register");
+                resp.sendRedirect(req.getContextPath() +"/trang-chu");
             } catch (IOException e) {
                 e.printStackTrace();
             }

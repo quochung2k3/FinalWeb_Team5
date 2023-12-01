@@ -8,11 +8,11 @@
         <pattern>/admin*</pattern>
     </decorator>
 
-    <decorator name = "login" page = "/views/login.jsp">
-        <pattern>/login*</pattern>
-    </decorator>
-
     <decorator name = "web" page = "web.jsp">
         <pattern>/*</pattern>
+    </decorator>
+
+    <decorator name = "user" page = "user.jsp">
+        <pattern>/user*</pattern>
     </decorator>
 </decorators>
