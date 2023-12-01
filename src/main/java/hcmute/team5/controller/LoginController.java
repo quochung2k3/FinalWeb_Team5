@@ -61,7 +61,7 @@ public class LoginController extends HttpServlet {
                 }
             } else {
                 try {
-                    resp.sendRedirect(req.getContextPath() +"/trang-chu");
+                    resp.sendRedirect(req.getContextPath() +"/product");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -92,7 +92,7 @@ public class LoginController extends HttpServlet {
                 }
             }
         }
-        req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
+        resp.sendRedirect(req.getContextPath() +"/trang-chu");
     }
 
     @Override
@@ -150,7 +150,7 @@ public class LoginController extends HttpServlet {
             }
         } else {
             req.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu!");
-            req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
+            resp.sendRedirect(req.getContextPath() +"/trang-chu");
         }
     }
 }
