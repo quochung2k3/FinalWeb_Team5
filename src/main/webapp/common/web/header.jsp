@@ -8,7 +8,7 @@
                 <ul class="header__navbar-list">
                     <li class="header__navbar-items header__navbar-items--has-qr header__navbar-items--separate">
                         Vào cửa hàng trên ứng dụng ViVu Shop
-                        <div class="header__QR">
+                        <div style="z-index: 99" class="header__QR">
                             <img src="<c:url value='/template/web/img/QR.png'/>" alt="qr_code" class="header__QR-img">
                             <div class="header__QR-apps">
                                 <a href="" class="header__QR-link">
@@ -101,7 +101,7 @@
                     <div class="header__search-input-wrap">
                         <input type="text" class="header__search-input" placeholder="Nhập để tìm kiếm sản phẩm">
                         <!-- Search History -->
-                        <div class="header__search-history">
+                        <div style="z-index: 99;" class="header__search-history">
                             <h3 class="header__search-history-heading">Lịch sử tìm kiếm</h3>
                             <ul class="header__search-history-list">
                                 <li class="header__search-history-items">
@@ -154,7 +154,7 @@
     <div class="modal__body">
         <!-- Register form -->
         <div class="auth-form auth-form__register js-auth__register">
-            <div class="auth-form__container">
+            <div style="padding: 16px 32px" class="auth-form__container">
                 <div class="auth-form__header">
                     <h3 class="auth-form__heading">Đăng ký</h3>
                     <span class="authen-form__switch-btn">Đăng nhập</span>
@@ -197,7 +197,7 @@
         <!-- Login form -->
         <form action="login" method="post">
             <div class="auth-form auth-form__login js-auth__login">
-                <div class="auth-form__container">
+                <div style="padding: 16px 32px" class="auth-form__container">
                     <div class="auth-form__header">
                         <h3 class="auth-form__heading">Đăng nhập</h3>
                         <span class="authen-form__switch-btn">Đăng kí</span>

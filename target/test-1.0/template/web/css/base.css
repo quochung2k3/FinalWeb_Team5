@@ -112,7 +112,6 @@ html {
 .btn.btn--size-s {
     height: 32px;
     font-size: 12px;
-    padding: 0 8px;
 }
 
 .btn.btn-normal:hover {

@@ -61,7 +61,7 @@ public class LoginController extends HttpServlet {
                 }
             } else {
                 try {
-                    resp.sendRedirect(req.getContextPath() +"/trang-chu");
+                    resp.sendRedirect(req.getContextPath() +"/product");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
