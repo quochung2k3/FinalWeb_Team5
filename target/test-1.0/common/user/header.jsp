@@ -87,7 +87,7 @@
                                 Trợ giúp
                             </a>
                         </li>
-                        <li class="header__navbar-items header__navbar-items--strong header__navbar-items--separate js-modal__register">Pham Quoc Hung</li>
+                        <li class="header__navbar-items header__navbar-items--strong header__navbar-items--separate js-modal__register">${name}</li>
                         <button style="background-color: #569cdd; border: none" type="submit" class="header__navbar-items header__navbar-items--strong js-modal__login">Đăng xuất</button>
                     </ul>
                 </div>

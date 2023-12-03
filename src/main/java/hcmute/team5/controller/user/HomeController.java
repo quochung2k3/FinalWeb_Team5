@@ -1,5 +1,7 @@
 package hcmute.team5.controller.user;
 
+import hcmute.team5.model.AccountModel;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,12 +12,13 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/user-home"})
 public class HomeController extends HttpServlet {
-
 	private static final long serialVersionUID = 1L;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String url = req.getRequestURI();
+		AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
 		if(url.contains("user-home")) {
+			req.setAttribute("name", account.getUserName());
 			RequestDispatcher rd = req.getRequestDispatcher("/views/user/productList.jsp");
 			rd.forward(req, resp);
 		}

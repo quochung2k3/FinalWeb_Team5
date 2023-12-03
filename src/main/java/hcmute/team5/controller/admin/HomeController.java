@@ -1,5 +1,7 @@
 package hcmute.team5.controller.admin;
 
+import hcmute.team5.model.AccountModel;
+
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +15,8 @@ public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
+		req.setAttribute("name", account.getUserName());
 		RequestDispatcher rd = req.getRequestDispatcher("/views/admin/home.jsp");
 		rd.forward(req, resp);
 	}
