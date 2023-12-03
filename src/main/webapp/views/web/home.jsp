@@ -7,5 +7,10 @@
 		<div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
 		<a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
 	</div>
+	<script>
+		if ("${note}" != "") {
+			alert("${note}");
+		}
+	</script>
 </header>
 <!-- Services-->

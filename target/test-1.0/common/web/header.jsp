@@ -162,13 +162,13 @@
                     </div>
                     <div class="auth-form__form">
                         <div class="auth-form__group">
-                            <input name="username" type="email" class="auth-form__input" placeholder="Email của bạn">
+                            <input name="username" type="email" class="auth-form__input" placeholder="Email của bạn" required>
                         </div>
                         <div class="auth-form__group">
-                            <input name="password" type="password" class="auth-form__input" placeholder="Mật khẩu của bạn">
+                            <input name="password" type="password" class="auth-form__input" placeholder="Mật khẩu của bạn" required>
                         </div>
                         <div class="auth-form__group">
-                            <input name="password" type="password" class="auth-form__input" placeholder="Nhập lại mật khẩu">
+                            <input name="password" type="password" class="auth-form__input" placeholder="Nhập lại mật khẩu" required>
                         </div>
                     </div>
                     <div class="auth-form__aside">
@@ -205,10 +205,10 @@
                     </div>
                     <div class="auth-form__form">
                         <div class="auth-form__group">
-                            <input name="username" type="email" class="auth-form__input" placeholder="Email của bạn">
+                            <input name="username" type="email" class="auth-form__input" placeholder="Email của bạn" required>
                         </div>
                         <div class="auth-form__group">
-                            <input name="password" type="password" class="auth-form__input" placeholder="Mật khẩu của bạn">
+                            <input name="password" type="password" class="auth-form__input" placeholder="Mật khẩu của bạn" required>
                         </div>
                     </div>
                     <div class="auth-form__aside">

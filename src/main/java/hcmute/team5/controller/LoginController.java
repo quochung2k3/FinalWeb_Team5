@@ -108,6 +108,7 @@ public class LoginController extends HttpServlet {
 
     private void postRegister(HttpServletRequest req, HttpServletResponse resp) {
         String username = req.getParameter("username");
+        String pass = req.getParameter("password");
         if (service.findOneByUsername(username) == null) {
             String password = req.getParameter("password");
             AccountModel account = new AccountModel();
@@ -115,17 +116,21 @@ public class LoginController extends HttpServlet {
             account.setPassWord(password);
             account.setRoleId(2);
             service.insert(account);
+            req.setAttribute("note", "Đăng kí thành công");
             try {
-                resp.sendRedirect(req.getContextPath() +"/trang-chu");
-            } catch (IOException e) {
+                req.getRequestDispatcher("/views/web/home.jsp").forward(req, resp);
+            } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
+
         } else {
+            req.setAttribute("note", "Tên tài khoản đã tồn tại!!");
             try {
-                resp.sendRedirect(req.getContextPath() +"/trang-chu");
-            } catch (IOException e) {
+                req.getRequestDispatcher("/views/web/home.jsp").forward(req, resp);
+            } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
+
         }
     }
 
@@ -149,8 +154,12 @@ public class LoginController extends HttpServlet {
                 e.printStackTrace();
             }
         } else {
-            req.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu!");
-            resp.sendRedirect(req.getContextPath() +"/trang-chu");
+            req.setAttribute("note", "Sai tên tài khoản hoặc mật khẩu");
+            try {
+                req.getRequestDispatcher("/views/web/home.jsp").forward(req, resp);
+            } catch (ServletException | IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
