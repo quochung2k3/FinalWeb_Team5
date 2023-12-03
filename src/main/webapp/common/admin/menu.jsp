@@ -29,9 +29,9 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Loại sản phẩm</h6>
-                <a class="collapse-item" href="<c:url value="/admin-qlbv"/>">Quần áo</a>
-                <a class="collapse-item" href="cards.html">Giày dép</a>
-                <a class="collapse-item" href="#">Áo khoác</a>
+                <a class="collapse-item" href="<c:url value="/admin-qlbv"/>">Mỹ phẩm</a>
+                <a class="collapse-item" href="cards.html">Nước hoa</a>
+                <a class="collapse-item" href="#">Mặt nạ</a>
                 <a class="collapse-item" href="#">ALL</a>
             </div>
         </div>
@@ -58,6 +58,14 @@
         <a class="nav-link collapsed" href="#">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Quản lý khách hàng</span>
+        </a>
+    </li>
+
+    <%--    Quản lý hóa đơn--%>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+            <i class="fa-solid fa-store"></i>
+            <span>Quản lý hóa đơn</span>
         </a>
     </li>
 
