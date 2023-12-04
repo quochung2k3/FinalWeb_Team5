@@ -2,50 +2,50 @@ package hcmute.team5.model;
 
 import java.sql.Timestamp;
 
-public class CustomerModel extends AbstractModel {
-    private String MaKH;
-    private String Ten;
-    private Timestamp NgaySinh;
-    private String SDT;
-    private Float TongTienDaMua;
+public class CustomerModel {
+    private String maKh;
+    private String ten;
+    private Timestamp ngaySinh;
+    private String sdt;
+    private float tongTienDaMua;
 
-    public String getMaKH() {
-        return MaKH;
+    public String getMaKh() {
+        return maKh;
     }
 
-    public void setMaKH(String maKH) {
-        MaKH = maKH;
+    public void setMaKh(String maKh) {
+        this.maKh = maKh;
     }
 
     public String getTen() {
-        return Ten;
+        return ten;
     }
 
     public void setTen(String ten) {
-        Ten = ten;
+        this.ten = ten;
     }
 
     public Timestamp getNgaySinh() {
-        return NgaySinh;
+        return ngaySinh;
     }
 
     public void setNgaySinh(Timestamp ngaySinh) {
-        NgaySinh = ngaySinh;
+        this.ngaySinh = ngaySinh;
     }
 
-    public String getSDT() {
-        return SDT;
+    public String getSdt() {
+        return sdt;
     }
 
-    public void setSDT(String SDT) {
-        this.SDT = SDT;
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
     }
 
-    public Float getTongTienDaMua() {
-        return TongTienDaMua;
+    public float getTongTienDaMua() {
+        return tongTienDaMua;
     }
 
-    public void setTongTienDaMua(Float tongTienDaMua) {
-        TongTienDaMua = tongTienDaMua;
+    public void setTongTienDaMua(float tongTienDaMua) {
+        this.tongTienDaMua = tongTienDaMua;
     }
 }
