@@ -53,9 +53,9 @@
         </div>
     </li>
 
-<%--    Quản lý doanh thu--%>
+<%--    Quản lý khách hàng--%>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="<c:url value="/admin-ql-customer"/>">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Quản lý khách hàng</span>
         </a>
@@ -63,7 +63,7 @@
 
     <%--    Quản lý hóa đơn--%>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed">
             <i class="fa-solid fa-store"></i>
             <span>Quản lý hóa đơn</span>
         </a>
