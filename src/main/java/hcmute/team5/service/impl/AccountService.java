@@ -2,6 +2,7 @@ package hcmute.team5.service.impl;
 
 import hcmute.team5.DAO.IAccountDAO;
 import hcmute.team5.DAO.impl.AccountDAO;
+import hcmute.team5.mapper.AccountMapper;
 import hcmute.team5.model.AccountModel;
 import hcmute.team5.service.IAccountService;
 
@@ -31,5 +32,10 @@ public class AccountService implements IAccountService {
     @Override
     public List<AccountModel> findAll() {
         return accountDAL.findAll();
+    }
+
+    @Override
+    public void deleteAccount(AccountModel account) {
+        accountDAL.deleteAccount(account);
     }
 }

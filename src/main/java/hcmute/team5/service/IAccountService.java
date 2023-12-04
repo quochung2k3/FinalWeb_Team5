@@ -9,4 +9,5 @@ public interface IAccountService {
     public AccountModel findOneByUsername(String username);
     public void insert(AccountModel account);
     List<AccountModel> findAll();
+    public void deleteAccount(AccountModel account);
 }

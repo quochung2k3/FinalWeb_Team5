@@ -62,4 +62,10 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
         String sql ="SELECT * FROM Account";
         return query(sql, new AccountMapper());
     }
+
+    @Override
+    public void deleteAccount(AccountModel account) {
+        String sql = "DELETE FROM Account WHERE id = ?";
+        update(sql, account.getId());
+    }
 }

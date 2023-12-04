@@ -27,6 +27,7 @@
     <!-- Custom styles for this template-->
     <link href="<c:url value="/template/admin/css/sb-admin-2.min.css"/>" rel="stylesheet" type="text/css">
     <link href="<c:url value="/template/admin/css/table.css"/>" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/template/admin/css/modal.css"/>" rel="stylesheet" type="text/css">
 </head>
 <body id="page-top">
     <!-- Menu-->

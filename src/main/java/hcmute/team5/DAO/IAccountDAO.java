@@ -8,4 +8,5 @@ public interface IAccountDAO {
     AccountModel findOneByUsername(String username);
     void insert(AccountModel account);
     List<AccountModel> findAll();
+    void deleteAccount(AccountModel account);
 }

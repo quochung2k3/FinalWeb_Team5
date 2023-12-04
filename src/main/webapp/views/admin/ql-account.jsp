@@ -80,7 +80,7 @@
                         <tr>
                             <td>${item.id}</td>
 <%--                            <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar">${item.userName}</a></td>--%>
-                            <td>${item.userName}</a></td>
+                            <td>${item.userName}</td>
                             <td>${item.passWord}</td>
                             <td>${item.roleId}</td>
                             <td><span class="status text-success">&bull;</span>${item.status}</td>
@@ -90,7 +90,7 @@
                                             align-items: center;
                                         ">
                                 <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                                <a href="#myModal" class="delete trigger-btn" title="Delete" data-toggle="modal"><i class="material-icons">&#xE5C9;</i></a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -100,10 +100,10 @@
                     <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                     <ul class="pagination">
                         <li class="page-item disabled"><a href="#">Previous</a></li>
-                        <li class="page-item"><a href="#" class="page-link">1</a></li>
+                        <li class="page-item active"><a href="#" class="page-link">1</a></li>
                         <li class="page-item"><a href="#" class="page-link">2</a></li>
                         <li class="page-item"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">4</a></li>
+                        <li class="page-item"><a href="#" class="page-link">4</a></li>
                         <li class="page-item"><a href="#" class="page-link">5</a></li>
                         <li class="page-item"><a href="#" class="page-link">6</a></li>
                         <li class="page-item"><a href="#" class="page-link">7</a></li>
@@ -113,4 +113,24 @@
             </div>
         </div>
     </div>
+    <form action="account-delete?id=${item.id}" method="post">
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <div class="icon-box">
+                        <i class="material-icons">&#xE5CD;</i>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body text-center">
+                    <h4>Warning!</h4>
+                    <p>Are you sure about this action?</p>
+                    <button style="background-color: red" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                    <button type="submit" style="background-color: #5ede5e" class="btn btn-success" data-dismiss="modal">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
 </body>
