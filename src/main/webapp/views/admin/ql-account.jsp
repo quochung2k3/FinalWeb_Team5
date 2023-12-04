@@ -14,7 +14,7 @@
                             <h2>Order <b>Details</b></h2>
                         </div>
                         <div class="col-sm-8">
-                            <a href="#" class="btn btn-primary"><i class="material-icons">&#xE863;</i> <span>Refresh List</span></a>
+                            <a href="#" class="btn btn-primary"><span>Add Account</span></a>
                             <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                                             align-items: center;
                                         ">
                                 <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                                <a href="#myModal" class="delete trigger-btn" title="Delete" data-toggle="modal"><i class="material-icons">&#xE5C9;</i></a>
+                                <a href="admin-delete?id=${item.id}" class="delete trigger-btn" title="Delete" data-item-id="${item.id}" onclick="openModal(event)"><i class="material-icons">&#xE5C9;</i></a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -113,24 +113,41 @@
             </div>
         </div>
     </div>
-    <form action="account-delete?id=${item.id}" method="post">
-    <div id="myModal" class="modal fade">
-        <div class="modal-dialog modal-confirm">
-            <div class="modal-content">
-                <div class="modal-header justify-content-center">
-                    <div class="icon-box">
-                        <i class="material-icons">&#xE5CD;</i>
+    <form action="admin-delete?id="+itemId method="post">
+        <div id="myModal" class="modal fade">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <div class="icon-box">
+                            <i class="material-icons">&#xE5CD;</i>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body text-center">
-                    <h4>Warning!</h4>
-                    <p>Are you sure about this action?</p>
-                    <button style="background-color: red" class="btn btn-success" data-dismiss="modal">Cancel</button>
-                    <button type="submit" style="background-color: #5ede5e" class="btn btn-success" data-dismiss="modal">Yes</button>
+                    <div class="modal-body text-center">
+                        <h4>Warning!</h4>
+                        <p>Are you sure about this action?</p>
+                        <button type="button" style="background-color: red" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                        <button type="button" style="background-color: #5ede5e" class="btn btn-success" onclick="confirmAction(currentItemId)">Yes</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </form>
+
+    <script>
+        function openModal(event) {
+            // Ngăn chặn hành động mặc định của thẻ <a>
+            event.preventDefault();
+            currentItemId = $(event.currentTarget).data('item-id');
+            console.log(currentItemId);
+            // Hiển thị modal
+            $('#myModal').modal('show');
+        }
+        function confirmAction(itemId) {
+            // Thực hiện các xử lý cần thiết sau khi nhấn nút "Yes"
+            console.log(itemId);
+            // Chuyển hướng đến URL mong muốn
+            window.location.href = "admin-delete?id="+itemId;
+        }
+    </script>
 </body>

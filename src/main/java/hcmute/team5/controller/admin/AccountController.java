@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
-@WebServlet(urlPatterns = {"/admin-ql-account", "/account-delete"})
+@WebServlet(urlPatterns = {"/admin-ql-account", "/admin-delete"})
 public class AccountController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     IAccountService service = new AccountService();
@@ -24,12 +24,12 @@ public class AccountController extends HttpServlet {
         if(url.contains("account")) {
             findAll(req, resp);
         }
-        if(url.contains("delete")) {
-            deleteAccout(req, resp);
+        if(url.contains("admin-delete")) {
+            deleteAccount(req, resp);
         }
     }
 
-    private void deleteAccout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void deleteAccount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         AccountModel account = new AccountModel();
         account.setId(id);
@@ -43,8 +43,6 @@ public class AccountController extends HttpServlet {
             RequestDispatcher rd = req.getRequestDispatcher("/views/web/home.jsp");
             rd.forward(req, resp);
         }
-        RequestDispatcher rd = req.getRequestDispatcher("/views/web/home.jsp");
-        rd.forward(req, resp);
     }
     private void findAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<AccountModel> list = service.findAll();
