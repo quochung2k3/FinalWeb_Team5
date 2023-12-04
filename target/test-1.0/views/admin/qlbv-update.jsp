@@ -27,7 +27,6 @@
             <input type="file" name="content" value="${item.cover_image}">
 
             <button type="submit">Update News</button>
-
         </c:forEach>
     </form>
 </body>
