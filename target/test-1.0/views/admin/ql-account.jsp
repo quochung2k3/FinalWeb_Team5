@@ -40,14 +40,11 @@
                                 <input type="text" class="form-control">
                             </div>
                             <div class="filter-group">
-                                <label>Location</label>
+                                <label>Role name</label>
                                 <select class="form-control">
                                     <option>All</option>
-                                    <option>Berlin</option>
-                                    <option>London</option>
-                                    <option>Madrid</option>
-                                    <option>New York</option>
-                                    <option>Paris</option>
+                                    <option>Admin</option>
+                                    <option>Customer</option>
                                 </select>
                             </div>
                             <div class="filter-group">
@@ -113,7 +110,6 @@
             </div>
         </div>
     </div>
-    <form action="deleteForm" method="post">
         <div id="myModal" class="modal fade">
             <div class="modal-dialog modal-confirm">
                 <div class="modal-content">
@@ -127,12 +123,11 @@
                         <h4>Warning!</h4>
                         <p>Are you sure about this action?</p>
                         <button type="button" style="background-color: red" class="btn btn-success" data-dismiss="modal">Cancel</button>
-                        <button type="submit" style="background-color: #5ede5e" class="btn btn-success">Yes</button>
+                        <button type="button" style="background-color: #5ede5e" class="btn btn-success" onclick="confirmAction(currentItemId)">Yes</button>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
 
     <script>
         function openModal(event) {
@@ -141,8 +136,11 @@
             currentItemId = $(event.currentTarget).data('item-id');
             console.log(currentItemId);
             // Hiển thị modal
-            $('#deleteForm').attr('action', 'admin-delete?id=' + currentItemId);
             $('#myModal').modal('show');
+        }
+        function confirmAction(itemId) {
+            // Chuyển hướng đến URL mong muốn
+            window.location.href = "admin-delete?id="+itemId;
         }
     </script>
 </body>

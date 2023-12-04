@@ -40,14 +40,11 @@
                                 <input type="text" class="form-control">
                             </div>
                             <div class="filter-group">
-                                <label>Location</label>
+                                <label>Role name</label>
                                 <select class="form-control">
                                     <option>All</option>
-                                    <option>Berlin</option>
-                                    <option>London</option>
-                                    <option>Madrid</option>
-                                    <option>New York</option>
-                                    <option>Paris</option>
+                                    <option>Admin</option>
+                                    <option>Customer</option>
                                 </select>
                             </div>
                             <div class="filter-group">
@@ -113,7 +110,6 @@
             </div>
         </div>
     </div>
-    <form action="admin-delete?id="+itemId method="post">
         <div id="myModal" class="modal fade">
             <div class="modal-dialog modal-confirm">
                 <div class="modal-content">
@@ -132,7 +128,6 @@
                 </div>
             </div>
         </div>
-    </form>
 
     <script>
         function openModal(event) {
@@ -144,8 +139,6 @@
             $('#myModal').modal('show');
         }
         function confirmAction(itemId) {
-            // Thực hiện các xử lý cần thiết sau khi nhấn nút "Yes"
-            console.log(itemId);
             // Chuyển hướng đến URL mong muốn
             window.location.href = "admin-delete?id="+itemId;
         }
