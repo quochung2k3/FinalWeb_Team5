@@ -1,8 +1,8 @@
 package hcmute.team5.controller;
 
-import hcmute.team5.model.UserModel;
-import hcmute.team5.service.IUserService;
-import hcmute.team5.service.impl.UserService;
+import hcmute.team5.model.AccountModel;
+import hcmute.team5.service.IAccountService;
+import hcmute.team5.service.impl.AccountService;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -13,7 +13,7 @@ import java.io.Serial;
 public class LoginController extends HttpServlet {
     @Serial
     private static final long serialVersionUID = 1L;
-    IUserService service = new UserService();
+    IAccountService service = new AccountService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -51,7 +51,7 @@ public class LoginController extends HttpServlet {
 
     private void getWaiting(HttpServletRequest req, HttpServletResponse resp) {
         // do authorization and redirect
-        UserModel account = (UserModel) req.getSession(false).getAttribute("account");
+        AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
         if (account != null) {
             if (account.getRoleId() == 1) {
                 try {
@@ -61,7 +61,7 @@ public class LoginController extends HttpServlet {
                 }
             } else {
                 try {
-                    resp.sendRedirect(req.getContextPath() +"/trang-chu");
+                    resp.sendRedirect(req.getContextPath() +"/user-home");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -92,7 +92,7 @@ public class LoginController extends HttpServlet {
                 }
             }
         }
-        req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
+        resp.sendRedirect(req.getContextPath() +"/trang-chu");
     }
 
     @Override
@@ -108,24 +108,30 @@ public class LoginController extends HttpServlet {
 
     private void postRegister(HttpServletRequest req, HttpServletResponse resp) {
         String username = req.getParameter("username");
+        String pass = req.getParameter("password");
         if (service.findOneByUsername(username) == null) {
             String password = req.getParameter("password");
-            UserModel account = new UserModel();
+            AccountModel account = new AccountModel();
             account.setUserName(username);
             account.setPassWord(password);
             account.setRoleId(2);
+            account.setStatus("Active");
             service.insert(account);
+            req.setAttribute("note", "Đăng kí thành công");
             try {
-                resp.sendRedirect(req.getContextPath() +"/login");
-            } catch (IOException e) {
+                req.getRequestDispatcher("/views/web/home.jsp").forward(req, resp);
+            } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
+
         } else {
+            req.setAttribute("note", "Tên tài khoản đã tồn tại!!");
             try {
-                resp.sendRedirect(req.getContextPath() +"/register");
-            } catch (IOException e) {
+                req.getRequestDispatcher("/views/web/home.jsp").forward(req, resp);
+            } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
+
         }
     }
 
@@ -133,7 +139,7 @@ public class LoginController extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String remember = req.getParameter("remember");
-        UserModel account = service.login(username, password);
+        AccountModel account = service.login(username, password);
         if (account != null) {
             // if remember is checked, set cookie
             if (remember != null) {
@@ -149,8 +155,12 @@ public class LoginController extends HttpServlet {
                 e.printStackTrace();
             }
         } else {
-            req.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu!");
-            req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
+            req.setAttribute("note", "Sai tên tài khoản hoặc mật khẩu");
+            try {
+                req.getRequestDispatcher("/views/web/home.jsp").forward(req, resp);
+            } catch (ServletException | IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

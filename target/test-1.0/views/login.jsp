@@ -48,7 +48,7 @@
                                 </div>
                                 <form class="user" action="login" method="post">
                                     <div class="form-group">
-                                        <input name="username" type="text" class="form-control form-control-user"
+                                        <input name="username" type="email" class="form-control form-control-user"
                                                id="exampleInputEmail" aria-describedby="emailHelp"
                                                placeholder="Enter Email Address...">
                                     </div>
@@ -59,8 +59,7 @@
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
                                             <input type="checkbox" class="custom-control-input" id="customCheck">
-                                            <label class="custom-control-label" for="customCheck">Remember
-                                                Me</label>
+                                            <label class="custom-control-label" for="customCheck">Remember Me</label>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
