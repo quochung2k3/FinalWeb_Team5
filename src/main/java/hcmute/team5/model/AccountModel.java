@@ -4,8 +4,15 @@ public class AccountModel extends AbstractModel {
     private String userName;
     private String fullName;
     private String passWord;
-    private int status;
+    private String status;
     private int roleId;
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getUserName() {
         return userName;
@@ -31,13 +38,6 @@ public class AccountModel extends AbstractModel {
         this.passWord = passWord;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
     public int getRoleId() {
         return roleId;

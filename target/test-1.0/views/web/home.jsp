@@ -299,9 +299,9 @@
 			</form>
 		</div>
 	</section>
+	<script>
+		if ("${note}" != "") {
+			alert("${note}");
+		}
+	</script>
 </body>
-<script>
-	if ("${note}" != "") {
-		alert("${note}");
-	}
-</script>

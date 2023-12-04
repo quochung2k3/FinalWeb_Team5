@@ -2,13 +2,15 @@ package hcmute.team5.DAO.impl;
 
 import hcmute.team5.DAO.DBConnectionSQL;
 import hcmute.team5.DAO.IAccountDAO;
+import hcmute.team5.mapper.AccountMapper;
 import hcmute.team5.model.AccountModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 
-public class AccountDAO implements IAccountDAO {
+public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO {
     Connection conn = null;
     Statement stmt = null;
     PreparedStatement ps = null;
@@ -40,17 +42,24 @@ public class AccountDAO implements IAccountDAO {
 
     @Override
     public void insert(AccountModel account) {
-        String sql = "INSERT INTO Account(username, password, roleid) VALUES(?, ?, ?)";
+        String sql = "INSERT INTO Account(username, password, roleid, status) VALUES(?, ?, ?, ?)";
         try {
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, account.getUserName());
             ps.setString(2, account.getPassWord());
             ps.setInt(3, account.getRoleId());
+            ps.setString(4, account.getStatus());
             ps.executeUpdate();
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<AccountModel> findAll() {
+        String sql ="SELECT * FROM Account";
+        return query(sql, new AccountMapper());
     }
 }

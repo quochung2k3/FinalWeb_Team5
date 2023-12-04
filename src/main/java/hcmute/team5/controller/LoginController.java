@@ -115,6 +115,7 @@ public class LoginController extends HttpServlet {
             account.setUserName(username);
             account.setPassWord(password);
             account.setRoleId(2);
+            account.setStatus("Active");
             service.insert(account);
             req.setAttribute("note", "Đăng kí thành công");
             try {
