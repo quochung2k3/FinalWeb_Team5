@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
-@WebServlet(urlPatterns = {"/admin-ql-account", "/admin-delete", "/admin-add"})
+@WebServlet(urlPatterns = {"/admin-ql-account", "/admin-delete", "/admin-add", "/admin-update"})
 public class AccountController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     IAccountService service = new AccountService();
@@ -31,6 +31,17 @@ public class AccountController extends HttpServlet {
             RequestDispatcher rd = req.getRequestDispatcher("/views/admin/add-account.jsp");
             rd.forward(req, resp);
         }
+        if(url.contains("update")) {
+            findOneByUserName(req, resp);
+        }
+    }
+
+    private void findOneByUserName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = req.getParameter("username");
+        AccountModel account = service.findOneByUsername(username);
+        req.setAttribute("account", account);
+        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/update-account.jsp");
+        rd.forward(req, resp);
     }
 
     private void deleteAccount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -50,6 +61,13 @@ public class AccountController extends HttpServlet {
         if(url.contains("add")) {
             postRegister(req, resp);
         }
+        if(url.contains("update")) {
+            update(req, resp);
+        }
+    }
+
+    private void update(HttpServletRequest req, HttpServletResponse resp) {
+
     }
 
     private void postRegister(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

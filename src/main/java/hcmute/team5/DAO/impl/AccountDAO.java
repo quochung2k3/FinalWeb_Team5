@@ -29,6 +29,7 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
                 account.setId(rs.getInt(1));
                 account.setUserName(rs.getString(2));
                 account.setPassWord(rs.getString(3));
+                account.setFullName(rs.getString(4));
                 account.setRoleId(rs.getInt(6));
                 conn.close();
                 return account;
