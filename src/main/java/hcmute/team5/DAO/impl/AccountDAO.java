@@ -87,4 +87,10 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void update(AccountModel account) {
+        String sql = "UPDATE Account SET fullname = ?, password = ?, roleid = ? WHERE username = ?";
+        update(sql, account.getFullName(), account.getPassWord(), account.getRoleId(), account.getUserName());
+    }
 }

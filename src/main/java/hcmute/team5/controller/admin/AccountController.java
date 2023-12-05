@@ -67,7 +67,17 @@ public class AccountController extends HttpServlet {
     }
 
     private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        String fullname = req.getParameter("fullname");
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        int roleid = Integer.parseInt(req.getParameter("roleid"));
+        AccountModel account = new AccountModel();
+        account.setFullName(fullname);
+        account.setUserName(username);
+        account.setPassWord(password);
+        account.setRoleId(roleid);
+        service.update(account);
+        req.setAttribute("note", "Cập nhật thành công");
         findAll(req, resp);
     }
 

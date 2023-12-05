@@ -62,7 +62,7 @@
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>#</th>
+                        <th>Id</th>
                         <th>Username</th>
                         <th>Password</th>
                         <th>Role</th>

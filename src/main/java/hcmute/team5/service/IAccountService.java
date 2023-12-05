@@ -11,4 +11,5 @@ public interface IAccountService {
     void insertAcc(AccountModel account);
     List<AccountModel> findAll();
     public void deleteAccount(AccountModel account);
+    public void update(AccountModel account);
 }
