@@ -14,7 +14,7 @@
                             <h2>Order <b>Details</b></h2>
                         </div>
                         <div class="col-sm-8">
-                            <a href="#" class="btn btn-primary"><span>Add Account</span></a>
+                            <a href="<c:url value="/admin-add"/>" class="btn btn-primary"><span>Add Account</span></a>
                             <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>
                         </div>
                     </div>
@@ -50,11 +50,9 @@
                             <div class="filter-group">
                                 <label>Status</label>
                                 <select class="form-control">
-                                    <option>Any</option>
-                                    <option>Delivered</option>
-                                    <option>Shipped</option>
-                                    <option>Pending</option>
-                                    <option>Cancelled</option>
+                                    <option>All</option>
+                                    <option>Active</option>
+                                    <option>Disable</option>
                                 </select>
                             </div>
                             <span class="filter-icon"><i class="fa fa-filter"></i></span>
@@ -86,7 +84,7 @@
                                             justify-content: space-between;
                                             align-items: center;
                                         ">
-                                <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+                                <a href="admin-update?username=${item.userName}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
                                 <a href="admin-delete?id=${item.id}" class="delete trigger-btn" title="Delete" data-item-id="${item.id}" onclick="openModal(event)"><i class="material-icons">&#xE5C9;</i></a>
                             </td>
                         </tr>
@@ -141,6 +139,11 @@
         function confirmAction(itemId) {
             // Chuyển hướng đến URL mong muốn
             window.location.href = "admin-delete?id="+itemId;
+        }
+    </script>
+    <script>
+        if ("${note}" != "") {
+            alert("${note}");
         }
     </script>
 </body>

@@ -30,6 +30,11 @@ public class AccountService implements IAccountService {
     }
 
     @Override
+    public void insertAcc(AccountModel account) {
+        accountDAL.insertAcc(account);
+    }
+
+    @Override
     public List<AccountModel> findAll() {
         return accountDAL.findAll();
     }

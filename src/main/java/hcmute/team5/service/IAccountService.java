@@ -8,6 +8,7 @@ public interface IAccountService {
     public AccountModel login(String username, String password);
     public AccountModel findOneByUsername(String username);
     public void insert(AccountModel account);
+    void insertAcc(AccountModel account);
     List<AccountModel> findAll();
     public void deleteAccount(AccountModel account);
 }
