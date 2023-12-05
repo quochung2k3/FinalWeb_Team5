@@ -66,8 +66,9 @@ public class AccountController extends HttpServlet {
         }
     }
 
-    private void update(HttpServletRequest req, HttpServletResponse resp) {
+    private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        findAll(req, resp);
     }
 
     private void postRegister(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

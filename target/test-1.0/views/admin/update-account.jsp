@@ -13,36 +13,32 @@
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Admin update</p>
 
                                 <form action="admin-update" class="mx-1 mx-md-4" method="post">
-
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <input value="${account.fullName}" name="fullname" type="text" id="form3Example1c" class="form-control" required>
-                                            <label class="form-label" for="form3Example1c">Your Name</label>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
+                                            <input placeholder="fullname" value="${account.fullName}" name="fullname" type="text" class="form-control" required>
                                         </div>
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <input value="${account.userName}" name="username" type="email" id="form3Example3c" class="form-control" required>
-                                            <label class="form-label" for="form3Example3c">Your Email</label>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
+                                            <input placeholder="username" value="${account.userName}" name="username" type="email" id="form3Example3c" class="form-control" required>
                                         </div>
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <input value="${account.passWord}" name="password" type="password" id="form3Example4c" class="form-control" required>
-                                            <label class="form-label" for="form3Example4c">Password</label>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
+                                            <input placeholder="password" value="${account.passWord}" name="password" type="password" id="form3Example4c" class="form-control" required>
                                         </div>
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <input value="${account.roleId}" name="roleid" type="password" id="form3Example5c" class="form-control" required>
-                                            <label class="form-label" for="form3Example5c">RoleId</label>
+                                        <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
+<%--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>--%>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
+                                            <input placeholder="roleid" value="${account.roleId}" name="roleid" type="password" id="form3Example5c" class="form-control" required>
                                         </div>
                                     </div>
 
@@ -56,12 +52,10 @@
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <button type="submit" class="btn btn-primary btn-lg">Update</button>
                                     </div>
-
                                 </form>
 
                             </div>
                             <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
                                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
                                      class="img-fluid" alt="Sample image">
                             </div>
