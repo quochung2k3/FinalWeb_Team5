@@ -28,6 +28,22 @@
     <link href="<c:url value="/template/admin/css/sb-admin-2.min.css"/>" rel="stylesheet" type="text/css">
     <link href="<c:url value="/template/admin/css/table.css"/>" rel="stylesheet" type="text/css">
     <link href="<c:url value="/template/admin/css/modal.css"/>" rel="stylesheet" type="text/css">
+
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css"
+            rel="stylesheet"
+    />
+
 </head>
 <body id="page-top">
     <!-- Menu-->
@@ -66,6 +82,12 @@
     <script src= "<c:url value='/template/admin/js/demo/chart-area-demo.js'/>"></script>
     <script src= "<c:url value='/template/admin/js/demo/chart-pie-demo.js'/>"></script>
     <script src= "<c:url value='/template/admin/js/openModal.js'/>"></script>
+
+    <!-- MDB -->
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"
+    ></script>
 </body>
 <script>
     $(document).ready(function(){

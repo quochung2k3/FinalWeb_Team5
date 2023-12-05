@@ -14,7 +14,7 @@
                             <h2>Order <b>Details</b></h2>
                         </div>
                         <div class="col-sm-8">
-                            <a href="#" class="btn btn-primary"><span>Add Account</span></a>
+                            <a href="<c:url value="/admin-add"/>" class="btn btn-primary"><span>Add Account</span></a>
                             <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>
                         </div>
                     </div>
@@ -141,6 +141,11 @@
         function confirmAction(itemId) {
             // Chuyển hướng đến URL mong muốn
             window.location.href = "admin-delete?id="+itemId;
+        }
+    </script>
+    <script>
+        if ("${note}" != "") {
+            alert("${note}");
         }
     </script>
 </body>

@@ -9,4 +9,5 @@ public interface IAccountDAO {
     void insert(AccountModel account);
     List<AccountModel> findAll();
     void deleteAccount(AccountModel account);
+    void insertAcc(AccountModel account);
 }
