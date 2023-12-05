@@ -15,7 +15,7 @@
                         </div>
                         <div class="col-sm-8">
                             <a href="<c:url value="/admin-add"/>" class="btn btn-primary"><span>Add Account</span></a>
-                            <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>
+<%--                            <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>--%>
                         </div>
                     </div>
                 </div>
