@@ -43,4 +43,9 @@ public class AccountService implements IAccountService {
     public void deleteAccount(AccountModel account) {
         accountDAL.deleteAccount(account);
     }
+
+    @Override
+    public void update(AccountModel account) {
+        accountDAL.update(account);
+    }
 }

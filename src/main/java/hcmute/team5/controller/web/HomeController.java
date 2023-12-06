@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/trang-chu"})
+@WebServlet(urlPatterns = {"/trang-chu", "/reset-pass"})
 public class HomeController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -17,6 +17,10 @@ public class HomeController extends HttpServlet {
 		String url = req.getRequestURI();
 		if(url.contains("trang-chu")) {
 			RequestDispatcher rd = req.getRequestDispatcher("/views/web/home.jsp");
+			rd.forward(req, resp);
+		}
+		if(url.contains("reset-pass")) {
+			RequestDispatcher rd = req.getRequestDispatcher("/views/web/reset-pass.jsp");
 			rd.forward(req, resp);
 		}
 	}

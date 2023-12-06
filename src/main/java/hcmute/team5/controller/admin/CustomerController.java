@@ -53,7 +53,7 @@ public class CustomerController extends HttpServlet {
     private void findAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<CustomerModel> list = service.findAll();
         req.setAttribute("listCustomer", list);
-        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/ql-customer.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/customer/ql-customer.jsp");
         rd.forward(req, resp);
     }
 
