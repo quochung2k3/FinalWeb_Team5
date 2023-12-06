@@ -28,7 +28,7 @@ public class AccountController extends HttpServlet {
             deleteAccount(req, resp);
         }
         if(url.contains("add")) {
-            RequestDispatcher rd = req.getRequestDispatcher("/views/admin/add-account.jsp");
+            RequestDispatcher rd = req.getRequestDispatcher("/views/admin/account/add-account.jsp");
             rd.forward(req, resp);
         }
         if(url.contains("update")) {
@@ -40,7 +40,7 @@ public class AccountController extends HttpServlet {
         String username = req.getParameter("username");
         AccountModel account = service.findOneByUsername(username);
         req.setAttribute("account", account);
-        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/update-account.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/account/update-account.jsp");
         rd.forward(req, resp);
     }
 
@@ -100,7 +100,7 @@ public class AccountController extends HttpServlet {
 
         } else {
             req.setAttribute("note", "Tên tài khoản đã tồn tại!!");
-            RequestDispatcher rd = req.getRequestDispatcher("/views/admin/add-account.jsp");
+            RequestDispatcher rd = req.getRequestDispatcher("/views/admin/account/add-account.jsp");
             rd.forward(req, resp);
         }
     }
@@ -108,7 +108,7 @@ public class AccountController extends HttpServlet {
     private void findAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<AccountModel> list = service.findAll();
         req.setAttribute("listAccount", list);
-        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/ql-account.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/account/ql-account.jsp");
         rd.forward(req, resp);
     }
 }

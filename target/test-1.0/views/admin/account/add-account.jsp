@@ -1,5 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ include file="/common/taglib.jsp"%>
 <body>
 <section class="vh-100" style="background-color: #eee;">
     <div class="container h-100">
@@ -10,45 +11,54 @@
                         <div class="row justify-content-center">
                             <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Admin update</p>
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Admin add</p>
 
-                                <form action="admin-update" class="mx-1 mx-md-4" method="post">
+                                <form action="admin-add" class="mx-1 mx-md-4" method="post">
+                                    <p style="margin-left: 50px; margin-bottom: 2px;">Fullname</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="fullname" value="${account.fullName}" name="fullname" type="text" class="form-control" required>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input name="fullname" type="text" id="form3Example1c" class="form-control" required>
                                         </div>
                                     </div>
-
+                                    <p style="margin-left: 50px; margin-bottom: 2px;">Username</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="username" value="${account.userName}" name="username" type="email" id="form3Example3c" class="form-control" required>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input name="username" type="email" id="form3Example3c" class="form-control" required>
                                         </div>
                                     </div>
-
+                                    <p style="margin-left: 50px; margin-bottom: 2px;">Password</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="password" value="${account.passWord}" name="password" type="password" id="form3Example4c" class="form-control" required>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input name="password" type="password" id="form3Example4c" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <p style="margin-left: 50px; margin-bottom: 2px;">RoleId</p>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input name="roleid" type="password" id="form3Example5c" class="form-control" required>
                                         </div>
                                     </div>
 
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
-<%--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>--%>
-                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="roleid" value="${account.roleId}" name="roleid" type="password" id="form3Example5c" class="form-control" required>
-                                        </div>
+                                    <div class="form-check d-flex justify-content-center mb-5">
+                                        <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" required>
+                                        <label class="form-check-label">
+                                            I agree all statements in <a href="#!">Terms of service</a>
+                                        </label>
                                     </div>
 
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" class="btn btn-primary btn-lg">Update</button>
+                                        <button type="submit" class="btn btn-primary btn-lg">Submit Add</button>
                                     </div>
+
                                 </form>
 
                             </div>
                             <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
                                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
                                      class="img-fluid" alt="Sample image">
                             </div>
