@@ -211,9 +211,10 @@
                             <input name="password" type="password" class="auth-form__input" placeholder="Mật khẩu của bạn" required>
                         </div>
                     </div>
+
                     <div class="auth-form__aside">
                         <div class="auth-form__help">
-                            <a href="" class="auth-form__help-link auth-form__help-link-forgot">Quên mật khẩu</a>
+                            <a href="<c:url value="/reset-pass"/>" class="auth-form__help-link auth-form__help-link-forgot">Quên mật khẩu</a>
                             <span class="auth-form__help-separate"></span>
                             <a href="" class="auth-form__help-link">Cần trợ giúp?</a>
                         </div>
