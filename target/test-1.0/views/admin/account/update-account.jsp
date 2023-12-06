@@ -25,7 +25,8 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="username" value="${account.userName}" name="username" type="email" id="form3Example3c" class="form-control" required disabled>
+                                            <input placeholder="username" value="${account.userName}" type="email" id="form3Example3c" class="form-control" required disabled>
+                                            <input type="hidden" name="username" value="${account.userName}">
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Password</p>
@@ -64,6 +65,7 @@
 <script>
     if ("${note}" != "") {
         alert("${note}");
+        ${node} = "";
     }
 </script>
 </body>
