@@ -24,6 +24,30 @@ public class CustomerController extends HttpServlet {
         if(url.contains("customer")) {
             findAll(req, resp);
         }
+        if(url.contains("admin-delete")) {
+            deleteAccount(req, resp);
+        }
+        if(url.contains("add")) {
+            RequestDispatcher rd = req.getRequestDispatcher("/views/admin/add-account.jsp");
+            rd.forward(req, resp);
+        }
+        if(url.contains("update")) {
+            findOneByTen(req, resp);
+        }
+    }
+    private void findOneByTen(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String ten = req.getParameter("ten");
+        AccountModel account = service.findOneByTen(ten);
+        req.setAttribute("ten", ten);
+        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/update-customer.jsp");
+        rd.forward(req, resp);
+    }
+    private void deleteAccount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        AccountModel account = new AccountModel();
+        account.setId(id);
+        service.deleteAccount(account);
+        findAll(req, resp);
     }
 
     private void findAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

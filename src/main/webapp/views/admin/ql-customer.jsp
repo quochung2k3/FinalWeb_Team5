@@ -11,10 +11,10 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-4">
-                        <h2>Order <b>Details</b></h2>
+                        <h2>Customer <b>Details</b></h2>
                     </div>
                     <div class="col-sm-8">
-                        <a href="#" class="btn btn-primary"><span>Add Account</span></a>
+                        <a href="#" class="btn btn-primary"><span>Add Customer</span></a>
                         <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>
                     </div>
                 </div>
@@ -36,25 +36,16 @@
                     <div class="col-sm-9">
                         <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         <div class="filter-group">
-                            <label>Name</label>
+                            <label>SĐT</label>
                             <input type="text" class="form-control">
                         </div>
                         <div class="filter-group">
-                            <label>Role name</label>
+                            <label>Tổng tiền đã mua</label>
                             <select class="form-control">
-                                <option>All</option>
-                                <option>Admin</option>
-                                <option>Customer</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label>Status</label>
-                            <select class="form-control">
-                                <option>Any</option>
-                                <option>Delivered</option>
-                                <option>Shipped</option>
-                                <option>Pending</option>
-                                <option>Cancelled</option>
+                                <option>ALL</option>
+                                <option>Dưới 1 triệu</option>
+                                <option>1 triệu - 3 triệu</option>
+                                <option>Trên 3 triệu</option>
                             </select>
                         </div>
                         <span class="filter-icon"><i class="fa fa-filter"></i></span>
