@@ -63,7 +63,7 @@
 
     <%--    Quản lý hóa đơn--%>
     <li class="nav-item">
-        <a class="nav-link collapsed">
+        <a class="nav-link collapsed" href="<c:url value="/admin-ql-bill"/>">
             <i style="font-size: 20px;" class="fa-solid fa-file-invoice-dollar"></i>
             <span>Quản lý hóa đơn</span>
         </a>

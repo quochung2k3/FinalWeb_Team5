@@ -17,28 +17,28 @@
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Fullname</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
+                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
                                             <input name="fullname" type="text" id="form3Example1c" class="form-control" required>
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Username</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
+                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
                                             <input name="username" type="email" id="form3Example3c" class="form-control" required>
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Password</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
+                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
                                             <input name="password" type="password" id="form3Example4c" class="form-control" required>
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">RoleId</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
+                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
                                             <input name="roleid" type="password" id="form3Example5c" class="form-control" required>
                                         </div>
                                     </div>

@@ -94,7 +94,7 @@
             <!-- Header with search -->
             <div class="header-with-search">
                 <div class="header__logo">
-                    <img src="<c:url value='/template/web/img/iconShop.png'/>" alt="" class="header__logo-img">
+                    <a href="<c:url value="/trang-chu"/>" style="display: block;width: 75%;"><img src="<c:url value='/template/web/img/iconShop.png'/>" alt="" class="header__logo-img"></a>
                 </div>
 
                 <div class="header__search">
