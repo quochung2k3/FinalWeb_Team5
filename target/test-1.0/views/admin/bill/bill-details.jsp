@@ -6,6 +6,7 @@
         width: 33.33%;
     }
 </style>
+<body>
 <div class="card">
     <div class="card-header bg-black"></div>
     <div class="card-body">
@@ -79,3 +80,4 @@
         </div>
     </div>
 </div>
+</body>

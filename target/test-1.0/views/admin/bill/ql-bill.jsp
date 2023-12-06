@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
-<head>
-    <title>Title</title>
-</head>
 <body>
 <div class="container-xl">
     <div class="table-responsive">
@@ -125,23 +122,23 @@
     </div>
 </div>
 
-<script>
-    function openModal(event) {
-        // Ngăn chặn hành động mặc định của thẻ <a>
-        event.preventDefault();
-        currentItemId = $(event.currentTarget).data('item-id');
-        console.log(currentItemId);
-        // Hiển thị modal
-        $('#myModal').modal('show');
-    }
-    function confirmAction(itemId) {
-        // Chuyển hướng đến URL mong muốn
-        window.location.href = "admin-delete?id="+itemId;
-    }
-</script>
-<script>
-    if ("${note}" != "") {
-        alert("${note}");
-    }
-</script>
+    <script>
+        function openModal(event) {
+            // Ngăn chặn hành động mặc định của thẻ <a>
+            event.preventDefault();
+            currentItemId = $(event.currentTarget).data('item-id');
+            console.log(currentItemId);
+            // Hiển thị modal
+            $('#myModal').modal('show');
+        }
+        function confirmAction(itemId) {
+            // Chuyển hướng đến URL mong muốn
+            window.location.href = "admin-delete?id="+itemId;
+        }
+    </script>
+    <script>
+        if ("${note}" != "") {
+            alert("${note}");
+        }
+    </script>
 </body>
