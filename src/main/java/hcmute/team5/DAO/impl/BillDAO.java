@@ -21,5 +21,4 @@ public class BillDAO extends AbstractDAO<BillModel> implements IBillDAO {
         String sql = "SELECT * FROM ChiTietHD INNER JOIN SanPham ON ChiTietHD.masanpham = SanPham.masanpham WHERE ChiTietHD.mahd = ?";
         return query(sql, new BillDetailsMapper(), maHD);
     }
-
 }
