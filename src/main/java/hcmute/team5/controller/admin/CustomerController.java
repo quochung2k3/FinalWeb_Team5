@@ -14,39 +14,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
-@WebServlet(urlPatterns = {"/admin-ql-customer"})
+@WebServlet(urlPatterns = {"/admin-ql-customer", "/admin-update"})
 public class CustomerController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     ICustomerService service = new CustomerService();
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURI();
-        if(url.contains("customer")) {
+        if (url.contains("customer")) {
             findAll(req, resp);
         }
-        if(url.contains("admin-delete")) {
-            deleteAccount(req, resp);
-        }
-        if(url.contains("add")) {
-            RequestDispatcher rd = req.getRequestDispatcher("/views/admin/add-account.jsp");
-            rd.forward(req, resp);
-        }
-        if(url.contains("update")) {
-            findOneByTen(req, resp);
-        }
     }
-    private void findOneByTen(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String maKh = req.getParameter("makh");
         String ten = req.getParameter("ten");
-        AccountModel account = service.findOneByTen(ten);
-        req.setAttribute("ten", ten);
-        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/update-customer.jsp");
-        rd.forward(req, resp);
-    }
-    private void deleteAccount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
-        AccountModel account = new AccountModel();
-        account.setId(id);
-        service.deleteAccount(account);
+        String ngaySinh = req.getParameter("ngaysinh");
+        String sdt = req.getParameter("sdt");
+        int tongTienDaMua = Integer.parseInt(req.getParameter("tongtiendamua"));
+        CustomerModel customer = new CustomerModel();
+        customer.setMaKh(maKh);
+        customer.setTen(ten);
+        customer.setNgaySinh(ngaySinh);
+        customer.setSdt(sdt);
+        customer.setTongTienDaMua(tongTienDaMua);
+        service.update(customer);
+        req.setAttribute("note", "Cập nhật thành công");
         findAll(req, resp);
     }
 

@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class CustomerModel {
     private String maKh;
     private String ten;
-    private Timestamp ngaySinh;
+    private String ngaySinh;
     private String sdt;
     private float tongTienDaMua;
 
@@ -25,11 +25,11 @@ public class CustomerModel {
         this.ten = ten;
     }
 
-    public Timestamp getNgaySinh() {
+    public String getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(Timestamp ngaySinh) {
+    public void setNgaySinh(String ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 

@@ -7,6 +7,9 @@ import java.util.List;
 
 public interface ICustomerService {
     List<CustomerModel> findAll();
+
+    public  void update(CustomerModel customer);
+
 }
 
 

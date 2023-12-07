@@ -18,7 +18,7 @@
                         <p>You can reset your password here.</p>
                         <div class="panel-body">
 
-                            <form id="register-form" role="form" autocomplete="off" class="form" method="post">
+                            <form action="reset-pass" role="form" autocomplete="off" class="form" method="post">
 
                                 <div class="form-group">
                                     <div style="margin: 0 auto; width: 20%; height: 40px;" class="input-group">

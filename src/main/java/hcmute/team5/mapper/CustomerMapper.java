@@ -13,7 +13,7 @@ public class CustomerMapper implements RowMapper<CustomerModel> {
             CustomerModel customer = new CustomerModel();
             customer.setMaKh(rs.getString("makh"));
             customer.setTen(rs.getString("ten"));
-            customer.setNgaySinh(rs.getTimestamp("ngaysinh"));
+            customer.setNgaySinh(rs.getString("ngaysinh"));
             customer.setSdt(rs.getString("sdt"));
             customer.setTongTienDaMua(rs.getFloat("tongtiendamua"));
             return customer;

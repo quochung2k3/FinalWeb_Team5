@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ICustomerDAO {
     List<CustomerModel> findAll();
+
+    void update(CustomerModel customer);
 }
