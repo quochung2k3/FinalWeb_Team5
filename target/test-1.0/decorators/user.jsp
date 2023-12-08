@@ -25,6 +25,7 @@
     <link href=<c:url value="/template/user/css/footer.css" />  rel="stylesheet" />
     <link href=<c:url value="/template/user/css/main.css" />  rel="stylesheet" />
     <link href=<c:url value="/template/user/css/base.css" />  rel="stylesheet" />
+
 </head>
 <body>
     <!-- Header-->

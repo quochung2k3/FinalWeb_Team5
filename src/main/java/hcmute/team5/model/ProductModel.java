@@ -1,49 +1,70 @@
 package hcmute.team5.model;
 
 public class ProductModel extends AbstractModel {
-    private String MaSP;
-    private String TenSP;
-    private String MaLoaiSP;
-    private float Gia;
-    private String TrangThai;
+    private String masp;
+    private String tensp;
+    private String maloaisp;
+    private String image;
+    private String mancc;
+    private float gia;
+    private String trangthai;
+
+    private String description;
 
     public String getMaSP() {
-        return MaSP;
+        return masp;
     }
 
     public void setMaSP(String maSP) {
-        MaSP = maSP;
+        masp = maSP;
     }
 
     public String getTenSP() {
-        return TenSP;
+        return tensp;
     }
 
     public void setTenSP(String tenSP) {
-        TenSP = tenSP;
+        tensp = tenSP;
     }
 
     public String getMaLoaiSP() {
-        return MaLoaiSP;
+        return maloaisp;
     }
 
     public void setMaLoaiSP(String maLoaiSP) {
-        MaLoaiSP = maLoaiSP;
+        maloaisp = maLoaiSP;
     }
 
     public float getGia() {
-        return Gia;
+        return gia;
     }
 
     public void setGia(float gia) {
-        Gia = gia;
+        this.gia = gia;
     }
 
-    public String getTrangThai() {
-        return TrangThai;
+    public String gettrangThai() {
+        return trangthai;
     }
 
     public void setTrangThai(String trangThai) {
-        TrangThai = trangThai;
+        trangthai = trangThai;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    
 }

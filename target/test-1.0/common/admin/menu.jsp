@@ -29,7 +29,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Loại sản phẩm</h6>
-                <a class="collapse-item" href="<c:url value="/admin-qlbv"/>">Mỹ phẩm</a>
+                <a class="collapse-item" href="<c:url value=""/>">Mỹ phẩm</a>
                 <a class="collapse-item" href="cards.html">Nước hoa</a>
                 <a class="collapse-item" href="#">Mặt nạ</a>
                 <a class="collapse-item" href="#">ALL</a>
