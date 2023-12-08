@@ -33,30 +33,35 @@
                                 <span>entries</span>
                             </div>
                         </div>
-                        <div class="col-sm-9">
-                            <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                            <div class="filter-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control">
+                            <div class="col-sm-9">
+                                <form action="admin-ql-account" method="get">
+                                    <button type="submit" class="btn btn-primary">RESET</button>
+                                </form>
+                                <form action="admin-account-search" method="get">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                <div class="filter-group">
+                                    <label>Name</label>
+                                    <input name="username" type="text" class="form-control">
+                                </div>
+                                <div class="filter-group">
+                                    <label>Role name</label>
+                                    <select name="roleName" class="form-control">
+                                        <option>All</option>
+                                        <option>Admin</option>
+                                        <option>Customer</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label>Status</label>
+                                    <select name="status" class="form-control">
+                                        <option>All</option>
+                                        <option>Active</option>
+                                        <option>Disable</option>
+                                    </select>
+                                </div>
+                                <span class="filter-icon"><i class="fa fa-filter"></i></span>
+                                </form>
                             </div>
-                            <div class="filter-group">
-                                <label>Role name</label>
-                                <select class="form-control">
-                                    <option>All</option>
-                                    <option>Admin</option>
-                                    <option>Customer</option>
-                                </select>
-                            </div>
-                            <div class="filter-group">
-                                <label>Status</label>
-                                <select class="form-control">
-                                    <option>All</option>
-                                    <option>Active</option>
-                                    <option>Disable</option>
-                                </select>
-                            </div>
-                            <span class="filter-icon"><i class="fa fa-filter"></i></span>
-                        </div>
                     </div>
                 </div>
                 <table class="table table-striped table-hover">

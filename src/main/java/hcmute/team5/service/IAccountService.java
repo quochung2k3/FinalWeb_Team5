@@ -11,4 +11,5 @@ public interface IAccountService {
     List<AccountModel> findAll();
     public void deleteAccount(AccountModel account);
     public void update(AccountModel account);
+    List<AccountModel> findAllByProperties(String roleName, String status, String username);
 }

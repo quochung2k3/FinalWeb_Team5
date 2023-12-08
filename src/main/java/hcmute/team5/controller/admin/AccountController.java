@@ -1,6 +1,7 @@
 package hcmute.team5.controller.admin;
 
 import hcmute.team5.model.AccountModel;
+import hcmute.team5.model.BillDetailsModel;
 import hcmute.team5.service.IAccountService;
 import hcmute.team5.service.impl.AccountService;
 
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
-@WebServlet(urlPatterns = {"/admin-ql-account", "/admin-delete", "/admin-add", "/admin-update"})
+@WebServlet(urlPatterns = {"/admin-ql-account", "/admin-delete", "/admin-add", "/admin-update", "/admin-account-search", "/admin-reset-account"})
 public class AccountController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     IAccountService service = new AccountService();
@@ -21,7 +22,7 @@ public class AccountController extends HttpServlet {
         String url = req.getRequestURI();
         AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
         req.setAttribute("name", account.getUserName());
-        if(url.contains("account")) {
+        if(url.contains("ql-account")) {
             findAll(req, resp);
         }
         if(url.contains("admin-delete")) {
@@ -34,6 +35,19 @@ public class AccountController extends HttpServlet {
         if(url.contains("update")) {
             findOneByUserName(req, resp);
         }
+        if(url.contains("account-search")) {
+            findAllByProperties(req, resp);
+        }
+    }
+
+    private void findAllByProperties(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String rolename = req.getParameter("roleName");
+        String status = req.getParameter("status");
+        String username = req.getParameter("username");
+        List<AccountModel> list = service.findAllByProperties(rolename, status, username);
+        req.setAttribute("listAccount", list);
+        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/account/ql-account.jsp");
+        rd.forward(req, resp);
     }
 
     private void findOneByUserName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

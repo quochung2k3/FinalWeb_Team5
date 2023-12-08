@@ -48,4 +48,9 @@ public class AccountService implements IAccountService {
     public void update(AccountModel account) {
         accountDAL.update(account);
     }
+
+    @Override
+    public List<AccountModel> findAllByProperties(String roleName, String status, String username) {
+        return accountDAL.findAllByProperties(roleName, status, username);
+    }
 }
