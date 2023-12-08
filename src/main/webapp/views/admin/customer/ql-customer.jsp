@@ -14,7 +14,7 @@
                         <h2>Customer <b>Details</b></h2>
                     </div>
                     <div class="col-sm-8">
-                        <a href="#" class="btn btn-primary"><span>Add Customer</span></a>
+                        <a href="<c:url value="/admin-customer-add"/>" class="btn btn-primary"><span>Add Customer</span></a>
                         <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>
                     </div>
                 </div>
@@ -77,8 +77,8 @@
                                             justify-content: space-between;
                                             align-items: center;
                                         ">
-                            <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                            <a href="" class="delete trigger-btn" title="Delete" data-item-id="" onclick="openModal(event)"><i class="material-icons">&#xE5C9;</i></a>
+                                <a href="admin-customer-update?maKh=${item.maKh}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+                            <a href="admin-customer-delete?maKh=${item.maKh}" class="delete trigger-btn" title="Delete" data-item-id="${item.maKh}" onclick="openModal(event)"><i class="material-icons">&#xE5C9;</i></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -131,7 +131,7 @@
     }
     function confirmAction(itemId) {
         // Chuyển hướng đến URL mong muốn
-        window.location.href = "admin-delete?id="+itemId;
+        window.location.href = "admin-customer-delete?maKh="+itemId;
     }
 </script>
 </body>

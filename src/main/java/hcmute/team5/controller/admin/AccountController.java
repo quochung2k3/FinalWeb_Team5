@@ -31,7 +31,7 @@ public class AccountController extends HttpServlet {
             RequestDispatcher rd = req.getRequestDispatcher("/views/admin/account/add-account.jsp");
             rd.forward(req, resp);
         }
-        if(url.contains("update")) {
+        if(url.contains("admin-update")) {
             findOneByUserName(req, resp);
         }
     }

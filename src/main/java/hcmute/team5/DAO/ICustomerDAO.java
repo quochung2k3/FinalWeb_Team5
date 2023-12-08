@@ -8,5 +8,10 @@ import java.util.List;
 public interface ICustomerDAO {
     List<CustomerModel> findAll();
 
-    void update(CustomerModel customer);
+    void updateCustomer(CustomerModel customer);
+
+    CustomerModel findOneByCustomer(String maKh);
+    void insert(CustomerModel customer);
+    void deleteCustomer(CustomerModel customer);
+    void insertCus(CustomerModel customer);
 }
