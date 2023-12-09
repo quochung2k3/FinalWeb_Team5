@@ -81,7 +81,7 @@
                                     <a href="user-product?pid=${o.getMaSP()}" class="me-3">
                                         <img src="https://upanh123.com/wp-content/uploads/2020/11/hinh-anh-con-meo-cute9.jpg" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                                     </a>
-                                    <div class="info" style = "font-size: 1.5rem">
+                                    <div class="info" style = "font-size: 1.5rem; max-width: 200px">
                                         <a href="user-product?pid=${o.getMaSP()}" class="nav-link mb-1">
                                             ${o.getTenSP()}
                                         </a>
@@ -92,7 +92,6 @@
                         </div>
                     </div>
                 </div>
-                    <!-- Pills content -->
             </div>
             <div class="col-lg-4">
                 <div class="px-0 border rounded-2 shadow-0">
@@ -104,7 +103,7 @@
                                     <a href="user-product?pid=${o.getMaSP()}" class="me-3">
                                         <img src="https://upanh123.com/wp-content/uploads/2020/11/hinh-anh-con-meo-cute9.jpg" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                                     </a>
-                                    <div class="info" style = "font-size: 1.5rem">
+                                    <div class="info" style = "font-size: 1.5rem; max-width: 200px">
                                         <a href="user-product?pid=${o.getMaSP()}" class="nav-link mb-1">
                                                 ${o.getTenSP()}
                                         </a>
