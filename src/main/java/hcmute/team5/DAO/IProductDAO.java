@@ -6,8 +6,8 @@ import hcmute.team5.model.ProductTypeModel;
 import java.util.List;
 
 public interface IProductDAO {
-    public List<ProductModel> getListProDuctByProductType(String maLoaiSP);
-    public List<ProductModel> getListProductByNCC (String ncc);
+    public List<ProductModel> getListProDuctByProductType(String maLoaiSP, String maSP);
+    public List<ProductModel> getListProductByNCC (String mancc, String maSP);
     public  ProductModel getDetailProduct(String maSP);
     public List<ProductTypeModel> getAllProductType();
     public List<ProductModel> getAllProduct();

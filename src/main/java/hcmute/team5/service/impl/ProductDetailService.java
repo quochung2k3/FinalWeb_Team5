@@ -15,8 +15,8 @@ public class ProductDetailService implements IProductDetailService {
     @Override
     public ProductModel getDetailProduct(String maSP) {return productDAL.getDetailProduct(maSP);}
 
-    public List<ProductModel> getListProDuctByProductType(String maLoaiSP) {return productDAL.getListProDuctByProductType(maLoaiSP);}
+    public List<ProductModel> getListProDuctByProductType(String maLoaiSP, String maSP) {return productDAL.getListProDuctByProductType(maLoaiSP,maSP);}
     public List<ProductModel> getAllProduct(){return productDAL.getAllProduct();}
     public List<ProductTypeModel> getAllProductType(){return  productDAL.getAllProductType();}
-    public List<ProductModel> getListProductByNCC (String mancc){return  productDAL.getListProductByNCC(mancc);}
+    public List<ProductModel> getListProductByNCC (String mancc, String maSP){return  productDAL.getListProductByNCC(mancc,maSP);}
 }

@@ -19,13 +19,14 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
     PreparedStatement ps = null;
 
     @Override
-    public List<ProductModel> getListProDuctByProductType(String maLoaiSP) {
+    public List<ProductModel> getListProDuctByProductType(String maLoaiSP, String maSP) {
         List<ProductModel> list = new ArrayList<>();
-        String sql = "SELECT * FROM SanPham WHERE maloaisanpham = ?";
+        String sql = "SELECT * FROM SanPham WHERE maloaisanpham = ? AND masanpham != ?";
         try {
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, maLoaiSP);
+            ps.setString(2, maSP);
             rs = ps.executeQuery();
             while (rs.next()) {
                 ProductModel product = new ProductModel();
@@ -58,7 +59,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
             return null;
         }
         return list;
-    };
+    }
     public List<ProductModel> getAllProduct() {
         List<ProductModel> list = new ArrayList<>();
         String sql = "SELECT * FROM SanPham";
@@ -81,10 +82,28 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
         }
     }
     @Override
-    public List<ProductModel> getListProductByNCC(String ncc) {
-        return null;
+    public List<ProductModel> getListProductByNCC(String mancc, String maSP) {
+        List<ProductModel> list = new ArrayList<>();
+        String sql = "SELECT * FROM SanPham WHERE manhacungcap = ? AND masanpham != ?";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, mancc);
+            ps.setString(2, maSP);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ProductModel product = new ProductModel();
+                product.setMaSP(rs.getString("masanpham"));
+                product.setTenSP(rs.getString("tensanpham"));
+                product.setGia(rs.getInt("gia"));
+                list.add(product);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
-
     @Override
     public ProductModel getDetailProduct(String maSP){
         String sql = "SELECT * FROM SanPham WHERE masanpham = ?";
@@ -101,6 +120,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
                 product.setGia(rs.getInt("gia"));
                 product.setTrangThai(rs.getString("trangthai"));
                 product.setDescription(rs.getString("description"));
+                product.setMaNcc(rs.getString("manhacungcap"));
                 conn.close();
                 return product;
             }

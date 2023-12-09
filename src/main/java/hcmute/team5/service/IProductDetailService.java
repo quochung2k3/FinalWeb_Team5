@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface IProductDetailService {
     ProductModel getDetailProduct(String maSP);
-    List<ProductModel> getListProductByNCC (String ncc);
+    List<ProductModel> getListProductByNCC (String mancc, String maSP);
     List<ProductTypeModel> getAllProductType();
     List<ProductModel> getAllProduct();
-    List<ProductModel> getListProDuctByProductType(String maLoaiSP);
+    List<ProductModel> getListProDuctByProductType(String maLoaiSP, String maSP);
 }

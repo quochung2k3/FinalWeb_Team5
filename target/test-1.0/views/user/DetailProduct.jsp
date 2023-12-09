@@ -18,16 +18,16 @@
             <aside class="col-lg-6">
                 <div class="border rounded-4 mb-3 d-flex justify-content-center">
                     <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image" href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp">
-                        <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp" />
+                        <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="https://upanh123.com/wp-content/uploads/2020/11/hinh-anh-con-meo-cute9.jpg" />
                     </a>
                 </div>
             </aside>
             <main class="col-lg-6">
-                <h4 class="title text-dark" style = "font-size: 3rem">
+                <h4 class="title text-dark" style = "font-size: 4rem">
                     ${detail.getTenSP()}
                 </h4>
                 <div class="mb-3">
-                    <span class="h5" style = "font-size: 2.5rem; color: #17a2b8">$${detail.getGia()} (Đã bao gồm VAT)</span>
+                    <span class="h5" style = "font-size: 2.5rem; color: #17a2b8">${detail.getGia()}$ (Đã bao gồm VAT)</span>
                 </div>
                 <p style = "font-size: 1.5rem">
                     ${detail.getDescription()}
@@ -37,7 +37,7 @@
                     <dd class="col-9" style = "font-size: 2rem">${detail.getMaSP()}</dd>
 
                     <dt class="col-3" style = "font-size: 2rem">Brand:</dt>
-                    <dd class="col-9" style = "font-size: 2rem">Cotton, Jeans</dd>
+                    <dd class="col-9" style = "font-size: 2rem">${detail.getMaNcc()}</dd>
 
                     <dt class="col-3" style = "font-size: 2rem">Tình trạng:</dt>
                     <dd class="col-9" style = "font-size: 2rem">${detail.getTrangThai()}</dd>
@@ -75,17 +75,17 @@
                 <div class="px-0 border rounded-2 shadow-0">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Sản phẩm cùng loại</h5>
-                            <c:forEach var = "o" items="${detail_same}" >
+                            <h5 class="card-title" style = "font-size: 2rem">Sản phẩm cùng loại</h5>
+                            <c:forEach var = "o" items="${detail_same}">
                                 <div class="d-flex mb-3">
-                                    <a href="#" class="me-3">
-                                        <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/8.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
+                                    <a href="user-product?pid=${o.getMaSP()}" class="me-3">
+                                        <img src="https://upanh123.com/wp-content/uploads/2020/11/hinh-anh-con-meo-cute9.jpg" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                                     </a>
-                                    <div class="info">
-                                        <a href="#" class="nav-link mb-1">
+                                    <div class="info" style = "font-size: 1.5rem">
+                                        <a href="user-product?pid=${o.getMaSP()}" class="nav-link mb-1">
                                             ${o.getTenSP()}
                                         </a>
-                                        <strong class="text-dark"> ${o.getGia()}</strong>
+                                        <strong class="text-dark" style = "font-size: 1.3rem"> ${o.getGia()}$</strong>
                                     </div>
                                 </div>
                             </c:forEach>
@@ -98,53 +98,20 @@
                 <div class="px-0 border rounded-2 shadow-0">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Sản phẩm cùng nhà cung cấp</h5>
-                            <div class="d-flex mb-3">
-                                <a href="#" class="me-3">
-                                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/8.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
-                                </a>
-                                <div class="info">
-                                    <a href="#" class="nav-link mb-1">
-                                        Rucksack Backpack Large <br />
-                                        Line Mounts
+                            <h5 class="card-title" style = "font-size: 2rem">Sản phẩm cùng nhà cung cấp</h5>
+                            <c:forEach var = "o" items="${detail_same_ncc}" >
+                                <div class="d-flex mb-3">
+                                    <a href="user-product?pid=${o.getMaSP()}" class="me-3">
+                                        <img src="https://upanh123.com/wp-content/uploads/2020/11/hinh-anh-con-meo-cute9.jpg" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                                     </a>
-                                    <strong class="text-dark"> $38.90</strong>
+                                    <div class="info" style = "font-size: 1.5rem">
+                                        <a href="user-product?pid=${o.getMaSP()}" class="nav-link mb-1">
+                                                ${o.getTenSP()}
+                                        </a>
+                                        <strong class="text-dark"  style = "font-size: 1.3rem">${o.getGia()}$</strong>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="d-flex mb-3">
-                                <a href="#" class="me-3">
-                                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/9.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
-                                </a>
-                                <div class="info">
-                                    <a href="#" class="nav-link mb-1">
-                                        Summer New Men's Denim <br />
-                                        Jeans Shorts
-                                    </a>
-                                    <strong class="text-dark"> $29.50</strong>
-                                </div>
-                            </div>
-
-                            <div class="d-flex mb-3">
-                                <a href="#" class="me-3">
-                                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/10.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
-                                </a>
-                                <div class="info">
-                                    <a href="#" class="nav-link mb-1"> T-shirts with multiple colors, for men and lady </a>
-                                    <strong class="text-dark"> $120.00</strong>
-                                </div>
-                            </div>
-
-                            <div class="d-flex">
-                                <a href="#" class="me-3">
-                                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/11.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
-                                </a>
-                                <div class="info">
-                                    <a href="#" class="nav-link mb-1"> Blazer Suit Dress Jacket for Men, Blue color </a>
-                                    <strong class="text-dark"> $339.90</strong>
-                                </div>
-                            </div>
-
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
@@ -153,7 +120,7 @@
                 <div class="px-0 border rounded-2 shadow-0">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Sản phẩm đã xem</h5>
+                            <h5 class="card-title" style = "font-size: 2rem">Sản phẩm đã xem</h5>
                             <div class="d-flex mb-3">
                                 <a href="#" class="me-3">
                                     <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/8.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />

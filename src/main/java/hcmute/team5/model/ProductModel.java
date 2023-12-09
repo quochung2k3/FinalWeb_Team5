@@ -33,7 +33,7 @@ public class ProductModel extends AbstractModel {
         this.maLoaisp = maLoaiSp;
     }
 
-    public float getGia() {
+    public int getGia() {
         return gia;
     }
 
@@ -41,6 +41,8 @@ public class ProductModel extends AbstractModel {
         this.gia = gia;
     }
 
+    public String getMaNcc(){return maNcc;}
+    public void setMaNcc(String maNcc){this.maNcc = maNcc;}
     public String getTrangThai() {
         return trangThai;
     }
@@ -62,6 +64,5 @@ public class ProductModel extends AbstractModel {
     public void setDescription(String desCription) {
         this.desCription = desCription;
     }
-
 
 }

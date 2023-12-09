@@ -8,9 +8,9 @@ public class main {
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
         ProductModel p = dao.getDetailProduct("1");
-        List<ProductModel> p_similar = dao.getListProDuctByProductType(p.getMaLoaiSP());
+        List<ProductModel> p_similar = dao.getListProDuctByProductType(p.getMaLoaiSP(),"1");
         for (ProductModel o : p_similar) {
-            System.out.println(o.getGia());
+            System.out.println(o.getMaSP());
         }
     }
 }

@@ -29,9 +29,15 @@ public class DetailProductController extends HttpServlet {
         String maSP = req.getParameter("pid");
         ProductModel p = service.getDetailProduct(maSP);
         req.setAttribute("detail",p);
+
         String maLoaiSP = p.getMaLoaiSP();
-        List<ProductModel> p_similar = service.getListProDuctByProductType(maLoaiSP);
+        List<ProductModel> p_similar = service.getListProDuctByProductType(maLoaiSP, maSP);
         req.setAttribute("detail_same",p_similar);
+
+        String mancc = p.getMaNcc();
+        List<ProductModel> p_similarncc = service.getListProductByNCC(mancc, maSP);
+        req.setAttribute("detail_same_ncc",p_similarncc);
+
         RequestDispatcher rd = req.getRequestDispatcher("/views/user/DetailProduct.jsp");
         rd.forward(req, resp);
     }
