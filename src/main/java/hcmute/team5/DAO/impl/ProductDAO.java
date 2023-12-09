@@ -3,12 +3,14 @@ package hcmute.team5.DAO.impl;
 import hcmute.team5.DAO.DBConnectionSQL;
 import hcmute.team5.DAO.IProductDAO;
 import hcmute.team5.model.ProductModel;
+import hcmute.team5.model.ProductTypeModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
+import java.util.ArrayList;
 
 public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO{
     Connection conn = null;
@@ -17,10 +19,67 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
     PreparedStatement ps = null;
 
     @Override
-    public List<ProductModel> getListProDuctByCategory(String maLoaiSP) {
-        return null;
+    public List<ProductModel> getListProDuctByProductType(String maLoaiSP) {
+        List<ProductModel> list = new ArrayList<>();
+        String sql = "SELECT * FROM SanPham WHERE maloaisanpham = ?";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, maLoaiSP);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ProductModel product = new ProductModel();
+                product.setMaSP(rs.getString("masanpham"));
+                product.setTenSP(rs.getString("tensanpham"));
+                product.setGia(rs.getInt("gia"));
+                list.add(product);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
-
+    public List<ProductTypeModel> getAllProductType(){
+        List<ProductTypeModel> list = new ArrayList<>();
+        String sql = "SELECT * FROM loaisanpham";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ProductTypeModel category = new ProductTypeModel();
+                category.setMaLoaiSP(rs.getString("maloaisanpham"));
+                category.setTenLoaiSP(rs.getString("tenloaisanpham"));
+                list.add(category);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    };
+    public List<ProductModel> getAllProduct() {
+        List<ProductModel> list = new ArrayList<>();
+        String sql = "SELECT * FROM SanPham";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ProductModel product = new ProductModel();
+                product.setMaSP(rs.getString("masanpham"));
+                product.setTenSP(rs.getString("tensanpham"));
+                product.setGia(rs.getInt("gia"));
+                product.setTrangThai(rs.getString("trangthai"));
+                list.add(product);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     @Override
     public List<ProductModel> getListProductByNCC(String ncc) {
         return null;
@@ -41,6 +100,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
                 product.setMaLoaiSP(rs.getString("maloaisanpham"));
                 product.setGia(rs.getInt("gia"));
                 product.setTrangThai(rs.getString("trangthai"));
+                product.setDescription(rs.getString("description"));
                 conn.close();
                 return product;
             }
@@ -50,6 +110,4 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
             return null;
         }
     }
-
-
 }

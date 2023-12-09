@@ -2,6 +2,7 @@ package hcmute.team5.controller.user;
 
 
 import hcmute.team5.model.ProductModel;
+import hcmute.team5.model.ProductTypeModel;
 import hcmute.team5.service.IProductDetailService;
 import hcmute.team5.service.impl.ProductDetailService;
 
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+import java.util.List;
 @WebServlet(urlPatterns = {"/user-product"})
 public class DetailProductController extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -28,6 +29,9 @@ public class DetailProductController extends HttpServlet {
         String maSP = req.getParameter("pid");
         ProductModel p = service.getDetailProduct(maSP);
         req.setAttribute("detail",p);
+        String maLoaiSP = p.getMaLoaiSP();
+        List<ProductModel> p_similar = service.getListProDuctByProductType(maLoaiSP);
+        req.setAttribute("detail_same",p_similar);
         RequestDispatcher rd = req.getRequestDispatcher("/views/user/DetailProduct.jsp");
         rd.forward(req, resp);
     }

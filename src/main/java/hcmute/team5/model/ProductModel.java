@@ -1,54 +1,52 @@
 package hcmute.team5.model;
 
 public class ProductModel extends AbstractModel {
-    private String masp;
-    private String tensp;
-    private String maloaisp;
+    private String maSp;
+    private String tenSp;
+    private String maLoaisp;
     private String image;
-    private String mancc;
-    private float gia;
-    private String trangthai;
-
-    private String description;
-
+    private String maNcc;
+    private int gia;
+    private String trangThai;
+    private String desCription;
     public String getMaSP() {
-        return masp;
+        return maSp;
     }
 
-    public void setMaSP(String maSP) {
-        masp = maSP;
+    public void setMaSP(String maSp) {
+        this.maSp = maSp;
     }
 
     public String getTenSP() {
-        return tensp;
+        return tenSp;
     }
 
-    public void setTenSP(String tenSP) {
-        tensp = tenSP;
+    public void setTenSP(String tenSp) {
+        this.tenSp = tenSp;
     }
 
     public String getMaLoaiSP() {
-        return maloaisp;
+        return maLoaisp;
     }
 
-    public void setMaLoaiSP(String maLoaiSP) {
-        maloaisp = maLoaiSP;
+    public void setMaLoaiSP(String maLoaiSp) {
+        this.maLoaisp = maLoaiSp;
     }
 
     public float getGia() {
         return gia;
     }
 
-    public void setGia(float gia) {
+    public void setGia(int gia) {
         this.gia = gia;
     }
 
-    public String gettrangThai() {
-        return trangthai;
+    public String getTrangThai() {
+        return trangThai;
     }
 
     public void setTrangThai(String trangThai) {
-        trangthai = trangThai;
+        this.trangThai = trangThai;
     }
 
     public String getImage() {
@@ -59,12 +57,11 @@ public class ProductModel extends AbstractModel {
         this.image = image;
     }
     public String getDescription() {
-        return description;
+        return desCription;
+    }
+    public void setDescription(String desCription) {
+        this.desCription = desCription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
-    
 }

@@ -1,22 +1,23 @@
 package hcmute.team5.model;
 
 public class ProductTypeModel extends AbstractModel {
-    private String MaLoaiSP;
-    private String TenLoaiSP;
+    private String maLoaiSP;
+    private String tenLoaiSP;
 
     public String getMaLoaiSP() {
-        return MaLoaiSP;
+        return maLoaiSP;
     }
 
     public void setMaLoaiSP(String maLoaiSP) {
-        MaLoaiSP = maLoaiSP;
+        this.maLoaiSP = maLoaiSP;
     }
 
     public String getTenLoaiSP() {
-        return TenLoaiSP;
+        return tenLoaiSP;
     }
 
     public void setTenLoaiSP(String tenLoaiSP) {
-        TenLoaiSP = tenLoaiSP;
+        this.tenLoaiSP = tenLoaiSP;
     }
+
 }
