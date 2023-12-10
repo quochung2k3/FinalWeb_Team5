@@ -11,9 +11,9 @@
                         <div class="row justify-content-center">
                             <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Product update</p>
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Admin add</p>
 
-                                <form action="admin-product-update" class="mx-1 mx-md-4" method="post">
+                                <form action="admin-product-add" class="mx-1 mx-md-4" method="post">
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Ma San Pham</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
@@ -28,11 +28,27 @@
                                             <input placeholder="tensp" value="${product.tenSP}" name="tensp" type="text" class="form-control" required>
                                         </div>
                                     </div>
-                                    <p style="margin-left: 50px; margin-bottom: 2px;">Gia</p>
+                                    <p style="margin-left: 50px; margin-bottom: 2px;">Ma Loai San Pham</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="gia" value="${product.gia}" name="gia" type="text" id="form3Example4c" class="form-control" required>
+                                            <input placeholder="maloaisp" value="${product.maLoaiSP}" name="maloaisp" type="text" id="form3Example4c" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <p style="margin-left: 50px; margin-bottom: 2px;">Gia</p>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
+                                        <%--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>--%>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
+                                            <input placeholder="gia" value="${product.gia}" name="gia" type="text" id="form3Example5c" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <p style="margin-left: 50px; margin-bottom: 2px;">Ma Chi Nhanh</p>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
+                                        <%--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>--%>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
+                                            <input placeholder="machinhanh" value="${product.maChiNhanh}" name="machinhanh" type="text" id="form3Example5c" class="form-control" required>
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Trang Thai</p>
@@ -43,13 +59,22 @@
                                             <input placeholder="trangthai" value="${product.trangThai}" name="trangthai" type="text" id="form3Example5c" class="form-control" required>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" class="btn btn-primary btn-lg">Update</button>
+                                    <div class="form-check d-flex justify-content-center mb-5">
+                                        <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" required>
+                                        <label class="form-check-label">
+                                            I agree all statements in <a href="#!">Terms of service</a>
+                                        </label>
                                     </div>
+
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button type="submit" class="btn btn-primary btn-lg">Submit Add</button>
+                                    </div>
+
                                 </form>
 
                             </div>
                             <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
                                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
                                      class="img-fluid" alt="Sample image">
                             </div>
@@ -63,7 +88,6 @@
 <script>
     if ("${note}" != "") {
         alert("${note}");
-        ${node} = "";
     }
 </script>
 </body>
