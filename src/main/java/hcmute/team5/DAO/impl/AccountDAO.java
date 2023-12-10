@@ -87,4 +87,49 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void update(AccountModel account) {
+        String sql = "UPDATE Account SET fullname = ?, password = ?, roleid = ? WHERE username = ?";
+        update(sql, account.getFullName(), account.getPassWord(), account.getRoleId(), account.getUserName());
+    }
+
+    @Override
+    public List<AccountModel> findAllByProperties(String roleName, String status, String username) {
+        int roleId = 0;
+        if(roleName.equals("Admin")) {
+            roleId = 1;
+        }
+        if(roleName.equals("Customer")) {
+            roleId = 2;
+        }
+        if(status.equals("All") && username.equals("")) {
+            String sql ="SELECT * FROM Account WHERE roleid = ?";
+            return query(sql, new AccountMapper(), roleId);
+        }
+        else if(roleName.equals("All") && username.equals("")) {
+            String sql ="SELECT * FROM Account WHERE status = ?";
+            return query(sql, new AccountMapper(), status);
+        }
+        else if(status.equals("All") && roleName.equals("All")) {
+            String sql ="SELECT * FROM Account WHERE username = ?";
+            return query(sql, new AccountMapper(), username);
+        }
+        else if(username.equals("")) {
+            String sql ="SELECT * FROM Account WHERE roleid = ? AND status = ?";
+            return query(sql, new AccountMapper(), roleId, status);
+        }
+        else if(status.equals("All")) {
+            String sql ="SELECT * FROM Account WHERE roleid = ? AND username = ?";
+            return query(sql, new AccountMapper(), roleId, username);
+        }
+        else if(roleName.equals("All")) {
+            String sql ="SELECT * FROM Account WHERE status = ? AND username = ?";
+            return query(sql, new AccountMapper(), status, username);
+        }
+        else {
+            String sql ="SELECT * FROM Account WHERE roleid = ? AND status = ? AND username = ?";
+            return query(sql, new AccountMapper(), roleId, status, username);
+        }
+    }
 }

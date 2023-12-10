@@ -7,4 +7,16 @@ import java.util.List;
 
 public interface ICustomerService {
     List<CustomerModel> findAll();
+
+    public void updateCustomer(CustomerModel customer);
+
+    public CustomerModel findOneByCustomer(String maKh);
+    public void deleteCustomer(CustomerModel customer);
+
+    void insertCus(CustomerModel customer);
 }
+
+
+
+
+

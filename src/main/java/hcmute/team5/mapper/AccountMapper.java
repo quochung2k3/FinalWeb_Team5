@@ -8,14 +8,14 @@ public class AccountMapper implements RowMapper<AccountModel> {
     @Override
     public AccountModel mapRow(ResultSet rs) {
         try {
-            AccountModel news = new AccountModel();
-            news.setId(rs.getInt("id"));
-            news.setUserName(rs.getString("username"));
-            news.setFullName(rs.getString("fullname"));
-            news.setPassWord(rs.getString("password"));
-            news.setStatus(rs.getString("status"));
-            news.setRoleId(rs.getInt("roleid"));
-            return news;
+            AccountModel account = new AccountModel();
+            account.setId(rs.getInt("id"));
+            account.setUserName(rs.getString("username"));
+            account.setFullName(rs.getString("fullname"));
+            account.setPassWord(rs.getString("password"));
+            account.setStatus(rs.getString("status"));
+            account.setRoleId(rs.getInt("roleid"));
+            return account;
         }
         catch (SQLException e) {
             return null;

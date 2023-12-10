@@ -7,7 +7,9 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/common/taglib.jsp" value="file://$PROJECT_DIR$/src/main/webapp/common" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/common/user/footer.jsp" value="file://$PROJECT_DIR$/src/main/webapp/common/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/decorators/admin.jsp" value="file://$PROJECT_DIR$/src/main/webapp/decorators" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/views/admin/account/ql-account.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/admin/account" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/admin/add-account.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/admin" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/views/admin/bill/bill-details.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/admin/bill" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/admin/ql-account.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/admin" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/login.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/user/DetailProduct.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/user" />

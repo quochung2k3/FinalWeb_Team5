@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
-<head>
-    <title>Title</title>
-</head>
 <body>
 <div class="container-xl">
     <div class="table-responsive">
@@ -12,10 +9,6 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <h2>Order <b>Details</b></h2>
-                    </div>
-                    <div class="col-sm-8">
-                        <a href="#" class="btn btn-primary"><span>Add Account</span></a>
-                        <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>
                     </div>
                 </div>
             </div>
@@ -36,27 +29,26 @@
                     <div class="col-sm-9">
                         <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         <div class="filter-group">
-                            <label>Name</label>
+                            <label>Bill Code</label>
                             <input type="text" class="form-control">
                         </div>
                         <div class="filter-group">
-                            <label>Role name</label>
+                            <label>Branch</label>
                             <select class="form-control">
                                 <option>All</option>
-                                <option>Admin</option>
-                                <option>Customer</option>
+                                <option>CN01</option>
+                                <option>CN02</option>
+                                <option>CN03</option>
                             </select>
                         </div>
-                        <div class="filter-group">
-                            <label>Status</label>
-                            <select class="form-control">
-                                <option>Any</option>
-                                <option>Delivered</option>
-                                <option>Shipped</option>
-                                <option>Pending</option>
-                                <option>Cancelled</option>
-                            </select>
-                        </div>
+<%--                        <div class="filter-group">--%>
+<%--                            <label>Date</label>--%>
+<%--                            <select class="form-control">--%>
+<%--                                <option>All</option>--%>
+<%--                                <option>Active</option>--%>
+<%--                                <option>Disable</option>--%>
+<%--                            </select>--%>
+<%--                        </div>--%>
                         <span class="filter-icon"><i class="fa fa-filter"></i></span>
                     </div>
                 </div>
@@ -64,30 +56,31 @@
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
+                    <th>Mã hóa đơn</th>
+                    <th>Ngày in</th>
                     <th>Mã khách hàng</th>
-                    <th>Tên</th>
-                    <th>Ngày Sinh</th>
-                    <th>SĐT</th>
-                    <th>Tổng tiền đã mua</th>
+                    <th>Tổng tiền</th>
+                    <th>Tiền đã nhận</th>
+                    <th>Tiền thừa</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var = "item" items = "${listCustomer}">
+                <c:forEach var = "item" items = "${listBill}">
                     <tr>
-                        <td>${item.maKh}</td>
+                        <td>${item.maHD}</td>
                             <%--                            <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar">${item.userName}</a></td>--%>
-                        <td>${item.ten}</td>
-                        <td>${item.ngaySinh}</td>
-                        <td>${item.sdt}</td>
-                        <td>${item.tongTienDaMua}</td>
+                        <td>${item.ngayIn}</td>
+                        <td>${item.maKH}</td>
+                        <td>${item.tongTien}</td>
+                        <td>${item.tienDaNhan}</td>
+                        <td>${item.tienThoi}</td>
                         <td style="
                                             display: flex;
                                             justify-content: space-between;
                                             align-items: center;
                                         ">
-                            <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                            <a href="" class="delete trigger-btn" title="Delete" data-item-id="" onclick="openModal(event)"><i class="material-icons">&#xE5C9;</i></a>
+                            <a href="admin-bill-details?mahd=${item.maHD}" class="settings" data-toggle="tooltip">Xem chi tiết</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -129,18 +122,23 @@
     </div>
 </div>
 
-<script>
-    function openModal(event) {
-        // Ngăn chặn hành động mặc định của thẻ <a>
-        event.preventDefault();
-        currentItemId = $(event.currentTarget).data('item-id');
-        console.log(currentItemId);
-        // Hiển thị modal
-        $('#myModal').modal('show');
-    }
-    function confirmAction(itemId) {
-        // Chuyển hướng đến URL mong muốn
-        window.location.href = "admin-delete?id="+itemId;
-    }
-</script>
+    <script>
+        function openModal(event) {
+            // Ngăn chặn hành động mặc định của thẻ <a>
+            event.preventDefault();
+            currentItemId = $(event.currentTarget).data('item-id');
+            console.log(currentItemId);
+            // Hiển thị modal
+            $('#myModal').modal('show');
+        }
+        function confirmAction(itemId) {
+            // Chuyển hướng đến URL mong muốn
+            window.location.href = "admin-delete?id="+itemId;
+        }
+    </script>
+    <script>
+        if ("${note}" != "") {
+            alert("${note}");
+        }
+    </script>
 </body>

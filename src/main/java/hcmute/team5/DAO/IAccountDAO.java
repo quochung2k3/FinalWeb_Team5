@@ -10,4 +10,6 @@ public interface IAccountDAO {
     List<AccountModel> findAll();
     void deleteAccount(AccountModel account);
     void insertAcc(AccountModel account);
+    void update(AccountModel account);
+    List<AccountModel> findAllByProperties(String roleName, String status, String username);
 }

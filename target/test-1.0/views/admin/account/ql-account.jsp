@@ -15,7 +15,7 @@
                         </div>
                         <div class="col-sm-8">
                             <a href="<c:url value="/admin-add"/>" class="btn btn-primary"><span>Add Account</span></a>
-                            <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>
+<%--                            <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>--%>
                         </div>
                     </div>
                 </div>
@@ -33,36 +33,41 @@
                                 <span>entries</span>
                             </div>
                         </div>
-                        <div class="col-sm-9">
-                            <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                            <div class="filter-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control">
+                            <div class="col-sm-9">
+                                <form action="admin-ql-account" method="get">
+                                    <button type="submit" class="btn btn-primary">RESET</button>
+                                </form>
+                                <form action="admin-account-search" method="get">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                <div class="filter-group">
+                                    <label>Name</label>
+                                    <input name="username" type="text" class="form-control">
+                                </div>
+                                <div class="filter-group">
+                                    <label>Role name</label>
+                                    <select name="roleName" class="form-control">
+                                        <option>All</option>
+                                        <option>Admin</option>
+                                        <option>Customer</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label>Status</label>
+                                    <select name="status" class="form-control">
+                                        <option>All</option>
+                                        <option>Active</option>
+                                        <option>Disable</option>
+                                    </select>
+                                </div>
+                                <span class="filter-icon"><i class="fa fa-filter"></i></span>
+                                </form>
                             </div>
-                            <div class="filter-group">
-                                <label>Role name</label>
-                                <select class="form-control">
-                                    <option>All</option>
-                                    <option>Admin</option>
-                                    <option>Customer</option>
-                                </select>
-                            </div>
-                            <div class="filter-group">
-                                <label>Status</label>
-                                <select class="form-control">
-                                    <option>All</option>
-                                    <option>Active</option>
-                                    <option>Disable</option>
-                                </select>
-                            </div>
-                            <span class="filter-icon"><i class="fa fa-filter"></i></span>
-                        </div>
                     </div>
                 </div>
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>#</th>
+                        <th>Id</th>
                         <th>Username</th>
                         <th>Password</th>
                         <th>Role</th>

@@ -2,7 +2,7 @@ package hcmute.team5.model;
 
 import java.sql.Timestamp;
 
-public class BillModel extends AbstractModel {
+public class BillModel extends ProductModel {
     private String MaHD;
     private Timestamp NgayIn;
     private String MaKH;

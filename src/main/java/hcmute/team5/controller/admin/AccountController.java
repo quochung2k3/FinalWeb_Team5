@@ -1,6 +1,7 @@
 package hcmute.team5.controller.admin;
 
 import hcmute.team5.model.AccountModel;
+import hcmute.team5.model.BillDetailsModel;
 import hcmute.team5.service.IAccountService;
 import hcmute.team5.service.impl.AccountService;
 
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
-@WebServlet(urlPatterns = {"/admin-ql-account", "/admin-delete", "/admin-add", "/admin-update"})
+@WebServlet(urlPatterns = {"/admin-ql-account", "/admin-delete", "/admin-add", "/admin-update", "/admin-account-search", "/admin-reset-account"})
 public class AccountController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     IAccountService service = new AccountService();
@@ -21,26 +22,39 @@ public class AccountController extends HttpServlet {
         String url = req.getRequestURI();
         AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
         req.setAttribute("name", account.getUserName());
-        if(url.contains("account")) {
+        if(url.contains("ql-account")) {
             findAll(req, resp);
         }
         if(url.contains("admin-delete")) {
             deleteAccount(req, resp);
         }
         if(url.contains("add")) {
-            RequestDispatcher rd = req.getRequestDispatcher("/views/admin/add-account.jsp");
+            RequestDispatcher rd = req.getRequestDispatcher("/views/admin/account/add-account.jsp");
             rd.forward(req, resp);
         }
-        if(url.contains("update")) {
+        if(url.contains("admin-update")) {
             findOneByUserName(req, resp);
         }
+        if(url.contains("account-search")) {
+            findAllByProperties(req, resp);
+        }
+    }
+
+    private void findAllByProperties(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String rolename = req.getParameter("roleName");
+        String status = req.getParameter("status");
+        String username = req.getParameter("username");
+        List<AccountModel> list = service.findAllByProperties(rolename, status, username);
+        req.setAttribute("listAccount", list);
+        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/account/ql-account.jsp");
+        rd.forward(req, resp);
     }
 
     private void findOneByUserName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         AccountModel account = service.findOneByUsername(username);
         req.setAttribute("account", account);
-        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/update-account.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/account/update-account.jsp");
         rd.forward(req, resp);
     }
 
@@ -66,8 +80,19 @@ public class AccountController extends HttpServlet {
         }
     }
 
-    private void update(HttpServletRequest req, HttpServletResponse resp) {
-
+    private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String fullname = req.getParameter("fullname");
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        int roleid = Integer.parseInt(req.getParameter("roleid"));
+        AccountModel account = new AccountModel();
+        account.setFullName(fullname);
+        account.setUserName(username);
+        account.setPassWord(password);
+        account.setRoleId(roleid);
+        service.update(account);
+        req.setAttribute("note", "Cập nhật thành công");
+        findAll(req, resp);
     }
 
     private void postRegister(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -89,7 +114,7 @@ public class AccountController extends HttpServlet {
 
         } else {
             req.setAttribute("note", "Tên tài khoản đã tồn tại!!");
-            RequestDispatcher rd = req.getRequestDispatcher("/views/admin/add-account.jsp");
+            RequestDispatcher rd = req.getRequestDispatcher("/views/admin/account/add-account.jsp");
             rd.forward(req, resp);
         }
     }
@@ -97,7 +122,7 @@ public class AccountController extends HttpServlet {
     private void findAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<AccountModel> list = service.findAll();
         req.setAttribute("listAccount", list);
-        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/ql-account.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/account/ql-account.jsp");
         rd.forward(req, resp);
     }
 }
