@@ -1,9 +1,11 @@
 package hcmute.team5.controller.user;
 
 
+import hcmute.team5.model.AccountModel;
 import hcmute.team5.model.ProductModel;
 import hcmute.team5.model.ProductTypeModel;
 import hcmute.team5.service.IProductDetailService;
+import hcmute.team5.service.impl.AccountService;
 import hcmute.team5.service.impl.ProductDetailService;
 
 import javax.servlet.RequestDispatcher;
@@ -21,11 +23,13 @@ public class DetailProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURI();
+        AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
+        req.setAttribute("name", account.getUserName());
         if(url.contains("product")) {
-            getDetailProduct(req, resp);
+            getDetailProduct(req, resp, account);
         }
     }
-    private void getDetailProduct(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void getDetailProduct(HttpServletRequest req, HttpServletResponse resp, AccountModel account) throws ServletException, IOException {
         String maSP = req.getParameter("pid");
         ProductModel p = service.getDetailProduct(maSP);
         req.setAttribute("detail",p);
@@ -37,6 +41,11 @@ public class DetailProductController extends HttpServlet {
         String mancc = p.getMaNcc();
         List<ProductModel> p_similarncc = service.getListProductByNCC(mancc, maSP);
         req.setAttribute("detail_same_ncc",p_similarncc);
+
+
+        String username = account.getUserName();
+        List<ProductModel> p_viewed = service.getListProDuctViewed(maSP,username);
+        req.setAttribute("detail_viewed",p_viewed);
 
         RequestDispatcher rd = req.getRequestDispatcher("/views/user/DetailProduct.jsp");
         rd.forward(req, resp);

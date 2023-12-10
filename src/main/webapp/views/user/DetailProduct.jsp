@@ -120,52 +120,19 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title" style = "font-size: 2rem">Sản phẩm đã xem</h5>
-                            <div class="d-flex mb-3">
-                                <a href="#" class="me-3">
-                                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/8.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
-                                </a>
-                                <div class="info">
-                                    <a href="#" class="nav-link mb-1">
-                                        Rucksack Backpack Large
-                                        Line Mounts
+                            <c:forEach var = "o" items="${detail_viewed}" >
+                                <div class="d-flex mb-3">
+                                    <a href="user-product?pid=${o.getMaSP()}" class="me-3">
+                                        <img src="https://upanh123.com/wp-content/uploads/2020/11/hinh-anh-con-meo-cute9.jpg" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                                     </a>
-                                    <strong class="text-dark"> $38.90</strong>
+                                    <div class="info" style = "font-size: 1.5rem; max-width: 200px">
+                                        <a href="user-product?pid=${o.getMaSP()}" class="nav-link mb-1">
+                                                ${o.getTenSP()}
+                                        </a>
+                                        <strong class="text-dark"  style = "font-size: 1.3rem">${o.getGia()}$</strong>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="d-flex mb-3">
-                                <a href="#" class="me-3">
-                                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/9.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
-                                </a>
-                                <div class="info">
-                                    <a href="#" class="nav-link mb-1">
-                                        Summer New Men's Denim
-                                        Jeans Shorts
-                                    </a>
-                                    <strong class="text-dark"> $29.50</strong>
-                                </div>
-                            </div>
-
-                            <div class="d-flex mb-3">
-                                <a href="#" class="me-3">
-                                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/10.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
-                                </a>
-                                <div class="info">
-                                    <a href="#" class="nav-link mb-1"> T-shirts with multiple colors, for men and lady </a>
-                                    <strong class="text-dark"> $120.00</strong>
-                                </div>
-                            </div>
-
-                            <div class="d-flex">
-                                <a href="#" class="me-3">
-                                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/11.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
-                                </a>
-                                <div class="info">
-                                    <a href="#" class="nav-link mb-1"> Blazer Suit Dress Jacket for Men, Blue color </a>
-                                    <strong class="text-dark"> $339.90</strong>
-                                </div>
-                            </div>
-
+                            </c:forEach>
                         </div>
                     </div>
                 </div>

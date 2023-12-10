@@ -19,6 +19,29 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
     PreparedStatement ps = null;
 
     @Override
+    public List<ProductModel> getListProDuctViewed(String maSP, String username) {
+        List<String> list = new ArrayList<>();
+        List<ProductModel> list_p = new ArrayList<>();
+        String sql = "SELECT dx.masp FROM DaXem dx join Account ac on dx.username = ac.username WHERE dx.masp != ? AND ac.username = ?";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, maSP);
+            ps.setString(2, username);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(rs.getString(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        for(String i : list){
+            ProductModel p = getDetailProduct(i);
+            list_p.add(p);
+        }
+        return list_p;
+    }
     public List<ProductModel> getListProDuctByProductType(String maLoaiSP, String maSP) {
         List<ProductModel> list = new ArrayList<>();
         String sql = "SELECT * FROM SanPham WHERE maloaisanpham = ? AND masanpham != ?";

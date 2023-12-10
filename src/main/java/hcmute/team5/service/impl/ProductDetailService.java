@@ -19,4 +19,5 @@ public class ProductDetailService implements IProductDetailService {
     public List<ProductModel> getAllProduct(){return productDAL.getAllProduct();}
     public List<ProductTypeModel> getAllProductType(){return  productDAL.getAllProductType();}
     public List<ProductModel> getListProductByNCC (String mancc, String maSP){return  productDAL.getListProductByNCC(mancc,maSP);}
+    public List<ProductModel> getListProDuctViewed(String maSP, String username){return productDAL.getListProDuctViewed(maSP,username);}
 }

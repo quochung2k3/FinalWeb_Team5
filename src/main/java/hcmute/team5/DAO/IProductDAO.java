@@ -11,5 +11,6 @@ public interface IProductDAO {
     public  ProductModel getDetailProduct(String maSP);
     public List<ProductTypeModel> getAllProductType();
     public List<ProductModel> getAllProduct();
+    public List<ProductModel> getListProDuctViewed(String maSP, String username);
 
 }
