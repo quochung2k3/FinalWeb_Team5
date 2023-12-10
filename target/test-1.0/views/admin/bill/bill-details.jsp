@@ -35,7 +35,6 @@
                 <h3 class="text-uppercase text-center mt-3" style="font-size: 40px;">Invoice</h3>
                 <p>${MaHD}</p>
             </div>
-
             <div class="row mx-3">
                 <table class="table">
                     <thead>
@@ -56,13 +55,12 @@
                     </c:forEach>
                     </tbody>
                 </table>
-
             </div>
             <div class="row">
                 <div class="col-xl-8">
                     <ul class="list-unstyled float-end me-0">
                         <li><span class="me-3 float-start">Total Amount:</span><i class="fas fa-dollar-sign"></i>${totalPrice}</li>
-                        <li> <span class="me-5">Discount:</span><i class="fas fa-dollar-sign"></i>0</li>
+                        <li> <span class="me-5">Discount:</span><i class="fas fa-dollar-sign"></i>(${totalPrice}*20/100)</li>
 <%--                        <li><span class="float-start" style="margin-right: 35px;">Shippment: </span><i--%>
 <%--                                class="fas fa-dollar-sign"></i> 500,00</li>--%>
                     </ul>

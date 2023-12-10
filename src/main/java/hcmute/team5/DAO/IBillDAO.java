@@ -8,4 +8,5 @@ import java.util.List;
 public interface IBillDAO {
     List<BillModel> findAll();
     List<BillDetailsModel> findAllById(String maHD);
+    List<BillModel> findAllByProperties(String maChiNhanh, String maHD);
 }

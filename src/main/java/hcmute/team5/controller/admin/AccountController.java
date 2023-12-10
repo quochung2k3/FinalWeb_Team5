@@ -40,6 +40,20 @@ public class AccountController extends HttpServlet {
         }
     }
 
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String url = req.getRequestURI();
+        if(url.contains("/logout")){
+            RequestDispatcher rd = req.getRequestDispatcher("/views/web/home.jsp");
+            rd.forward(req, resp);
+        }
+        if(url.contains("add")) {
+            postRegister(req, resp);
+        }
+        if(url.contains("update")) {
+            update(req, resp);
+        }
+    }
+
     private void findAllByProperties(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String rolename = req.getParameter("roleName");
         String status = req.getParameter("status");
@@ -64,20 +78,6 @@ public class AccountController extends HttpServlet {
         account.setId(id);
         service.deleteAccount(account);
         findAll(req, resp);
-    }
-
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String url = req.getRequestURI();
-        if(url.contains("/logout")){
-            RequestDispatcher rd = req.getRequestDispatcher("/views/web/home.jsp");
-            rd.forward(req, resp);
-        }
-        if(url.contains("add")) {
-            postRegister(req, resp);
-        }
-        if(url.contains("update")) {
-            update(req, resp);
-        }
     }
 
     private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
