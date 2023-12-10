@@ -52,15 +52,18 @@
                         <td><i class="fas fa-dollar-sign"></i>${item.gia}</td>
                     </tr>
                         <c:set var="totalPrice" value="${(totalPrice ne null) ? totalPrice + item.gia : item.gia}" />
+                        <c:set var="percentDecrease" value="${item.phanTramGiam}" />
                     </c:forEach>
                     </tbody>
                 </table>
             </div>
+            <c:set var="discount" value="${totalPrice*percentDecrease/100}" />
+            <c:set var="total" value="${totalPrice-discount}" />
             <div class="row">
                 <div class="col-xl-8">
                     <ul class="list-unstyled float-end me-0">
                         <li><span class="me-3 float-start">Total Amount:</span><i class="fas fa-dollar-sign"></i>${totalPrice}</li>
-                        <li> <span class="me-5">Discount:</span><i class="fas fa-dollar-sign"></i>(${totalPrice}*20/100)</li>
+                        <li> <span class="me-5">Discount:</span><i class="fas fa-dollar-sign"></i>${discount}</li>
 <%--                        <li><span class="float-start" style="margin-right: 35px;">Shippment: </span><i--%>
 <%--                                class="fas fa-dollar-sign"></i> 500,00</li>--%>
                     </ul>
@@ -72,7 +75,7 @@
                     <p class="float-end"
                        style="font-size: 30px; color: red; font-weight: 400;font-family: Arial, Helvetica, sans-serif;">
                         Total:
-                        <span><i class="fas fa-dollar-sign"></i>${totalPrice}</span></p>
+                        <span><i class="fas fa-dollar-sign"></i>${total}</span></p>
                 </div>
             </div>
         </div>
