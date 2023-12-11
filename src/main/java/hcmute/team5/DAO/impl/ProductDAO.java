@@ -4,6 +4,7 @@ import hcmute.team5.DAO.DBConnectionSQL;
 import hcmute.team5.DAO.IProductDAO;
 import hcmute.team5.model.ProductModel;
 import hcmute.team5.model.ProductTypeModel;
+import hcmute.team5.model.ViewedModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -151,6 +152,22 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void insertviewed(String username, String masp){
+        String sql = "DECLARE @count int SET @count = (SELECT COUNT(*) FROM DaXem WHERE username = ? AND masp = ?) IF @count = 0 INSERT INTO DaXem VALUES (?,?)";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2,masp);
+            ps.setString(3, username);
+            ps.setString(4,masp);
+            rs = ps.executeQuery();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

@@ -47,11 +47,13 @@ public class DetailProductController extends HttpServlet {
         List<ProductModel> p_viewed = service.getListProDuctViewed(maSP,username);
         req.setAttribute("detail_viewed",p_viewed);
 
+        service.insertviewed(username,maSP);
+
         RequestDispatcher rd = req.getRequestDispatcher("/views/user/DetailProduct.jsp");
         rd.forward(req, resp);
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
     }
 }

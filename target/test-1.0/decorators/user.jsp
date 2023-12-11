@@ -25,6 +25,7 @@
     <link href=<c:url value="/template/user/css/footer.css" />  rel="stylesheet" />
     <link href=<c:url value="/template/user/css/main.css" />  rel="stylesheet" />
     <link href=<c:url value="/template/user/css/base.css" />  rel="stylesheet" />
+
     <link
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
             rel="stylesheet"

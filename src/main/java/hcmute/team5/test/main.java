@@ -7,10 +7,6 @@ import java.util.List;
 public class main {
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-        ProductModel p = dao.getDetailProduct("1");
-        List<ProductModel> p_similar = dao.getListProDuctViewed("1","luankh@gmail.com");
-        for (ProductModel o : p_similar) {
-            System.out.println(o.getTenSP());
-        }
+        dao.insertviewed("luankh@gmail.com","1");
     }
 }

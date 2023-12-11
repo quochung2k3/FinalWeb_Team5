@@ -1,3 +1,4 @@
+
 package hcmute.team5.service;
 
 import hcmute.team5.model.ProductModel;
@@ -12,4 +13,5 @@ public interface IProductDetailService {
     List<ProductModel> getAllProduct();
     List<ProductModel> getListProDuctByProductType(String maLoaiSP, String maSP);
     public List<ProductModel> getListProDuctViewed(String maSP, String username);
+    public void insertviewed(String username, String masp);
 }
