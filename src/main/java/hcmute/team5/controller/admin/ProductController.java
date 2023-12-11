@@ -39,7 +39,7 @@ public class ProductController extends HttpServlet {
     private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String maSP = req.getParameter("masp");
         String tenSP = req.getParameter("tensp");
-        float gia = Float.parseFloat(req.getParameter("gia"));
+        int gia = Integer.parseInt(req.getParameter("gia"));
         String trangThai = req.getParameter("trangthai");
         ProductModel product = new ProductModel();
         product.setMaSP(maSP);
@@ -76,7 +76,7 @@ public class ProductController extends HttpServlet {
         String maSP = req.getParameter("masp");
         String tenSP = req.getParameter("tensp");
         String maLoaiSP = req.getParameter("maloaisp");
-        Float gia = Float.parseFloat(req.getParameter("gia"));
+        int gia = Integer.parseInt(req.getParameter("gia"));
         String maChiNhanh = req.getParameter("machinhanh");
         String trangThai = req.getParameter("trangthai");
         if (service.findOneByProduct(maSP) == null) {
@@ -85,7 +85,7 @@ public class ProductController extends HttpServlet {
             product.setTenSP(tenSP);
             product.setMaLoaiSP(maLoaiSP);
             product.setGia(gia);
-            product.setMachinhanh(maChiNhanh);
+            product.setMaChiNhanh(maChiNhanh);
             product.setTrangThai(trangThai);
             service.insertPro(product);
             req.setAttribute("note", "Thêm thành công");

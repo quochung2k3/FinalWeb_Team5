@@ -72,7 +72,7 @@
                         <td>${item.tenSP}</td>
                         <td>${item.maLoaiSP}</td>
                         <td>${item.gia}</td>
-                        <td>${item.machinhanh}</td>
+                        <td>${item.maChiNhanh}</td>
                         <td>${item.trangThai}</td>
                         <td style="
                                             display: flex;

@@ -175,8 +175,8 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
                 product.setMaSP(rs.getString(1));
                 product.setTenSP(rs.getString(2));
                 product.setMaLoaiSP(rs.getString(3));
-                product.setGia(rs.getFloat(4));
-                product.setMachinhanh(rs.getString(5));
+                product.setGia(rs.getInt(4));
+                product.setMaChiNhanh(rs.getString(5));
                 product.setTrangThai(rs.getString(6));
                 conn.close();
                 return product;
@@ -197,8 +197,8 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
             ps.setString(2, product.getTenSP());
             ps.setString(3, product.getMaLoaiSP());
             ps.setFloat(4, product.getGia());
-            ps.setString(5, product.getMachinhanh());
-            ps.setString(6, product.gettrangThai());
+            ps.setString(5, product.getMaChiNhanh());
+            ps.setString(6, product.getTrangThai());
             ps.executeUpdate();
             conn.close();
         } catch (Exception e) {
@@ -221,8 +221,8 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
             ps.setString(2, product.getTenSP());
             ps.setString(3, product.getMaLoaiSP());
             ps.setFloat(4, product.getGia());
-            ps.setString(5, product.getMachinhanh());
-            ps.setString(6, product.gettrangThai());
+            ps.setString(5, product.getMaChiNhanh());
+            ps.setString(6, product.getTrangThai());
             ps.executeUpdate();
         }
         catch (Exception e) {
@@ -248,6 +248,6 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
     public void updateProduct(ProductModel product) {
         String sql = "UPDATE SanPham SET tensanpham = ?, gia = ?, trangthai = ? WHERE masanpham = ?";
         String gia = String.valueOf(product.getGia());
-        update(sql, product.getTenSP(), gia, product.gettrangThai(), product.getMaSP());
+        update(sql, product.getTenSP(), gia, product.getTrangThai(), product.getMaSP());
     }
 }

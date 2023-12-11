@@ -9,6 +9,7 @@ public class ProductModel extends AbstractModel {
     private int gia;
     private String trangThai;
     private String desCription;
+    private String maChiNhanh;
     public String getMaSP() {
         return maSp;
     }
@@ -23,6 +24,14 @@ public class ProductModel extends AbstractModel {
 
     public void setTenSP(String tenSp) {
         this.tenSp = tenSp;
+    }
+
+    public String getMaChiNhanh() {
+        return maChiNhanh;
+    }
+
+    public void setMaChiNhanh(String maChiNhanh) {
+        this.maChiNhanh = maChiNhanh;
     }
 
     public String getMaLoaiSP() {
