@@ -24,7 +24,7 @@
                         <div class="col-sm-3">
                             <div class="show-entries">
                                 <span>Show</span>
-                                <select class="form-control">
+                                <select id="fetchSelect" class="form-control">
                                     <option>5</option>
                                     <option>10</option>
                                     <option>15</option>
@@ -150,5 +150,40 @@
         if ("${note}" != "") {
             alert("${note}");
         }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.pagination .page-item').on('click', function () {
+                // Remove the 'active' class and 'offset' attribute from all page items
+                $('.pagination .page-item').removeClass('active').removeAttr('name', 'offset');
+
+                // Add the 'active' class and 'offset' attribute to the clicked page item
+                $(this).addClass('active').attr('name', 'offset');
+            });
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#fetchSelect').on('change', function () {
+                var fetchValue = $(this).val();
+
+                // Gửi giá trị lên tầng controller bằng AJAX
+                $.ajax({
+                    type: 'GET',
+                    url: '<c:url value="/admin-account-pagination"/>',
+                    data: { fetch: fetchValue },
+                    success: function (data) {
+                        // Xử lý kết quả từ tầng controller nếu cần
+                        console.log(data);
+                        // Update bảng hoặc dữ liệu khác tại đây
+                    },
+                    error: function () {
+                        // Xử lý lỗi nếu có
+                        console.error('Error sending AJAX request');
+                    }
+                });
+            });
+        });
     </script>
 </body>

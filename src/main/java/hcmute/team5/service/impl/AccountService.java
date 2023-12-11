@@ -35,8 +35,8 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public List<AccountModel> findAll() {
-        return accountDAL.findAll();
+    public List<AccountModel> findAll(int fetch, int offset) {
+        return accountDAL.findAll(fetch, offset);
     }
 
     @Override

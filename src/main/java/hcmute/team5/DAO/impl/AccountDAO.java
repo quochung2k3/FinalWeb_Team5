@@ -59,9 +59,9 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
     }
 
     @Override
-    public List<AccountModel> findAll() {
-        String sql ="SELECT * FROM Account";
-        return query(sql, new AccountMapper());
+    public List<AccountModel> findAll(int fetch, int offset) {
+        String sql ="SELECT * FROM Account ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        return query(sql, new AccountMapper(), offset, fetch);
     }
 
     @Override

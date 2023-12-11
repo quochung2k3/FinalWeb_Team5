@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-@WebServlet(urlPatterns = {"/admin-ql-account", "/admin-delete", "/admin-add", "/admin-update", "/admin-account-search", "/admin-reset-account"})
+@WebServlet(urlPatterns = {"/admin-ql-account", "/admin-delete", "/admin-add", "/admin-update", "/admin-account-search", "/admin-reset-account", "/admin-account-pagination"})
 public class AccountController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     IAccountService service = new AccountService();
@@ -35,6 +35,17 @@ public class AccountController extends HttpServlet {
         if(url.contains("account-search")) {
             findAllByProperties(req, resp);
         }
+        if(url.contains("account-pagination")) {
+            findAllPagination(req, resp);
+        }
+    }
+
+    private void findAllPagination(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int fetchValue = Integer.parseInt(req.getParameter("fetch"));
+        List<AccountModel> list = service.findAll(fetchValue, 0);
+        req.setAttribute("listAccount", list);
+        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/account/ql-account.jsp");
+        rd.forward(req, resp);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -116,7 +127,7 @@ public class AccountController extends HttpServlet {
     }
 
     private void findAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<AccountModel> list = service.findAll();
+        List<AccountModel> list = service.findAll(5, 0);
         req.setAttribute("listAccount", list);
         RequestDispatcher rd = req.getRequestDispatcher("/views/admin/account/ql-account.jsp");
         rd.forward(req, resp);
