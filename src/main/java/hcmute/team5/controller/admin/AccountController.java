@@ -1,10 +1,8 @@
 package hcmute.team5.controller.admin;
 
 import hcmute.team5.model.AccountModel;
-import hcmute.team5.model.BillDetailsModel;
 import hcmute.team5.service.IAccountService;
 import hcmute.team5.service.impl.AccountService;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.List;
 @WebServlet(urlPatterns = {"/admin-ql-account", "/admin-delete", "/admin-add", "/admin-update", "/admin-account-search", "/admin-reset-account"})
 public class AccountController extends HttpServlet {
@@ -97,7 +94,6 @@ public class AccountController extends HttpServlet {
 
     private void postRegister(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
-        String pass = req.getParameter("password");
         String fullname = req.getParameter("fullname");
         int roleid = Integer.parseInt(req.getParameter("roleid"));
         if (service.findOneByUsername(username) == null) {
