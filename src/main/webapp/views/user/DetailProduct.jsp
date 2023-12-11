@@ -1,107 +1,142 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ include file="/common/taglib.jsp"%>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>JSP Page</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
-    <link href=<c:url value="/template/user/css/DetailProduct.css" />  rel="stylesheet" />
     <style>
-        .gallery-wrap .img-big-wrap img {
-            height: 450px;
-            width: auto;
-            display: inline-block;
-            cursor: zoom-in;
+        .icon-hover:hover {
+            border-color: #3b71ca !important;
+            background-color: white !important;
+            color: #3b71ca !important;
         }
-
-
-        .gallery-wrap .img-small-wrap .item-gallery {
-            width: 60px;
-            height: 60px;
-            border: 1px solid #ddd;
-            margin: 7px 2px;
-            display: inline-block;
-            overflow: hidden;
-        }
-
-        .gallery-wrap .img-small-wrap {
-            text-align: center;
-        }
-        .gallery-wrap .img-small-wrap img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover;
-            border-radius: 4px;
-            cursor: zoom-in;
-        }
-        .img-big-wrap img{
-            width: 100% !important;
-            height: auto !important;
+        .icon-hover:hover i {
+            color: #3b71ca !important;
         }
     </style>
 </head>
-<body>
-<div class="container">
-    <div class="row">
-        <jsp:include page="Left.jsp"></jsp:include>
-        <div class="col-sm-9">
-            <div class="container">
-                <div class="card">
-                    <div class="row">
-                        <aside class="col-sm-5 border-right">
-                            <article class="gallery-wrap">
-                                <div class="img-big-wrap">
-                                    <div> <a href="#"><img src="https://i.imgur.com/hnX99Cr.jpg"></a></div>
-                                </div> <!-- slider-product.// -->
-                                <div class="img-small-wrap">
-                                </div> <!-- slider-nav.// -->
-                            </article> <!-- gallery-wrap .end// -->
-                        </aside>
-                        <aside class="col-sm-7">
-                            <article class="card-body p-5">
-                                <h3 class="title mb-3">${detail.getTenSP()}</h3>
+<section class="py-5">
+    <div class="container">
+        <div class="row gx-5">
+            <aside class="col-lg-6">
+                <div class="border rounded-4 mb-3 d-flex justify-content-center">
+                    <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image" href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp">
+                        <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="https://upanh123.com/wp-content/uploads/2020/11/hinh-anh-con-meo-cute9.jpg" />
+                    </a>
+                </div>
+            </aside>
+            <main class="col-lg-6">
+                <h4 class="title text-dark" style = "font-size: 4rem">
+                    ${detail.getTenSP()}
+                </h4>
+                <div class="mb-3">
+                    <span class="h5" style = "font-size: 2.5rem; color: #17a2b8">${detail.getGia()}$ (Đã bao gồm VAT)</span>
+                </div>
+                <p style = "font-size: 1.5rem">
+                    ${detail.getDescription()}
+                </p>
+                <div class="row">
+                    <dt class="col-3" style = "font-size: 2rem">Mã sản phẩm:</dt>
+                    <dd class="col-9" style = "font-size: 2rem">${detail.getMaSP()}</dd>
 
-                                <p class="price-detail-wrap">
-                                            <span class="price h3 text-warning">
-                                                <span class="currency">US $</span><span class="num">${detail.gia}</span>
-                                            </span>
-                                </p> <!-- price-detail-wrap .// -->
-                                <dl class="item-property">
-                                    <dt>Description</dt>
-                                    <dd><p>
-                                        Description
-                                        ASASDASDSAASDASDdasdasdsa
-                                    </p></dd>
-                                </dl>
+                    <dt class="col-3" style = "font-size: 2rem">Brand:</dt>
+                    <dd class="col-9" style = "font-size: 2rem">${detail.getMaNcc()}</dd>
 
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-5">
-                                        <dl class="param param-inline">
-                                            <dt>Quantity: </dt>
-                                            <dd>
-                                                <select class="form-control form-control-sm" style="width:70px;">
-                                                    <option> 1 </option>
-                                                    <option> 2 </option>
-                                                    <option> 3 </option>
-                                                </select>
-                                            </dd>
-                                        </dl>  <!-- item-property .// -->
-                                    </div> <!-- col.// -->
+                    <dt class="col-3" style = "font-size: 2rem">Tình trạng:</dt>
+                    <dd class="col-9" style = "font-size: 2rem">${detail.getTrangThai()}</dd>
+                </div>
 
-                                </div> <!-- row.// -->
-                                <hr>
-                                <a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
-                                <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
-                            </article> <!-- card-body.// -->
-                        </aside> <!-- col.// -->
-                    </div> <!-- row.// -->
-                </div> <!-- card.// -->
+                <hr />
+
+                <div class="row mb-4">
+                    <!-- col.// -->
+                    <div class="col-md-4 col-6 mb-3">
+                        <label class="mb-4 d-block" style = "font-size: 2rem">Quantity</label>
+                        <div class="input-group" style="width: 200px">
+                            <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon1" data-mdb-ripple-color="dark">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <input type="text" class="form-control text-center border border-secondary" placeholder="1" aria-label="Example text with button addon" aria-describedby="button-addon1" />
+                            <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon2" data-mdb-ripple-color="dark">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-warning shadow-0" style = "font-size: 1.4rem"> Buy now </a>
+                <a href="#" class="btn btn-primary shadow-0" style = "font-size: 1.4rem"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
+                <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3" style = "font-size: 1.4rem"> <i class="me-1 fa fa-heart fa-lg"></i> Save </a>
+            </main>
+        </div>
+    </div>
+</section>
+<!-- content -->
+<section class="bg-light border-top py-4">
+    <div class="container">
+        <div class="row gx-4">
+            <div class="col-lg-4">
+                <div class="px-0 border rounded-2 shadow-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" style = "font-size: 2rem">Sản phẩm cùng loại</h5>
+                            <c:forEach var = "o" items="${detail_same}">
+                                <div class="d-flex mb-3">
+                                    <a href="user-product?pid=${o.getMaSP()}" class="me-3">
+                                        <img src="https://upanh123.com/wp-content/uploads/2020/11/hinh-anh-con-meo-cute9.jpg" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
+                                    </a>
+                                    <div class="info" style = "font-size: 1.5rem; max-width: 200px">
+                                        <a href="user-product?pid=${o.getMaSP()}" class="nav-link mb-1">
+                                            ${o.getTenSP()}
+                                        </a>
+                                        <strong class="text-dark" style = "font-size: 1.3rem"> ${o.getGia()}$</strong>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="px-0 border rounded-2 shadow-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" style = "font-size: 2rem">Sản phẩm cùng nhà cung cấp</h5>
+                            <c:forEach var = "o" items="${detail_same_ncc}" >
+                                <div class="d-flex mb-3">
+                                    <a href="user-product?pid=${o.getMaSP()}" class="me-3">
+                                        <img src="https://upanh123.com/wp-content/uploads/2020/11/hinh-anh-con-meo-cute9.jpg" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
+                                    </a>
+                                    <div class="info" style = "font-size: 1.5rem; max-width: 200px">
+                                        <a href="user-product?pid=${o.getMaSP()}" class="nav-link mb-1">
+                                                ${o.getTenSP()}
+                                        </a>
+                                        <strong class="text-dark"  style = "font-size: 1.3rem">${o.getGia()}$</strong>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="px-0 border rounded-2 shadow-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" style = "font-size: 2rem">Sản phẩm đã xem</h5>
+                            <c:forEach var = "o" items="${detail_viewed}" >
+                                <div class="d-flex mb-3">
+                                    <a href="user-product?pid=${o.getMaSP()}" class="me-3">
+                                        <img src="https://upanh123.com/wp-content/uploads/2020/11/hinh-anh-con-meo-cute9.jpg" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
+                                    </a>
+                                    <div class="info" style = "font-size: 1.5rem; max-width: 200px">
+                                        <a href="user-product?pid=${o.getMaSP()}" class="nav-link mb-1">
+                                                ${o.getTenSP()}
+                                        </a>
+                                        <strong class="text-dark"  style = "font-size: 1.3rem">${o.getGia()}$</strong>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-</body>
-</html>
+</section>

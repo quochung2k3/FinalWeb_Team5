@@ -20,21 +20,12 @@
     <hr class="sidebar-divider">
 
     <!-- Nav Item - Pages Collapse Menu -->
+    <%--    Quản lý hàng hóa--%>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-           aria-expanded="true" aria-controls="collapseTwo">
-            <i style="font-size: 20px;" class="fa-solid fa-shop"></i>
-            <span>Quản lý sản phẩm</span>
+        <a class="nav-link collapsed" href="<c:url value="/admin-ql-product"/>">
+            <i style="font-size: 20px;" class="fa-solid fa-person"></i>
+            <span>Quản lý hàng hóa</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Loại sản phẩm</h6>
-                <a class="collapse-item" href="<c:url value=""/>">Mỹ phẩm</a>
-                <a class="collapse-item" href="cards.html">Nước hoa</a>
-                <a class="collapse-item" href="#">Mặt nạ</a>
-                <a class="collapse-item" href="#">ALL</a>
-            </div>
-        </div>
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
