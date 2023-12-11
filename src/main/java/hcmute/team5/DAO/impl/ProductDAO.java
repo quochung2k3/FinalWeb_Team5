@@ -127,9 +127,8 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
     }
     @Override
     public void updateProduct(ProductModel product) {
-        String sql = "UPDATE SanPham SET tensanpham = ?, gia = ?, trangthai = ? WHERE masanpham = ?;";
-        update(sql, product.getTenSP(), product.getGia(), product.gettrangThai(), product.getMaSP());
+        String sql = "UPDATE SanPham SET tensanpham = ?, gia = ?, trangthai = ? WHERE masanpham = ?";
+        String gia = String.valueOf(product.getGia());
+        update(sql, product.getTenSP(), gia, product.gettrangThai(), product.getMaSP());
     }
-
-
 }

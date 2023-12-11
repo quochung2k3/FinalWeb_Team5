@@ -39,7 +39,7 @@ public class ProductController extends HttpServlet {
     private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String maSP = req.getParameter("masp");
         String tenSP = req.getParameter("tensp");
-        Float gia = Float.parseFloat(req.getParameter("gia"));
+        float gia = Float.parseFloat(req.getParameter("gia"));
         String trangThai = req.getParameter("trangthai");
         ProductModel product = new ProductModel();
         product.setMaSP(maSP);

@@ -136,4 +136,10 @@
         window.location.href = "admin-product-delete?maSP="+itemId;
     }
 </script>
+<script>
+    if ("${note}" != "") {
+        alert("${note}");
+        ${node} = "";
+    }
+</script>
 </body>
