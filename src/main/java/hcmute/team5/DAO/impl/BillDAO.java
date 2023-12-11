@@ -33,11 +33,13 @@ public class BillDAO extends AbstractDAO<BillModel> implements IBillDAO {
             return query(sql, new BillMapper(), maChiNhanh);
         }
         else if(maChiNhanh.equals("All")) {
-            String sql ="SELECT * FROM HoaDon WHERE mahd = ?";
+            String sql ="SELECT * FROM HoaDon WHERE mahd LIKE ?";
+            maHD = '%'+maHD+'%';
             return query(sql, new BillMapper(), maHD);
         }
         else {
-            String sql ="SELECT * FROM HoaDon WHERE machinhanh = ? AND mahd = ?";
+            String sql ="SELECT * FROM HoaDon WHERE machinhanh = ? AND mahd LIKE ?";
+            maHD = '%'+maHD+'%';
             return query(sql, new BillMapper(), maChiNhanh, maHD);
         }
     }

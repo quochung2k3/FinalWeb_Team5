@@ -112,7 +112,8 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
             return query(sql, new AccountMapper(), status);
         }
         else if(status.equals("All") && roleName.equals("All")) {
-            String sql ="SELECT * FROM Account WHERE username = ?";
+            String sql ="SELECT * FROM Account WHERE username LIKE ?";
+            username = '%'+username+'%';
             return query(sql, new AccountMapper(), username);
         }
         else if(username.equals("")) {
@@ -120,15 +121,18 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
             return query(sql, new AccountMapper(), roleId, status);
         }
         else if(status.equals("All")) {
-            String sql ="SELECT * FROM Account WHERE roleid = ? AND username = ?";
+            String sql ="SELECT * FROM Account WHERE roleid = ? AND username LIKE ?";
+            username = '%'+username+'%';
             return query(sql, new AccountMapper(), roleId, username);
         }
         else if(roleName.equals("All")) {
-            String sql ="SELECT * FROM Account WHERE status = ? AND username = ?";
+            String sql ="SELECT * FROM Account WHERE status = ? AND username LIKE ?";
+            username = '%'+username+'%';
             return query(sql, new AccountMapper(), status, username);
         }
         else {
-            String sql ="SELECT * FROM Account WHERE roleid = ? AND status = ? AND username = ?";
+            String sql ="SELECT * FROM Account WHERE roleid = ? AND status = ? AND username LIKE ?";
+            username = '%'+username+'%';
             return query(sql, new AccountMapper(), roleId, status, username);
         }
     }
