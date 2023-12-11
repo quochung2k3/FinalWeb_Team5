@@ -4,9 +4,6 @@ public class ProductModel extends PayModel {
     private String maSp;
     private String tenSp;
     private String maLoaisp;
-    private String maSp;
-    private String tenSp;
-    private String maLoaisp;
     private String image;
     private String maNcc;
     private int gia;

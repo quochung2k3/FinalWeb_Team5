@@ -13,7 +13,7 @@ public class CartMapper implements RowMapper<CartModel> {
             CartModel cart = new CartModel();
             cart.setTenSP(rs.getString("tensanpham"));
             cart.setSoLuong(rs.getInt("soluong"));
-            cart.setGia(rs.getFloat("gia"));
+            cart.setGia(rs.getInt("gia"));
             cart.setDescription(rs.getString("description"));
             return cart;
         }

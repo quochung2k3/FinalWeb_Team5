@@ -48,7 +48,7 @@
                                                         <h5 class="mb-0">${item.soLuong*item.gia}</h5>
                                                         <c:set var="totalPrice" value="${(totalPrice ne null) ? totalPrice + item.soLuong*item.gia : item.soLuong*item.gia}" />
                                                     </div>
-                                                    <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                                                    <a href="user-delete-cart?maSP=${item.tenSP}" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
                                                 </div>
                                             </div>
                                         </div>
