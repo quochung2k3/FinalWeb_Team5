@@ -10,7 +10,7 @@ public interface ICustomerDAO {
 
     void updateCustomer(CustomerModel customer);
 
-    CustomerModel findOneByCustomer(String maKh);
+    CustomerModel findOneByCustomer(int maKh);
     void insert(CustomerModel customer);
     void deleteCustomer(CustomerModel customer);
     void insertCus(CustomerModel customer);

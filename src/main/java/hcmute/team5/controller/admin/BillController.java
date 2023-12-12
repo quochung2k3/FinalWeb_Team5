@@ -33,7 +33,7 @@ public class BillController extends HttpServlet {
     }
 
     private void findAllById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String maHD = req.getParameter("mahd");
+        int maHD = Integer.parseInt(req.getParameter("mahd"));
         List<BillDetailsModel> list = service.findAllById(maHD);
         req.setAttribute("listBillDetails", list);
         req.setAttribute("MaHD", maHD);

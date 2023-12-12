@@ -21,7 +21,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public ProductModel findOneByProduct(String maSP) {
+    public ProductModel findOneByProduct(int maSP) {
         return productDAL.findOneByProduct(maSP);
     }
 

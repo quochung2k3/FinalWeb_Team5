@@ -23,7 +23,7 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public CustomerModel findOneByCustomer(String maKh) {
+    public CustomerModel findOneByCustomer(int maKh) {
         return customerDAL.findOneByCustomer(maKh);
     }
 

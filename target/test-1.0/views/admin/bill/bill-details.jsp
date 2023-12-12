@@ -41,17 +41,19 @@
                     <tr>
                         <th scope="col">Product Code</th>
                         <th scope="col">Product Name</th>
+                        <th scope="col">Quantity</th>
                         <th scope="col">Cost</th>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach var = "item" items = "${listBillDetails}">
                     <tr>
-                        <td>${item.maSP}</td>
+                        <td>${item.maSp}</td>
                         <td>${item.tenSP}</td>
-                        <td><i class="fas fa-dollar-sign"></i>${item.gia}</td>
+                        <td>${item.soLuong}</td>
+                        <td><i class="fas fa-dollar-sign"></i>${item.gia*item.soLuong}</td>
                     </tr>
-                        <c:set var="totalPrice" value="${(totalPrice ne null) ? totalPrice + item.gia : item.gia}" />
+                        <c:set var="totalPrice" value="${(totalPrice ne null) ? totalPrice + item.gia * item.soLuong : item.gia*item.soLuong}" />
                         <c:set var="percentDecrease" value="${item.phanTramGiam}" />
                     </c:forEach>
                     </tbody>

@@ -40,28 +40,30 @@ public class CustomerController extends HttpServlet {
 
     }
     private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String maKh = req.getParameter("makh");
+        int maKh = Integer.parseInt(req.getParameter("makh"));
         String ten = req.getParameter("ten");
         String ngaySinh = req.getParameter("ngaysinh");
         String sdt = req.getParameter("sdt");
+        CustomerModel customerByUserName = service.findOneByCustomer(maKh);
         CustomerModel customer = new CustomerModel();
         customer.setMaKh(maKh);
         customer.setTen(ten);
         customer.setNgaySinh(ngaySinh);
         customer.setSdt(sdt);
+        customer.setUsername(customerByUserName.getUsername());
         service.updateCustomer(customer);
         req.setAttribute("note", "Cập nhật thành công");
         findAll(req, resp);
     }
     private void findOneByCustomer(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String maKh = req.getParameter("maKh");
+        int maKh = Integer.parseInt(req.getParameter("maKh"));
         CustomerModel customer = service.findOneByCustomer(maKh);
         req.setAttribute("customer", customer);
         RequestDispatcher rd = req.getRequestDispatcher("/views/admin/customer/update-customer.jsp");
         rd.forward(req, resp);
     }
     private void deleteCustomer(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String maKh = req.getParameter("maKh");
+        int maKh = Integer.parseInt(req.getParameter("maKh"));
         System.out.println(maKh);
         CustomerModel customer = new CustomerModel();
         customer.setMaKh(maKh);
@@ -76,7 +78,7 @@ public class CustomerController extends HttpServlet {
         rd.forward(req, resp);
     }
     private void postCustomer(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String makh = req.getParameter("makh");
+        int makh = Integer.parseInt(req.getParameter("makh"));
         String ten = req.getParameter("ten");
         String ngaysinh = req.getParameter("ngaysinh");
         String sdt =req.getParameter("sdt");

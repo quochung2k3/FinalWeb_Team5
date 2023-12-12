@@ -19,24 +19,25 @@ public class CustomerDAO extends AbstractDAO<CustomerModel> implements ICustomer
     ResultSet rs = null;
     @Override
     public List<CustomerModel> findAll() {
-        String sql ="SELECT * FROM KhachHang";
+        String sql ="SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username";
         return query(sql, new CustomerMapper());
     }
     @Override
-    public CustomerModel findOneByCustomer(String maKh) {
-        String sql = "SELECT * FROM KhachHang WHERE makh = ?";
+    public CustomerModel findOneByCustomer(int maKh) {
+        String sql = "SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username WHERE makh = ?";
         try {
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, maKh);
+            ps.setInt(1, maKh);
             rs = ps.executeQuery();
             while (rs.next()) {
                 CustomerModel customer = new CustomerModel();
-                customer.setMaKh(rs.getString(1));
-                customer.setTen(rs.getString(2));
-                customer.setNgaySinh(rs.getString(3));
-                customer.setSdt(rs.getString(4));
-                customer.setTongTienDaMua(rs.getInt(5));
+                customer.setMaKh(rs.getInt("makh"));
+                customer.setTen(rs.getString("fullname"));
+                customer.setNgaySinh(rs.getString("ngaysinh"));
+                customer.setSdt(rs.getString("sdt"));
+                customer.setTongTienDaMua(rs.getInt("tongtiendamua"));
+                customer.setUsername(rs.getString("username"));
                 conn.close();
                 return customer;
             }
@@ -52,7 +53,7 @@ public class CustomerDAO extends AbstractDAO<CustomerModel> implements ICustomer
         try {
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, customer.getMaKh());
+            ps.setInt(1, customer.getMaKh());
             ps.setString(2, customer.getTen());
             ps.setString(3, customer.getNgaySinh());
             ps.setString(4, customer.getSdt());
@@ -75,7 +76,7 @@ public class CustomerDAO extends AbstractDAO<CustomerModel> implements ICustomer
         try {
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, customer.getMaKh());
+            ps.setInt(1, customer.getMaKh());
             ps.setString(2, customer.getTen());
             ps.setString(3, customer.getNgaySinh());
             ps.setString(4, customer.getSdt());
@@ -88,7 +89,9 @@ public class CustomerDAO extends AbstractDAO<CustomerModel> implements ICustomer
     }
     @Override
     public void updateCustomer(CustomerModel customer) {
-        String sql = "UPDATE KhachHang SET ten = ?, ngaysinh = ?, sdt = ? WHERE makh = ?;";
-        update(sql, customer.getTen(), customer.getNgaySinh(), customer.getSdt(), customer.getMaKh());
+        String sql = "UPDATE KhachHang SET ngaysinh = ?, sdt = ? WHERE makh = ?;";
+        update(sql, customer.getNgaySinh(), customer.getSdt(), customer.getMaKh());
+        String sql2 = "UPDATE Account SET fullname = ? WHERE username = ?;";
+        update(sql2, customer.getTen(), customer.getUsername());
     }
 }

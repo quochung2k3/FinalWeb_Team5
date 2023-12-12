@@ -16,7 +16,7 @@ public class BillService implements IBillService {
     }
 
     @Override
-    public List<BillDetailsModel> findAllById(String maHD) {
+    public List<BillDetailsModel> findAllById(int maHD) {
         return billDAO.findAllById(maHD);
     }
 

@@ -1,7 +1,7 @@
 package hcmute.team5.model;
 
 public class ProductModel extends PayModel {
-    private String maSp;
+    private int maSp;
     private String tenSp;
     private String maLoaisp;
     private String image;
@@ -10,11 +10,12 @@ public class ProductModel extends PayModel {
     private String trangThai;
     private String desCription;
     private String maChiNhanh;
-    public String getMaSP() {
+
+    public int getMaSp() {
         return maSp;
     }
 
-    public void setMaSP(String maSp) {
+    public void setMaSp(int maSp) {
         this.maSp = maSp;
     }
 

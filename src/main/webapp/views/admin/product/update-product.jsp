@@ -18,7 +18,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="masp" value="${product.maSP}" name="masp" type="text" class="form-control" required>
+                                            <input placeholder="masp" value="${product.maSp}" name="masp" type="text" class="form-control" required>
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Ten San Pham</p>

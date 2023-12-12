@@ -18,7 +18,7 @@ public class BillDAO extends AbstractDAO<BillModel> implements IBillDAO {
     }
 
     @Override
-    public List<BillDetailsModel> findAllById(String maHD) {
+    public List<BillDetailsModel> findAllById(int maHD) {
         String sql = "SELECT * FROM ChiTietHD INNER JOIN SanPham ON ChiTietHD.masanpham = SanPham.masanpham\n" +
                 "INNER JOIN ThanhToan ON ChiTietHD.mahd = ThanhToan.mahd\n" +
                 "INNER JOIN Voucher ON ThanhToan.mavoucher = Voucher.mavoucher\n" +

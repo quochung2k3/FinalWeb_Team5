@@ -3,7 +3,7 @@ package hcmute.team5.model;
 import java.sql.Timestamp;
 
 public class CustomerModel {
-    private String maKh;
+    private int maKh;
     private String ten;
     private String ngaySinh;
     private String sdt;
@@ -18,11 +18,11 @@ public class CustomerModel {
         this.username = username;
     }
 
-    public String getMaKh() {
+    public int getMaKh() {
         return maKh;
     }
 
-    public void setMaKh(String maKh) {
+    public void setMaKh(int maKh) {
         this.maKh = maKh;
     }
 

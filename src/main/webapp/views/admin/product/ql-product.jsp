@@ -67,7 +67,7 @@
                 <tbody>
                 <c:forEach var = "item" items = "${listProduct}">
                     <tr>
-                        <td>${item.maSP}</td>
+                        <td>${item.maSp}</td>
                             <%--                            <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar">${item.userName}</a></td>--%>
                         <td>${item.tenSP}</td>
                         <td>${item.maLoaiSP}</td>
@@ -79,8 +79,8 @@
                                             justify-content: space-between;
                                             align-items: center;
                                         ">
-                            <a href="admin-product-update?maSP=${item.maSP}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                            <a href="admin-product-delete?maSP=${item.maSP}" class="delete trigger-btn" title="Delete" data-item-id="${item.maSP}" onclick="openModal(event)"><i class="material-icons">&#xE5C9;</i></a>
+                            <a href="admin-product-update?maSP=${item.maSp}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+                            <a href="admin-product-delete?maSP=${item.maSp}" class="delete trigger-btn" title="Delete" data-item-id="${item.maSp}" onclick="openModal(event)"><i class="material-icons">&#xE5C9;</i></a>
                         </td>
                     </tr>
                 </c:forEach>

@@ -10,7 +10,7 @@ public interface ICustomerService {
 
     public void updateCustomer(CustomerModel customer);
 
-    public CustomerModel findOneByCustomer(String maKh);
+    public CustomerModel findOneByCustomer(int maKh);
     public void deleteCustomer(CustomerModel customer);
 
     void insertCus(CustomerModel customer);
