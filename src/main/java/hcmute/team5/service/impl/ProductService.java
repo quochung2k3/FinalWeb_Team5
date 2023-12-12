@@ -34,4 +34,6 @@ public class ProductService implements IProductService {
     public void insertPro(ProductModel product) {
         productDAL.insertPro(product);
     }
+
+    public void inserttoCard(String username, String masp, int Soluong){productDAL.inserttoCard(username,masp,Soluong);}
 }

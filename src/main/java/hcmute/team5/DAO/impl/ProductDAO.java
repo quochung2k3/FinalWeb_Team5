@@ -60,6 +60,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
                 product.setMaSP(rs.getString("masanpham"));
                 product.setTenSP(rs.getString("tensanpham"));
                 product.setGia(rs.getInt("gia"));
+                product.setImage(rs.getString("image"));
                 list.add(product);
             }
             return list;
@@ -99,6 +100,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
                 product.setMaSP(rs.getString("masanpham"));
                 product.setTenSP(rs.getString("tensanpham"));
                 product.setGia(rs.getInt("gia"));
+                product.setImage(rs.getString("image"));
                 product.setTrangThai(rs.getString("trangthai"));
                 list.add(product);
             }
@@ -123,6 +125,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
                 product.setMaSP(rs.getString("masanpham"));
                 product.setTenSP(rs.getString("tensanpham"));
                 product.setGia(rs.getInt("gia"));
+                product.setImage(rs.getString("image"));
                 list.add(product);
             }
             return list;
@@ -148,6 +151,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
                 product.setTrangThai(rs.getString("trangthai"));
                 product.setDescription(rs.getString("description"));
                 product.setMaNcc(rs.getString("manhacungcap"));
+                product.setImage(rs.getString("image"));
                 conn.close();
                 return product;
             }
@@ -163,6 +167,27 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
         return query(sql, new ProductMapper());
     }
     @Override
+    public void inserttoCard(String username, String masp, int Soluong)
+    {
+        String sql = "DECLARE @count int SET @count = (SELECT COUNT(*) FROM GioHang WHERE username = ? AND masp = ?) IF @count = 0 INSERT INTO GioHang VALUES (?,?,?) ELSE UPDATE GioHang SET soluong = soluong + ? WHERE username = ? AND masp = ?";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2,masp);
+            ps.setString(3, username);
+            ps.setString(4,masp);
+            ps.setInt(5, Soluong);
+            ps.setInt(6, Soluong);
+            ps.setString(7, username);
+            ps.setString(8,masp);
+            rs = ps.executeQuery();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
     public ProductModel findOneByProduct(String maSP) {
         String sql = "SELECT * FROM SanPham WHERE masanpham = ?";
         try {
