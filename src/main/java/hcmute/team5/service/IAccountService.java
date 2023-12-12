@@ -8,8 +8,9 @@ public interface IAccountService {
     public AccountModel findOneByUsername(String username);
     public void insert(AccountModel account);
     void insertAcc(AccountModel account);
-    List<AccountModel> findAll();
+    List<AccountModel> findAll(int fetch, int offset);
     public void deleteAccount(AccountModel account);
     public void update(AccountModel account);
-    List<AccountModel> findAllByProperties(String roleName, String status, String username);
+    List<AccountModel> findAllByProperties(String roleName, String status, String username, int pageSize, int index);
+    int getNumOfAccount();
 }

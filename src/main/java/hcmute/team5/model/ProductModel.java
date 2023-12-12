@@ -1,6 +1,6 @@
 package hcmute.team5.model;
 
-public class ProductModel extends AbstractModel {
+public class ProductModel extends PayModel {
     private String maSp;
     private String tenSp;
     private String maLoaisp;

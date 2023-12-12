@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/admin-ql-bill", "/admin-bill-details"})
+@WebServlet(urlPatterns = {"/admin-ql-bill", "/admin-bill-details", "/admin-bill-search"})
 public class BillController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     IBillService service = new BillService();
@@ -27,6 +27,9 @@ public class BillController extends HttpServlet {
         if(url.contains("bill-details")) {
             findAllById(req, resp);
         }
+        if(url.contains("bill-search")) {
+            findAllByProperties(req, resp);
+        }
     }
 
     private void findAllById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,6 +38,15 @@ public class BillController extends HttpServlet {
         req.setAttribute("listBillDetails", list);
         req.setAttribute("MaHD", maHD);
         RequestDispatcher rd = req.getRequestDispatcher("/views/admin/bill/bill-details.jsp");
+        rd.forward(req, resp);
+    }
+
+    private void findAllByProperties(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String maChiNhanh = req.getParameter("maChiNhanh");
+        String maHD = req.getParameter("maHoaDon");
+        List<BillModel> list = service.findAllByProperties(maChiNhanh, maHD);
+        req.setAttribute("listBill", list);
+        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/bill/ql-bill.jsp");
         rd.forward(req, resp);
     }
 

@@ -27,14 +27,18 @@
                         </div>
                     </div>
                     <div class="col-sm-9">
-                        <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        <form action="admin-ql-bill" method="get">
+                            <button type="submit" class="btn btn-primary">RESET</button>
+                        </form>
+                        <form action="admin-bill-search" method="get">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         <div class="filter-group">
                             <label>Bill Code</label>
-                            <input type="text" class="form-control">
+                            <input name="maHoaDon" type="text" class="form-control">
                         </div>
                         <div class="filter-group">
                             <label>Branch</label>
-                            <select class="form-control">
+                            <select name="maChiNhanh" class="form-control">
                                 <option>All</option>
                                 <option>CN01</option>
                                 <option>CN02</option>
@@ -50,6 +54,7 @@
 <%--                            </select>--%>
 <%--                        </div>--%>
                         <span class="filter-icon"><i class="fa fa-filter"></i></span>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -57,6 +62,7 @@
                 <thead>
                 <tr>
                     <th>Mã hóa đơn</th>
+                    <th>Mã chi nhánh</th>
                     <th>Ngày in</th>
                     <th>Mã khách hàng</th>
                     <th>Tổng tiền</th>
@@ -69,6 +75,7 @@
                 <c:forEach var = "item" items = "${listBill}">
                     <tr>
                         <td>${item.maHD}</td>
+                        <td>${item.maChiNhanh}</td>
                             <%--                            <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar">${item.userName}</a></td>--%>
                         <td>${item.ngayIn}</td>
                         <td>${item.maKH}</td>

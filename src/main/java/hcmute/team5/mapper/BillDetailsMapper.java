@@ -15,6 +15,7 @@ public class BillDetailsMapper implements RowMapper<BillDetailsModel> {
             BillDetailsModel bill = new BillDetailsModel();
             bill.setMaSP(rs.getString("masanpham"));
             bill.setTenSP(rs.getString("tensanpham"));
+            bill.setPhanTramGiam(rs.getFloat("phantramgiam"));
             bill.setGia(rs.getInt("gia"));
             return bill;
         }
