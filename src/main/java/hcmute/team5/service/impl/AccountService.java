@@ -2,7 +2,6 @@ package hcmute.team5.service.impl;
 
 import hcmute.team5.DAO.IAccountDAO;
 import hcmute.team5.DAO.impl.AccountDAO;
-import hcmute.team5.mapper.AccountMapper;
 import hcmute.team5.model.AccountModel;
 import hcmute.team5.service.IAccountService;
 
@@ -52,5 +51,10 @@ public class AccountService implements IAccountService {
     @Override
     public List<AccountModel> findAllByProperties(String roleName, String status, String username) {
         return accountDAL.findAllByProperties(roleName, status, username);
+    }
+
+    @Override
+    public int getNumOfAccount() {
+        return accountDAL.getNumOfAccount();
     }
 }

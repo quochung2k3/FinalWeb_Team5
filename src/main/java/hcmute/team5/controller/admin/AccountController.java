@@ -127,7 +127,39 @@ public class AccountController extends HttpServlet {
     }
 
     private void findAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<AccountModel> list = service.findAll(5, 0);
+        String text = req.getParameter("index");
+        int pageSize = 5;
+        int index;
+        int numOfAccount = service.getNumOfAccount();
+        req.setAttribute("numOfAccount", numOfAccount);
+        int numpage = 0;
+        int num2 = 0;
+        if(numOfAccount % pageSize == 0) {
+            numpage = numOfAccount/pageSize;
+        }
+        else {
+            numpage = numOfAccount/pageSize + 1;
+        }
+        req.setAttribute("numpage", numpage);
+        if(text == null || text.equals("1")) {
+            index = 0;
+            num2 = pageSize;
+        }
+        else if (text.equals(String.valueOf(numpage))) {
+            int temp = Integer.parseInt(req.getParameter("index"));
+            index = (temp-1)*pageSize;
+            num2 = numOfAccount;
+        }
+        else {
+            int temp = Integer.parseInt(req.getParameter("index"));
+            num2 = temp*pageSize;
+            index = (temp-1)*pageSize;
+        }
+        if(pageSize >= numOfAccount) {
+            num2 = numOfAccount;
+        }
+        req.setAttribute("num2", num2);
+        List<AccountModel> list = service.findAll(pageSize, index);
         req.setAttribute("listAccount", list);
         RequestDispatcher rd = req.getRequestDispatcher("/views/admin/account/ql-account.jsp");
         rd.forward(req, resp);

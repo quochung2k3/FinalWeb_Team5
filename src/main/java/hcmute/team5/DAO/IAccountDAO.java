@@ -12,4 +12,5 @@ public interface IAccountDAO {
     void insertAcc(AccountModel account);
     void update(AccountModel account);
     List<AccountModel> findAllByProperties(String roleName, String status, String username);
+    int getNumOfAccount();
 }

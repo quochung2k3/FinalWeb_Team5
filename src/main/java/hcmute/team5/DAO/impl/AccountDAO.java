@@ -4,10 +4,8 @@ import hcmute.team5.DAO.DBConnectionSQL;
 import hcmute.team5.DAO.IAccountDAO;
 import hcmute.team5.mapper.AccountMapper;
 import hcmute.team5.model.AccountModel;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
+import java.sql.*;
 import java.util.List;
 
 public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO {
@@ -135,5 +133,43 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
             username = '%'+username+'%';
             return query(sql, new AccountMapper(), roleId, status, username);
         }
+    }
+
+    @Override
+    public int getNumOfAccount() {
+        int num = 0;
+        String sql = "SELECT count(*) FROM Account";
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                num = rs.getInt(1);
+            }
+        }
+        catch (Exception e) {
+            if(conn != null) {
+                try {
+                    conn.rollback();
+                }
+                catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+        finally {
+            try {
+                conn.close();
+                ps.close();
+                rs.close();
+            }
+            catch (SQLException e2){
+                e2.printStackTrace();
+            }
+        }
+        return num;
     }
 }

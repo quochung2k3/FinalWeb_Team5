@@ -21,18 +21,7 @@
                 </div>
                 <div class="table-filter">
                     <div class="row">
-                        <div class="col-sm-3">
-                            <div class="show-entries">
-                                <span>Show</span>
-                                <select id="fetchSelect" class="form-control">
-                                    <option>5</option>
-                                    <option>10</option>
-                                    <option>15</option>
-                                    <option>20</option>
-                                </select>
-                                <span>entries</span>
-                            </div>
-                        </div>
+                        <div class="col-sm-3"></div>
                             <div class="col-sm-9">
                                 <form action="admin-ql-account" method="get">
                                     <button type="submit" class="btn btn-primary">RESET</button>
@@ -97,17 +86,12 @@
                     </tbody>
                 </table>
                 <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                    <div class="hint-text">Showing <b>${num2}</b> out of <b>${numOfAccount}</b> entries</div>
                     <ul class="pagination">
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item"><a href="#" class="page-link">6</a></li>
-                        <li class="page-item"><a href="#" class="page-link">7</a></li>
-                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                        <li class="page-item"><a class="page-link" href="admin-ql-account?index=1" ${index==1 ? "style=\"color: red;\"" : ""}>1</a></li>
+                        <c:forEach begin = "2" end = "${numpage}" var = "i">
+                            <li class="page-item"><a class="page-link" href="admin-ql-account?index=${i}" ${index==i ? "style=\"color: red;\"" : ""}>${i}</a></li>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
@@ -150,17 +134,6 @@
         if ("${note}" != "") {
             alert("${note}");
         }
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('.pagination .page-item').on('click', function () {
-                // Remove the 'active' class and 'offset' attribute from all page items
-                $('.pagination .page-item').removeClass('active').removeAttr('name', 'offset');
-
-                // Add the 'active' class and 'offset' attribute to the clicked page item
-                $(this).addClass('active').attr('name', 'offset');
-            });
-        });
     </script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
