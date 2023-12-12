@@ -1,6 +1,7 @@
 package hcmute.team5.controller.admin;
 
 import hcmute.team5.model.AccountModel;
+import hcmute.team5.model.CustomerModel;
 import hcmute.team5.service.IAccountService;
 import hcmute.team5.service.impl.AccountService;
 import javax.servlet.RequestDispatcher;
@@ -139,6 +140,7 @@ public class AccountController extends HttpServlet {
     private void postRegister(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String fullname = req.getParameter("fullname");
+        String sdt = req.getParameter("sdt");
         int roleid = Integer.parseInt(req.getParameter("roleid"));
         if (service.findOneByUsername(username) == null) {
             String password = req.getParameter("password");
@@ -148,7 +150,14 @@ public class AccountController extends HttpServlet {
             account.setRoleId(roleid);
             account.setStatus("Active");
             account.setFullName(fullname);
+            account.setSdt(sdt);
             service.insertAcc(account);
+            if(roleid == 2) {
+                CustomerModel customer = new CustomerModel();
+                customer.setUsername(username);
+                customer.setSdt(sdt);
+                service.insertCus(customer);
+            }
             req.setAttribute("note", "Thêm thành công");
             findAll(req, resp);
 

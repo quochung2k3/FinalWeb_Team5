@@ -47,7 +47,7 @@
                                     <select name="status" class="form-control">
                                         <option>All</option>
                                         <option>Active</option>
-                                        <option>Disable</option>
+                                        <option>Disabled</option>
                                     </select>
                                     <c:set var="status" value="${param.status}" />
                                 </div>

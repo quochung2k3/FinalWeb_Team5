@@ -7,7 +7,16 @@ public class CustomerModel {
     private String ten;
     private String ngaySinh;
     private String sdt;
+    private String username;
     private float tongTienDaMua;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getMaKh() {
         return maKh;

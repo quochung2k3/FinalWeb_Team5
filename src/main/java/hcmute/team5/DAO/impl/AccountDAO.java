@@ -4,6 +4,7 @@ import hcmute.team5.DAO.DBConnectionSQL;
 import hcmute.team5.DAO.IAccountDAO;
 import hcmute.team5.mapper.AccountMapper;
 import hcmute.team5.model.AccountModel;
+import hcmute.team5.model.CustomerModel;
 
 import java.sql.*;
 import java.util.List;
@@ -29,6 +30,7 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
                 account.setPassWord(rs.getString(3));
                 account.setFullName(rs.getString(4));
                 account.setRoleId(rs.getInt(6));
+                account.setSdt(rs.getString("sdt"));
                 conn.close();
                 return account;
             }
@@ -41,14 +43,31 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
 
     @Override
     public void insert(AccountModel account) {
-        String sql = "INSERT INTO Account(username, password, roleid, status) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO Account(username, fullname, password, roleid, status, sdt) VALUES(?, ?, ?, ?, ?, ?)";
         try {
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, account.getUserName());
-            ps.setString(2, account.getPassWord());
-            ps.setInt(3, account.getRoleId());
-            ps.setString(4, account.getStatus());
+            ps.setString(2, account.getFullName());
+            ps.setString(3, account.getPassWord());
+            ps.setInt(4, account.getRoleId());
+            ps.setString(5, account.getStatus());
+            ps.setString(6, account.getSdt());
+            ps.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void insertCus(CustomerModel customer) {
+        String sql = "INSERT INTO KhachHang(username, sdt) VALUES(?, ?)";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, customer.getUsername());
+            ps.setString(2, customer.getSdt());
             ps.executeUpdate();
             conn.close();
         } catch (Exception e) {
@@ -64,13 +83,13 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
 
     @Override
     public void deleteAccount(AccountModel account) {
-        String sql = "DELETE FROM Account WHERE id = ?";
+        String sql = "UPDATE Account SET status = 'Disabled' WHERE id = ?";
         update(sql, account.getId());
     }
 
     @Override
     public void insertAcc(AccountModel account) {
-        String sql = "INSERT INTO Account(username, password, roleid, status, fullname) VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Account(username, password, roleid, status, fullname, sdt) VALUES(?, ?, ?, ?, ?, ?)";
         try {
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
@@ -79,6 +98,7 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
             ps.setInt(3, account.getRoleId());
             ps.setString(4, account.getStatus());
             ps.setString(5, account.getFullName());
+            ps.setString(6, account.getSdt());
             ps.executeUpdate();
             conn.close();
         } catch (Exception e) {

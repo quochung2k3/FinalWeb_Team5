@@ -21,6 +21,13 @@
                                             <input name="fullname" type="text" id="form3Example1c" class="form-control" required>
                                         </div>
                                     </div>
+                                    <p style="margin-left: 50px; margin-bottom: 2px;">Phone</p>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fa-solid fa-phone fa-lg me-3 fa-fw"></i>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
+                                            <input name="sdt" type="text" id="" class="form-control" required>
+                                        </div>
+                                    </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Username</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>

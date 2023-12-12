@@ -67,7 +67,6 @@
                 <c:forEach var = "item" items = "${listCustomer}">
                     <tr>
                         <td>${item.maKh}</td>
-                            <%--                            <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar">${item.userName}</a></td>--%>
                         <td>${item.ten}</td>
                         <td>${item.ngaySinh}</td>
                         <td>${item.sdt}</td>

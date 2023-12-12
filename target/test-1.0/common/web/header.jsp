@@ -164,6 +164,12 @@
                             <input name="username" type="email" class="auth-form__input" placeholder="Email của bạn" required>
                         </div>
                         <div class="auth-form__group">
+                            <input name="fullname" type="text" class="auth-form__input" placeholder="Họ tên" required>
+                        </div>
+                        <div class="auth-form__group">
+                            <input name="sdt" type="text" class="auth-form__input" placeholder="Số điện thoại" required>
+                        </div>
+                        <div class="auth-form__group">
                             <input name="password" type="password" class="auth-form__input" placeholder="Mật khẩu của bạn" required>
                         </div>
                         <div class="auth-form__group">
