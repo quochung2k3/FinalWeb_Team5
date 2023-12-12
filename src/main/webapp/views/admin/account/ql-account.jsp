@@ -99,9 +99,9 @@
                                 </c:forEach>
                             </c:when>
                             <c:otherwise>
-                                <li class="page-item"><a class="page-link active" href="admin-ql-account?index=1" ${index==1 ? "style=\"color: red;\"" : ""}>1</a></li>
+                                <li class="page-item"><a id="linkPagging${1}" class="page-link active" onclick="searchAndUpdateTableByPaging(event, 1)" href="admin-ql-account?index=1">1</a></li>
                                 <c:forEach begin = "2" end = "${numpage}" var = "i">
-                                    <li class="page-item"><a class="page-link" href="admin-ql-account?index=${i}" ${index==i ? "style=\"color: red;\"" : ""}>${i}</a></li>
+                                    <li class="page-item"><a id="linkPagging${i}" class="page-link" onclick="searchAndUpdateTableByPaging(event, ${i})" href="admin-ql-account?index=${i}">${i}</a></li>
                                 </c:forEach>
                             </c:otherwise>
                         </c:choose>
@@ -150,25 +150,6 @@
     </script>
 
     <script>
-        function updateTableContent() {
-            $.ajax({
-                url: 'admin-account-search', // Specify the URL of your controller
-                type: 'GET',
-                dataType: 'html',
-                success: function (data) {
-                    $('#tableBody').html($(data).find('#tableBody').html());
-                    $('#partialReloadDiv').html($(data).find('#partialReloadDiv').html());
-                },
-            });
-        }
-
-        // Call updateTableContent function when the page loads or when needed
-        $(document).ready(function () {
-            updateTableContent();
-        });
-    </script>
-
-    <script>
         function searchAndUpdateTable() {
             $.ajax({
                 url: $('#searchForm').attr('action'), // Use the form action URL
@@ -176,7 +157,6 @@
                 data: $('#searchForm').serialize(), // Serialize the form data
                 dataType: 'html',
                 success: function (data) {
-                    // Update the content of the table and pagination
                     $('#tableBody').html($(data).find('#tableBody').html());
                     $('#partialReloadDiv').html($(data).find('#partialReloadDiv').html());
                 },
@@ -187,18 +167,15 @@
     <script>
         function searchAndUpdateTableByPaging(event, i) {
             var url = "#linkPagging"+i.toString();
-            // Xóa lớp 'active' khỏi tất cả các thẻ a có class 'page-link'
             $('a.page-link').removeClass('active');
             // Thêm lớp 'active' vào thẻ a được click
             $(url).addClass('active');
-
             event.preventDefault();
             $.ajax({
                 url: $(url).attr('href'), // Use the form action URL
                 type: 'GET',
                 dataType: 'html',
                 success: function (data) {
-                    // Update the content of the table and pagination
                     $('#tableBody').html($(data).find('#tableBody').html());
                     $('.hint-text').html($(data).find('.hint-text').html());
                 },
