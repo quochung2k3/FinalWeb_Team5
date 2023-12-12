@@ -68,24 +68,24 @@
                     </tr>
                     </thead>
                     <tbody id="tableBody">
-                    <c:forEach var = "item" items = "${listAccount}">
-                        <tr>
-                            <td>${item.id}</td>
-<%--                            <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar">${item.userName}</a></td>--%>
-                            <td>${item.userName}</td>
-                            <td>${item.passWord}</td>
-                            <td>${item.roleId}</td>
-                            <td><span class="status text-success">&bull;</span>${item.status}</td>
-                            <td style="
-                                            display: flex;
-                                            justify-content: space-between;
-                                            align-items: center;
-                                        ">
-                                <a href="admin-update?username=${item.userName}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                                <a href="admin-delete?id=${item.id}" class="delete trigger-btn" title="Delete" data-item-id="${item.id}" onclick="openModal(event)"><i class="material-icons">&#xE5C9;</i></a>
-                            </td>
-                        </tr>
-                    </c:forEach>
+                        <c:forEach var = "item" items = "${listAccount}">
+                            <tr>
+                                <td>${item.id}</td>
+    <%--                            <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar">${item.userName}</a></td>--%>
+                                <td>${item.userName}</td>
+                                <td>${item.passWord}</td>
+                                <td>${item.roleId}</td>
+                                <td><span class="status text-success">&bull;</span>${item.status}</td>
+                                <td style="
+                                                display: flex;
+                                                justify-content: space-between;
+                                                align-items: center;
+                                            ">
+                                    <a href="admin-update?username=${item.userName}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+                                    <a href="admin-delete?id=${item.id}" class="delete trigger-btn" title="Delete" data-item-id="${item.id}" onclick="openModal(event)"><i class="material-icons">&#xE5C9;</i></a>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
                 <div class="clearfix" id="partialReloadDiv">
@@ -93,9 +93,9 @@
                     <ul class="pagination">
                         <c:choose>
                             <c:when test="${not empty username or not empty roleName or not empty status}">
-                                <li class="page-item"><a class="page-link" href="admin-account-search?index=1&username=${param.username}&roleName=${param.roleName}&status=${param.status}" ${index==1 ? "style=\"color: red;\"" : ""}>1</a></li>
+                                <li class="page-item"><a id="linkPagging${1}" class="page-link" onclick="searchAndUpdateTableByPaging(event, 1)" href="admin-account-search?index=1&username=${param.username}&roleName=${param.roleName}&status=${param.status}" ${index==1 ? "style=\"color: red;\"" : ""}>1</a></li>
                                 <c:forEach begin = "2" end = "${numpage}" var = "i">
-                                    <li class="page-item"><a class="page-link" href="admin-account-search?index=${i}&username=${param.username}&roleName=${param.roleName}&status=${param.status}" ${index==i ? "style=\"color: red;\"" : ""}>${i}</a></li>
+                                    <li class="page-item"><a id="linkPagging${i}" class="page-link" onclick="searchAndUpdateTableByPaging(event, ${i})" href="admin-account-search?index=${i}&username=${param.username}&roleName=${param.roleName}&status=${param.status}" ${index==i ? "style=\"color: red;\"" : ""}>${i}</a></li>
                                 </c:forEach>
                             </c:when>
                             <c:otherwise>
@@ -174,6 +174,23 @@
                 url: $('#searchForm').attr('action'), // Use the form action URL
                 type: 'GET',
                 data: $('#searchForm').serialize(), // Serialize the form data
+                dataType: 'html',
+                success: function (data) {
+                    // Update the content of the table and pagination
+                    $('#tableBody').html($(data).find('#tableBody').html());
+                    $('#partialReloadDiv').html($(data).find('#partialReloadDiv').html());
+                },
+            });
+        }
+    </script>
+
+    <script>
+        function searchAndUpdateTableByPaging(event, i) {
+            var url = "#linkPagging"+i.toString();
+            event.preventDefault();
+            $.ajax({
+                url: $(url).attr('href'), // Use the form action URL
+                type: 'GET',
                 dataType: 'html',
                 success: function (data) {
                     // Update the content of the table and pagination
