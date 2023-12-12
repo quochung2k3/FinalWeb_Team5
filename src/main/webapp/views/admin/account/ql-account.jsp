@@ -68,24 +68,24 @@
                     </tr>
                     </thead>
                     <tbody id="tableBody">
-                    <c:forEach var = "item" items = "${listAccount}">
-                        <tr>
-                            <td>${item.id}</td>
-<%--                            <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar">${item.userName}</a></td>--%>
-                            <td>${item.userName}</td>
-                            <td>${item.passWord}</td>
-                            <td>${item.roleId}</td>
-                            <td><span class="status text-success">&bull;</span>${item.status}</td>
-                            <td style="
-                                            display: flex;
-                                            justify-content: space-between;
-                                            align-items: center;
-                                        ">
-                                <a href="admin-update?username=${item.userName}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                                <a href="admin-delete?id=${item.id}" class="delete trigger-btn" title="Delete" data-item-id="${item.id}" onclick="openModal(event)"><i class="material-icons">&#xE5C9;</i></a>
-                            </td>
-                        </tr>
-                    </c:forEach>
+                        <c:forEach var = "item" items = "${listAccount}">
+                            <tr>
+                                <td>${item.id}</td>
+    <%--                            <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar">${item.userName}</a></td>--%>
+                                <td>${item.userName}</td>
+                                <td>${item.passWord}</td>
+                                <td>${item.roleId}</td>
+                                <td><span class="status text-success">&bull;</span>${item.status}</td>
+                                <td style="
+                                                display: flex;
+                                                justify-content: space-between;
+                                                align-items: center;
+                                            ">
+                                    <a href="admin-update?username=${item.userName}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+                                    <a href="admin-delete?id=${item.id}" class="delete trigger-btn" title="Delete" data-item-id="${item.id}" onclick="openModal(event)"><i class="material-icons">&#xE5C9;</i></a>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
                 <div class="clearfix" id="partialReloadDiv">

@@ -93,9 +93,9 @@
                     <ul class="pagination">
                         <c:choose>
                             <c:when test="${not empty username or not empty roleName or not empty status}">
-                                <li class="page-item"><a id="linkOne" class="page-link" onclick="searchAndUpdateTableByPaging()" href="admin-account-search?index=1&username=${param.username}&roleName=${param.roleName}&status=${param.status}" ${index==1 ? "style=\"color: red;\"" : ""}>1</a></li>
+                                <li class="page-item"><a class="page-link" href="admin-account-search?index=1&username=${param.username}&roleName=${param.roleName}&status=${param.status}" ${index==1 ? "style=\"color: red;\"" : ""}>1</a></li>
                                 <c:forEach begin = "2" end = "${numpage}" var = "i">
-                                    <li class="page-item"><a id="link" class="page-link" onclick="searchAndUpdateTableByPaging()" href="admin-account-search?index=${i}&username=${param.username}&roleName=${param.roleName}&status=${param.status}" ${index==i ? "style=\"color: red;\"" : ""}>${i}</a></li>
+                                    <li class="page-item"><a class="page-link" href="admin-account-search?index=${i}&username=${param.username}&roleName=${param.roleName}&status=${param.status}" ${index==i ? "style=\"color: red;\"" : ""}>${i}</a></li>
                                 </c:forEach>
                             </c:when>
                             <c:otherwise>
@@ -179,33 +179,6 @@
                     // Update the content of the table and pagination
                     $('#tableBody').html($(data).find('#tableBody').html());
                     $('#partialReloadDiv').html($(data).find('#partialReloadDiv').html());
-                },
-            });
-        }
-    </script>
-
-    <script>
-        function searchAndUpdateTableByPaging() {
-            $.ajax({
-                url: $('#linkOne').attr('href'), // Use the form action URL
-                type: 'GET',
-                data: $('#linkOne').serialize(), // Serialize the form data
-                dataType: 'html',
-                success: function (data) {
-                    // Update the content of the table and pagination
-                    $('#tableBody').html($(data).find('#tableBody').html());
-                    // $('#partialReloadDiv').html($(data).find('#partialReloadDiv').html());
-                },
-            });
-            $.ajax({
-                url: $('#link').attr('href'), // Use the form action URL
-                type: 'GET',
-                data: $('#link').serialize(), // Serialize the form data
-                dataType: 'html',
-                success: function (data) {
-                    // Update the content of the table and pagination
-                    $('#tableBody').html($(data).find('#tableBody').html());
-                    // $('#partialReloadDiv').html($(data).find('#partialReloadDiv').html());
                 },
             });
         }
