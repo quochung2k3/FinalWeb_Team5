@@ -63,10 +63,43 @@ public class AccountController extends HttpServlet {
     }
 
     private void findAllByProperties(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int pageSize = 2;
+        int index = 0;
+        int num2 = 0;
+        int numpage = 0;
+        String text = req.getParameter("index");
         String rolename = req.getParameter("roleName");
         String status = req.getParameter("status");
         String username = req.getParameter("username");
-        List<AccountModel> list = service.findAllByProperties(rolename, status, username);
+        List<AccountModel> listNum = service.findAllByProperties(rolename, status, username, 999999999, 0);
+        int numOfAccount = listNum.size();
+        req.setAttribute("numOfAccount", numOfAccount);
+        if(numOfAccount % pageSize == 0) {
+            numpage = numOfAccount/pageSize;
+        }
+        else {
+            numpage = numOfAccount/pageSize + 1;
+        }
+        req.setAttribute("numpage", numpage);
+        if(text == null || text.equals("1")) {
+            index = 0;
+            num2 = pageSize;
+        }
+        else if (text.equals(String.valueOf(numpage))) {
+            int temp = Integer.parseInt(req.getParameter("index"));
+            index = (temp-1)*pageSize;
+            num2 = numOfAccount;
+        }
+        else {
+            int temp = Integer.parseInt(req.getParameter("index"));
+            num2 = temp*pageSize;
+            index = (temp-1)*pageSize;
+        }
+        if(pageSize >= numOfAccount) {
+            num2 = numOfAccount;
+        }
+        req.setAttribute("num2", num2);
+        List<AccountModel> list = service.findAllByProperties(rolename, status, username, pageSize, index);
         req.setAttribute("listAccount", list);
         RequestDispatcher rd = req.getRequestDispatcher("/views/admin/account/ql-account.jsp");
         rd.forward(req, resp);

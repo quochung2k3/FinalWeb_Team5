@@ -26,11 +26,12 @@
                                 <form action="admin-ql-account" method="get">
                                     <button type="submit" class="btn btn-primary">RESET</button>
                                 </form>
-                                <form action="admin-account-search" method="get">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                <form id="searchForm" action="admin-account-search" method="get">
+                                    <button type="button" class="btn btn-primary" onclick="searchAndUpdateTable()"><i class="fa fa-search"></i></button>
                                 <div class="filter-group">
                                     <label>Name</label>
                                     <input name="username" type="text" class="form-control">
+                                    <c:set var="username" value="${param.username}" />
                                 </div>
                                 <div class="filter-group">
                                     <label>Role name</label>
@@ -39,6 +40,7 @@
                                         <option>Admin</option>
                                         <option>Customer</option>
                                     </select>
+                                    <c:set var="roleName" value="${param.roleName}" />
                                 </div>
                                 <div class="filter-group">
                                     <label>Status</label>
@@ -47,6 +49,7 @@
                                         <option>Active</option>
                                         <option>Disable</option>
                                     </select>
+                                    <c:set var="status" value="${param.status}" />
                                 </div>
                                 <span class="filter-icon"><i class="fa fa-filter"></i></span>
                                 </form>
@@ -64,7 +67,7 @@
                         <th>Action</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tableBody">
                     <c:forEach var = "item" items = "${listAccount}">
                         <tr>
                             <td>${item.id}</td>
@@ -85,13 +88,23 @@
                     </c:forEach>
                     </tbody>
                 </table>
-                <div class="clearfix">
+                <div class="clearfix" id="partialReloadDiv">
                     <div class="hint-text">Showing <b>${num2}</b> out of <b>${numOfAccount}</b> entries</div>
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="admin-ql-account?index=1" ${index==1 ? "style=\"color: red;\"" : ""}>1</a></li>
-                        <c:forEach begin = "2" end = "${numpage}" var = "i">
-                            <li class="page-item"><a class="page-link" href="admin-ql-account?index=${i}" ${index==i ? "style=\"color: red;\"" : ""}>${i}</a></li>
-                        </c:forEach>
+                        <c:choose>
+                            <c:when test="${not empty username or not empty roleName or not empty status}">
+                                <li class="page-item"><a id="linkOne" class="page-link" onclick="searchAndUpdateTableByPaging()" href="admin-account-search?index=1&username=${param.username}&roleName=${param.roleName}&status=${param.status}" ${index==1 ? "style=\"color: red;\"" : ""}>1</a></li>
+                                <c:forEach begin = "2" end = "${numpage}" var = "i">
+                                    <li class="page-item"><a id="link" class="page-link" onclick="searchAndUpdateTableByPaging()" href="admin-account-search?index=${i}&username=${param.username}&roleName=${param.roleName}&status=${param.status}" ${index==i ? "style=\"color: red;\"" : ""}>${i}</a></li>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item"><a class="page-link" href="admin-ql-account?index=1" ${index==1 ? "style=\"color: red;\"" : ""}>1</a></li>
+                                <c:forEach begin = "2" end = "${numpage}" var = "i">
+                                    <li class="page-item"><a class="page-link" href="admin-ql-account?index=${i}" ${index==i ? "style=\"color: red;\"" : ""}>${i}</a></li>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
                     </ul>
                 </div>
             </div>
@@ -135,28 +148,67 @@
             alert("${note}");
         }
     </script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#fetchSelect').on('change', function () {
-                var fetchValue = $(this).val();
 
-                // Gửi giá trị lên tầng controller bằng AJAX
-                $.ajax({
-                    type: 'GET',
-                    url: '<c:url value="/admin-account-pagination"/>',
-                    data: { fetch: fetchValue },
-                    success: function (data) {
-                        // Xử lý kết quả từ tầng controller nếu cần
-                        console.log(data);
-                        // Update bảng hoặc dữ liệu khác tại đây
-                    },
-                    error: function () {
-                        // Xử lý lỗi nếu có
-                        console.error('Error sending AJAX request');
-                    }
-                });
+    <script>
+        function updateTableContent() {
+            $.ajax({
+                url: 'admin-account-search', // Specify the URL of your controller
+                type: 'GET',
+                dataType: 'html',
+                success: function (data) {
+                    $('#tableBody').html($(data).find('#tableBody').html());
+                    $('#partialReloadDiv').html($(data).find('#partialReloadDiv').html());
+                },
             });
+        }
+
+        // Call updateTableContent function when the page loads or when needed
+        $(document).ready(function () {
+            updateTableContent();
         });
     </script>
+
+    <script>
+        function searchAndUpdateTable() {
+            $.ajax({
+                url: $('#searchForm').attr('action'), // Use the form action URL
+                type: 'GET',
+                data: $('#searchForm').serialize(), // Serialize the form data
+                dataType: 'html',
+                success: function (data) {
+                    // Update the content of the table and pagination
+                    $('#tableBody').html($(data).find('#tableBody').html());
+                    $('#partialReloadDiv').html($(data).find('#partialReloadDiv').html());
+                },
+            });
+        }
+    </script>
+
+    <script>
+        function searchAndUpdateTableByPaging() {
+            $.ajax({
+                url: $('#linkOne').attr('href'), // Use the form action URL
+                type: 'GET',
+                data: $('#linkOne').serialize(), // Serialize the form data
+                dataType: 'html',
+                success: function (data) {
+                    // Update the content of the table and pagination
+                    $('#tableBody').html($(data).find('#tableBody').html());
+                    // $('#partialReloadDiv').html($(data).find('#partialReloadDiv').html());
+                },
+            });
+            $.ajax({
+                url: $('#link').attr('href'), // Use the form action URL
+                type: 'GET',
+                data: $('#link').serialize(), // Serialize the form data
+                dataType: 'html',
+                success: function (data) {
+                    // Update the content of the table and pagination
+                    $('#tableBody').html($(data).find('#tableBody').html());
+                    // $('#partialReloadDiv').html($(data).find('#partialReloadDiv').html());
+                },
+            });
+        }
+    </script>
+
 </body>

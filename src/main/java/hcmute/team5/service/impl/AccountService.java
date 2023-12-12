@@ -49,8 +49,8 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public List<AccountModel> findAllByProperties(String roleName, String status, String username) {
-        return accountDAL.findAllByProperties(roleName, status, username);
+    public List<AccountModel> findAllByProperties(String roleName, String status, String username, int pageSize, int index) {
+        return accountDAL.findAllByProperties(roleName, status, username, pageSize, index);
     }
 
     @Override
