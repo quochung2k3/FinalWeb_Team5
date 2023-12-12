@@ -15,6 +15,7 @@ import java.util.List;
 public class AccountController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     IAccountService service = new AccountService();
+    int pageSize = 2;
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURI();
         AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
@@ -63,7 +64,6 @@ public class AccountController extends HttpServlet {
     }
 
     private void findAllByProperties(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int pageSize = 2;
         int index = 0;
         int num2 = 0;
         int numpage = 0;
@@ -161,7 +161,6 @@ public class AccountController extends HttpServlet {
 
     private void findAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String text = req.getParameter("index");
-        int pageSize = 5;
         int index;
         int numOfAccount = service.getNumOfAccount();
         req.setAttribute("numOfAccount", numOfAccount);
