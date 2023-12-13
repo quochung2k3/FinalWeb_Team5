@@ -1,24 +1,40 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/common/taglib.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
     <style>
-        .icon-hover:hover {
-            border-color: #3b71ca !important;
-            background-color: white !important;
-            color: #3b71ca !important;
-        }
         .icon-hover:hover i {
             color: #3b71ca !important;
         }
+        .qty-btn {
+            float: left;
+            background: #fff;
+            border: 1px solid #f3f4f4;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            outline: none;
+            height: 40px;
+            line-height: 40px;
+            width: 40px;
+            text-align: center;
+            border-radius: 0;
+            outline: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -o-appearance: none;
+            appearance: none;
+        }
     </style>
 </head>
+<body>
 <section class="py-5">
     <div class="container">
         <div class="row gx-5">
             <aside class="col-lg-6">
                 <div class="border rounded-4 mb-3 d-flex justify-content-center">
                     <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image" href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp">
-                        <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="https://upanh123.com/wp-content/uploads/2020/11/hinh-anh-con-meo-cute9.jpg" />
+                        <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="${detail.getImage()}" />
                     </a>
                 </div>
             </aside>
@@ -44,25 +60,21 @@
                 </div>
 
                 <hr />
-
-                <div class="row mb-4">
-                    <!-- col.// -->
-                    <div class="col-md-4 col-6 mb-3">
-                        <label class="mb-4 d-block" style = "font-size: 2rem">Quantity</label>
-                        <div class="input-group" style="width: 200px">
-                            <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon1" data-mdb-ripple-color="dark">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <input type="text" class="form-control text-center border border-secondary" placeholder="1" aria-label="Example text with button addon" aria-describedby="button-addon1" />
-                            <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon2" data-mdb-ripple-color="dark">
-                                <i class="fas fa-plus"></i>
-                            </button>
+                <form action="user-product?pid=${detail.getMaSP()}" method = "post">
+                    <div class="row mb-4">
+                        <div class="col-md-4 col-6 mb-3">
+                            <label class="mb-4 d-block" style = "font-size: 2rem">Số lượng</label>
+                            <div class="block-quantity quantity-selector" >
+                                <input type="button" value="-" onclick="minusQuantity()" class="qty-btn" style="float: left; width: 40px; height: 30px; font-size: 1.5rem; background: #fff; border: 1px solid #f3f4f4;text-align: center;">
+                                <input type="text" id="quantity-bottom" name="quantity" value="1" min="1" class="quantity-number" style="float: left;width: 60px; height: 30px; font-size: 1.5rem; text-align: center;background: #fff; border: 1px solid #f3f4f4;" disabled>
+                                <input type="button" value="+" onclick="plusQuantity()" class = "qty-btn" style="float: left;width: 40px; height: 30px; font-size: 1.5rem;background: #fff; border: 1px solid #f3f4f4;text-align: center;">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <a href="#" class="btn btn-warning shadow-0" style = "font-size: 1.4rem"> Buy now </a>
-                <a href="#" class="btn btn-primary shadow-0" style = "font-size: 1.4rem"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
-                <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3" style = "font-size: 1.4rem"> <i class="me-1 fa fa-heart fa-lg"></i> Save </a>
+                    <a href="user-buy-now?pid=${detail.getMaSP()}" class="btn btn-warning shadow-0" style = "font-size: 1.4rem" > Buy now </a>
+                    <button type = "submit" class="btn btn-primary shadow-0" style = "font-size: 1.4rem"><i class="me-1 fa fa-shopping-basket"></i> Add to cart </button>
+                </form>
+
             </main>
         </div>
     </div>
@@ -79,9 +91,9 @@
                             <c:forEach var = "o" items="${detail_same}">
                                 <div class="d-flex mb-3">
                                     <a href="user-product?pid=${o.getMaSP()}" class="me-3">
-                                        <img src="https://upanh123.com/wp-content/uploads/2020/11/hinh-anh-con-meo-cute9.jpg" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
+                                        <img src="${o.getImage()}" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                                     </a>
-                                    <div class="info" style = "font-size: 1.5rem; max-width: 200px">
+                                    <div class="info" style = "font-size: 1.5rem; max-width: 280px">
                                         <a href="user-product?pid=${o.getMaSP()}" class="nav-link mb-1">
                                             ${o.getTenSP()}
                                         </a>
@@ -101,9 +113,9 @@
                             <c:forEach var = "o" items="${detail_same_ncc}" >
                                 <div class="d-flex mb-3">
                                     <a href="user-product?pid=${o.getMaSP()}" class="me-3">
-                                        <img src="https://upanh123.com/wp-content/uploads/2020/11/hinh-anh-con-meo-cute9.jpg" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
+                                        <img src="${o.getImage()}" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                                     </a>
-                                    <div class="info" style = "font-size: 1.5rem; max-width: 200px">
+                                    <div class="info" style = "font-size: 1.5rem; max-width: 280px">
                                         <a href="user-product?pid=${o.getMaSP()}" class="nav-link mb-1">
                                                 ${o.getTenSP()}
                                         </a>
@@ -123,9 +135,9 @@
                             <c:forEach var = "o" items="${detail_viewed}" >
                                 <div class="d-flex mb-3">
                                     <a href="user-product?pid=${o.getMaSP()}" class="me-3">
-                                        <img src="https://upanh123.com/wp-content/uploads/2020/11/hinh-anh-con-meo-cute9.jpg" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
+                                        <img src="${o.getImage()}" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                                     </a>
-                                    <div class="info" style = "font-size: 1.5rem; max-width: 200px">
+                                    <div class="info" style = "font-size: 1.5rem; max-width: 280px">
                                         <a href="user-product?pid=${o.getMaSP()}" class="nav-link mb-1">
                                                 ${o.getTenSP()}
                                         </a>
@@ -140,3 +152,19 @@
         </div>
     </div>
 </section>
+<script>
+    function minusQuantity() {
+        var quantityInput = document.getElementById('quantity-bottom');
+        var currentQuantity = parseInt(quantityInput.value);
+
+        if (currentQuantity > 1) {
+            quantityInput.value = currentQuantity - 1;
+        }
+    }
+    function plusQuantity(){
+        var quantityInput = document.getElementById('quantity-bottom');
+        var currentQuantity = parseInt(quantityInput.value);
+        quantityInput.value = currentQuantity + 1;
+    }
+</script>
+</body>

@@ -13,4 +13,5 @@ public class CartService implements ICartService {
     public List<CartModel> findAll(String username) {
         return cartDAO.findAll(username);
     }
+    public List<CartModel> findOne(String masp, int soluong){return  cartDAO.findOne(masp, soluong);}
 }

@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ICartService {
     List<CartModel> findAll(String username);
+    List<CartModel> findOne(String masp, int soluong);
 }

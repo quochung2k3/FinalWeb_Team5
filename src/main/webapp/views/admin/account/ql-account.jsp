@@ -128,7 +128,6 @@
                 </div>
             </div>
         </div>
-
     <script>
         function openModal(event) {
             // Ngăn chặn hành động mặc định của thẻ <a>

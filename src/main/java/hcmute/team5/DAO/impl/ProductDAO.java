@@ -2,12 +2,10 @@ package hcmute.team5.DAO.impl;
 
 import hcmute.team5.DAO.DBConnectionSQL;
 import hcmute.team5.DAO.IProductDAO;
-import hcmute.team5.mapper.CustomerMapper;
 import hcmute.team5.mapper.ProductMapper;
-import hcmute.team5.model.CustomerModel;
 import hcmute.team5.model.ProductModel;
 import hcmute.team5.model.ProductTypeModel;
-import hcmute.team5.model.ViewedModel;
+
 
 import java.sql.*;
 import java.util.List;
@@ -57,6 +55,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
                 product.setMaSp(rs.getInt("masanpham"));
                 product.setTenSP(rs.getString("tensanpham"));
                 product.setGia(rs.getInt("gia"));
+                product.setImage(rs.getString("image"));
                 list.add(product);
             }
             return list;
@@ -91,12 +90,12 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
-            while (rs.next()) {
+            while (rs.next()){
                 ProductModel product = new ProductModel();
                 product.setMaSp(rs.getInt("masanpham"));
                 product.setTenSP(rs.getString("tensanpham"));
                 product.setGia(rs.getInt("gia"));
-                product.setTrangThai(rs.getString("trangthai"));
+                product.setImage(rs.getString("image"));
                 list.add(product);
             }
             return list;
@@ -120,6 +119,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
                 product.setMaSp(rs.getInt("masanpham"));
                 product.setTenSP(rs.getString("tensanpham"));
                 product.setGia(rs.getInt("gia"));
+                product.setImage(rs.getString("image"));
                 list.add(product);
             }
             return list;
@@ -145,6 +145,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
                 product.setTrangThai(rs.getString("trangthai"));
                 product.setDescription(rs.getString("description"));
                 product.setMaNcc(rs.getString("manhacungcap"));
+                product.setImage(rs.getString("image"));
                 conn.close();
                 return product;
             }
