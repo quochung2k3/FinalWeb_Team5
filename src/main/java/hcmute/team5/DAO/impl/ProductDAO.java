@@ -2,12 +2,10 @@ package hcmute.team5.DAO.impl;
 
 import hcmute.team5.DAO.DBConnectionSQL;
 import hcmute.team5.DAO.IProductDAO;
-import hcmute.team5.mapper.CustomerMapper;
 import hcmute.team5.mapper.ProductMapper;
-import hcmute.team5.model.CustomerModel;
 import hcmute.team5.model.ProductModel;
 import hcmute.team5.model.ProductTypeModel;
-import hcmute.team5.model.ViewedModel;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -95,13 +93,12 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
-            while (rs.next()) {
+            while (rs.next()){
                 ProductModel product = new ProductModel();
                 product.setMaSP(rs.getString("masanpham"));
                 product.setTenSP(rs.getString("tensanpham"));
                 product.setGia(rs.getInt("gia"));
                 product.setImage(rs.getString("image"));
-                product.setTrangThai(rs.getString("trangthai"));
                 list.add(product);
             }
             return list;

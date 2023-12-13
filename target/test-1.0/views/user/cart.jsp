@@ -21,8 +21,11 @@
                                         <p class="mb-0">You have ${listCart.size()} items in your cart</p>
                                     </div>
                                     <div>
-                                        <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!"
-                                                                                                    class="text-body">price <i class="fas fa-angle-down mt-1"></i></a></p>
+                                        <p class="mb-0"><span class="text-muted">Sort by:</span>
+                                            <a href="#!"  class="text-body">price
+                                                <i class="fas fa-angle-down mt-1"></i>
+                                            </a>
+                                        </p>
                                     </div>
                                 </div>
                                 <c:forEach var = "item" items = "${listCart}">
@@ -118,17 +121,19 @@
 
                                         <div class="d-flex justify-content-between">
                                             <p class="mb-2">Subtotal</p>
-                                            <p class="mb-2">${totalPrice}</p>
+                                            <p class="mb-2">${totalPrice}$</p>
                                         </div>
 
                                         <div class="d-flex justify-content-between">
                                             <p class="mb-2">Discount</p>
-                                            <p class="mb-2">$20.00</p>
+                                            <c:set var="discount" value="${totalPrice * 0.1}"/>
+                                            <p class="mb-2">${fn:substringBefore(discount, '.')}$</p>
                                         </div>
 
                                         <div class="d-flex justify-content-between mb-4">
                                             <p class="mb-2">Total(Incl. taxes)</p>
-                                            <p class="mb-2">$4818.00</p>
+                                            <c:set var="total" value="${totalPrice - discount}"/>
+                                            <p class="mb-2">${fn:substringBefore(total, '.')}$</p>
                                         </div>
 
                                         <button style="padding: 0px 32px;font-size: 14px;height: 50px;" type="button" class="btn btn-info btn-block btn-lg">

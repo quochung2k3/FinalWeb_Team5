@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/common/taglib.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
     <style>
         .icon-hover:hover i {
@@ -65,12 +66,12 @@
                             <label class="mb-4 d-block" style = "font-size: 2rem">Số lượng</label>
                             <div class="block-quantity quantity-selector" >
                                 <input type="button" value="-" onclick="minusQuantity()" class="qty-btn" style="float: left; width: 40px; height: 30px; font-size: 1.5rem; background: #fff; border: 1px solid #f3f4f4;text-align: center;">
-                                <input type="text" id="quantity-bottom" name="quantity" value="1" min="1" class="quantity-number" style="float: left;width: 60px; height: 30px; font-size: 1.5rem; text-align: center;background: #fff; border: 1px solid #f3f4f4;">
+                                <input type="text" id="quantity-bottom" name="quantity" value="1" min="1" class="quantity-number" style="float: left;width: 60px; height: 30px; font-size: 1.5rem; text-align: center;background: #fff; border: 1px solid #f3f4f4;" disabled>
                                 <input type="button" value="+" onclick="plusQuantity()" class = "qty-btn" style="float: left;width: 40px; height: 30px; font-size: 1.5rem;background: #fff; border: 1px solid #f3f4f4;text-align: center;">
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-warning shadow-0" style = "font-size: 1.4rem" > Buy now </button>
+                    <a href="user-buy-now?pid=${detail.getMaSP()}" class="btn btn-warning shadow-0" style = "font-size: 1.4rem" > Buy now </a>
                     <button type = "submit" class="btn btn-primary shadow-0" style = "font-size: 1.4rem"><i class="me-1 fa fa-shopping-basket"></i> Add to cart </button>
                 </form>
 
@@ -160,7 +161,6 @@
             quantityInput.value = currentQuantity - 1;
         }
     }
-
     function plusQuantity(){
         var quantityInput = document.getElementById('quantity-bottom');
         var currentQuantity = parseInt(quantityInput.value);
