@@ -7,6 +7,6 @@ import java.util.List;
 public class main {
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-        dao.insertviewed("luankh@gmail.com","1");
+        dao.inserttoCart("luankh@gmail.com","1",2);
     }
 }

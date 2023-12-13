@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 @WebServlet(urlPatterns = {"/user-product"})
 public class DetailProductController extends HttpServlet {
@@ -55,5 +56,14 @@ public class DetailProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        inserttoCart(req,resp);
+        doGet(req,resp);
+    }
+    private void inserttoCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
+        String username = account.getUserName();
+        String maSP = req.getParameter("pid");
+        int Soluong = Integer.parseInt(req.getParameter("quantity"));
+        service.inserttoCart(username,maSP,Soluong);
     }
 }

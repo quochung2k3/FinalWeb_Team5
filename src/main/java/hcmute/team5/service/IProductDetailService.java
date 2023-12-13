@@ -12,6 +12,6 @@ public interface IProductDetailService {
     List<ProductTypeModel> getAllProductType();
     List<ProductModel> getAllProduct();
     List<ProductModel> getListProDuctByProductType(String maLoaiSP, String maSP);
-    public List<ProductModel> getListProDuctViewed(String maSP, String username);
-    public void insertviewed(String username, String masp);
-}
+    List<ProductModel> getListProDuctViewed(String maSP, String username);
+    void insertviewed(String username, String masp);
+    void inserttoCart(String username, String masp, int Soluong);}

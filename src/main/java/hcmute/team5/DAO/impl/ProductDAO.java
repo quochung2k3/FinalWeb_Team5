@@ -167,7 +167,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
         return query(sql, new ProductMapper());
     }
     @Override
-    public void inserttoCard(String username, String masp, int Soluong)
+    public void inserttoCart(String username, String masp, int Soluong)
     {
         String sql = "DECLARE @count int SET @count = (SELECT COUNT(*) FROM GioHang WHERE username = ? AND masp = ?) IF @count = 0 INSERT INTO GioHang VALUES (?,?,?) ELSE UPDATE GioHang SET soluong = soluong + ? WHERE username = ? AND masp = ?";
         try {
@@ -185,7 +185,6 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
-
         }
     }
     public ProductModel findOneByProduct(String maSP) {

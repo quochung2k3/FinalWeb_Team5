@@ -16,7 +16,7 @@ public interface IProductDAO {
     public void insertviewed(String username, String masp);
 
     List<ProductModel> findAll();
-    void inserttoCard(String username, String masp, int Soluong);
+    void inserttoCart(String username, String masp, int Soluong);
     void updateProduct(ProductModel product);
 
     ProductModel findOneByProduct(String maSP);
