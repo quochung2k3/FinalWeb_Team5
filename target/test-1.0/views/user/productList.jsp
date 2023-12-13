@@ -110,10 +110,10 @@
 <div class="container-fluid mt-5 mb-5">
     <div class="col-md-9">
         <div class="row g-2">
-            <c:forEach var="p" items="${list_p}">
+            <c:forEach var="p" items="${listpro}">
             <div class="col-md-4">
                 <div class="product py-4">
-                    <div class="text-center"><img src=${p.getImage()} width="200"></div>
+                    <div class="text-center"><img src=https://i.imgur.com/nOFet9u.jpg width="200"></div>
                     <div class="about text-center"><h5>XRD Active Shoes</h5> <span>$1,999.99</span></div>
                     <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
                         <button class="btn btn-primary text-uppercase">Buy now</button>

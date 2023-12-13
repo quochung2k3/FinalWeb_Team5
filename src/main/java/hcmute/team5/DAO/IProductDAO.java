@@ -27,4 +27,5 @@ public interface IProductDAO {
     List<ProductModel> findAllByProperties(int maChiNhanh, String status, int maSP, int maLoaiSP, int pageSize, int index);
     int getNumOfProduct();
     ProductModel findExistProduct(String tenSP, int maChiNhanh);
+    void inserttoCart(String username, String masp, int Soluong);
 }

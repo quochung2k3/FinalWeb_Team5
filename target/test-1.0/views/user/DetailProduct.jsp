@@ -50,7 +50,7 @@
                 </p>
                 <div class="row">
                     <dt class="col-3" style = "font-size: 2rem">Mã sản phẩm:</dt>
-                    <dd class="col-9" style = "font-size: 2rem">${detail.getMaSP()}</dd>
+                    <dd class="col-9" style = "font-size: 2rem">${detail.getMaSp()}</dd>
 
                     <dt class="col-3" style = "font-size: 2rem">Brand:</dt>
                     <dd class="col-9" style = "font-size: 2rem">${detail.getMaNcc()}</dd>
@@ -60,18 +60,18 @@
                 </div>
 
                 <hr />
-                <form action="user-product?pid=${detail.getMaSP()}" method = "post">
+                <form action="user-product?pid=${detail.getMaSp()}" method = "post">
                     <div class="row mb-4">
                         <div class="col-md-4 col-6 mb-3">
                             <label class="mb-4 d-block" style = "font-size: 2rem">Số lượng</label>
                             <div class="block-quantity quantity-selector" >
                                 <input type="button" value="-" onclick="minusQuantity()" class="qty-btn" style="float: left; width: 40px; height: 30px; font-size: 1.5rem; background: #fff; border: 1px solid #f3f4f4;text-align: center;">
-                                <input type="text" id="quantity-bottom" name="quantity" value="1" min="1" class="quantity-number" style="float: left;width: 60px; height: 30px; font-size: 1.5rem; text-align: center;background: #fff; border: 1px solid #f3f4f4;" disabled>
+                                <input type="text" id="quantity-bottom" name="quantity" value="1" min="1" class="quantity-number" style="float: left;width: 60px; height: 30px; font-size: 1.5rem; text-align: center;background: #fff; border: 1px solid #f3f4f4;">
                                 <input type="button" value="+" onclick="plusQuantity()" class = "qty-btn" style="float: left;width: 40px; height: 30px; font-size: 1.5rem;background: #fff; border: 1px solid #f3f4f4;text-align: center;">
                             </div>
                         </div>
                     </div>
-                    <a href="user-buy-now?pid=${detail.getMaSP()}" class="btn btn-warning shadow-0" style = "font-size: 1.4rem" > Buy now </a>
+                    <a href="user-buy-now?pid=${detail.getMaSp()}" class="btn btn-warning shadow-0" style = "font-size: 1.4rem" > Buy now </a>
                     <button type = "submit" class="btn btn-primary shadow-0" style = "font-size: 1.4rem"><i class="me-1 fa fa-shopping-basket"></i> Add to cart </button>
                 </form>
 
@@ -90,11 +90,11 @@
                             <h5 class="card-title" style = "font-size: 2rem">Sản phẩm cùng loại</h5>
                             <c:forEach var = "o" items="${detail_same}">
                                 <div class="d-flex mb-3">
-                                    <a href="user-product?pid=${o.getMaSP()}" class="me-3">
+                                    <a href="user-product?pid=${o.getMaSp()}" class="me-3">
                                         <img src="${o.getImage()}" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                                     </a>
                                     <div class="info" style = "font-size: 1.5rem; max-width: 280px">
-                                        <a href="user-product?pid=${o.getMaSP()}" class="nav-link mb-1">
+                                        <a href="user-product?pid=${o.getMaSp()}" class="nav-link mb-1">
                                             ${o.getTenSP()}
                                         </a>
                                         <strong class="text-dark" style = "font-size: 1.3rem"> ${o.getGia()}$</strong>
@@ -112,11 +112,11 @@
                             <h5 class="card-title" style = "font-size: 2rem">Sản phẩm cùng nhà cung cấp</h5>
                             <c:forEach var = "o" items="${detail_same_ncc}" >
                                 <div class="d-flex mb-3">
-                                    <a href="user-product?pid=${o.getMaSP()}" class="me-3">
+                                    <a href="user-product?pid=${o.getMaSp()}" class="me-3">
                                         <img src="${o.getImage()}" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                                     </a>
                                     <div class="info" style = "font-size: 1.5rem; max-width: 280px">
-                                        <a href="user-product?pid=${o.getMaSP()}" class="nav-link mb-1">
+                                        <a href="user-product?pid=${o.getMaSp()}" class="nav-link mb-1">
                                                 ${o.getTenSP()}
                                         </a>
                                         <strong class="text-dark"  style = "font-size: 1.3rem">${o.getGia()}$</strong>
@@ -134,11 +134,11 @@
                             <h5 class="card-title" style = "font-size: 2rem">Sản phẩm đã xem</h5>
                             <c:forEach var = "o" items="${detail_viewed}" >
                                 <div class="d-flex mb-3">
-                                    <a href="user-product?pid=${o.getMaSP()}" class="me-3">
+                                    <a href="user-product?pid=${o.getMaSp()}" class="me-3">
                                         <img src="${o.getImage()}" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                                     </a>
                                     <div class="info" style = "font-size: 1.5rem; max-width: 280px">
-                                        <a href="user-product?pid=${o.getMaSP()}" class="nav-link mb-1">
+                                        <a href="user-product?pid=${o.getMaSp()}" class="nav-link mb-1">
                                                 ${o.getTenSP()}
                                         </a>
                                         <strong class="text-dark"  style = "font-size: 1.3rem">${o.getGia()}$</strong>
