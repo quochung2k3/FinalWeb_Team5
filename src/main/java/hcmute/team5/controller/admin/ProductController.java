@@ -1,11 +1,6 @@
 package hcmute.team5.controller.admin;
-
-import hcmute.team5.model.AccountModel;
-import hcmute.team5.model.CustomerModel;
 import hcmute.team5.model.ProductModel;
-import hcmute.team5.service.ICustomerService;
 import hcmute.team5.service.IProductService;
-import hcmute.team5.service.impl.CustomerService;
 import hcmute.team5.service.impl.ProductService;
 
 import javax.servlet.RequestDispatcher;
