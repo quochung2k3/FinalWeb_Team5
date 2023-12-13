@@ -14,6 +14,7 @@ public interface ICustomerService {
     public void deleteCustomer(CustomerModel customer);
 
     void insertCus(CustomerModel customer);
+    List<CustomerModel> findAllByProperties(String name, String total);
 }
 
 

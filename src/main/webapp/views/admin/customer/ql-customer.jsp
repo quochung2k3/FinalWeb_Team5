@@ -34,21 +34,22 @@
                         </div>
                     </div>
                     <div class="col-sm-9">
-                        <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                        <div class="filter-group">
-                            <label>SĐT</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="filter-group">
-                            <label>Tổng tiền đã mua</label>
-                            <select class="form-control">
-                                <option>ALL</option>
-                                <option>Dưới 1 triệu</option>
-                                <option>1 triệu - 3 triệu</option>
-                                <option>Trên 3 triệu</option>
-                            </select>
-                        </div>
-                        <span class="filter-icon"><i class="fa fa-filter"></i></span>
+                        <form action="admin-customer-search" method="get">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                            <div class="filter-group">
+                                <label>Tên</label>
+                                <input name="name" type="text" class="form-control">
+                            </div>
+                            <div class="filter-group">
+                                <label>Tổng tiền đã mua</label>
+                                <select name="total" class="form-control">
+                                    <option>ALL</option>
+                                    <option>Tăng dần</option>
+                                    <option>Giảm dần</option>
+                                </select>
+                            </div>
+                            <span class="filter-icon"><i class="fa fa-filter"></i></span>
+                        </form>
                     </div>
                 </div>
             </div>

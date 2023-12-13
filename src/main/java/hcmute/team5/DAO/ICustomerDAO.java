@@ -14,4 +14,5 @@ public interface ICustomerDAO {
     void insert(CustomerModel customer);
     void deleteCustomer(CustomerModel customer);
     void insertCus(CustomerModel customer);
+    List<CustomerModel> findAllByProperties(String name, String total);
 }

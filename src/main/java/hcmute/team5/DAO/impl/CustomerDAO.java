@@ -2,6 +2,7 @@ package hcmute.team5.DAO.impl;
 
 import hcmute.team5.DAO.DBConnectionSQL;
 import hcmute.team5.DAO.ICustomerDAO;
+import hcmute.team5.mapper.AccountMapper;
 import hcmute.team5.mapper.CustomerMapper;
 import hcmute.team5.model.AccountModel;
 import hcmute.team5.model.CustomerModel;
@@ -87,6 +88,31 @@ public class CustomerDAO extends AbstractDAO<CustomerModel> implements ICustomer
             e.printStackTrace();
         }
     }
+
+    @Override
+    public List<CustomerModel> findAllByProperties(String name, String total) {
+        if(total.equals("Tăng dần")) {
+            total = "ASC";
+        }
+        if(total.equals("Giảm dần")) {
+            total = "DESC";
+        }
+        if(total.equals("ALL")) {
+            String sql ="SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username WHERE KhachHang.username LIKE ?";
+            name = '%'+name+'%';
+            return query(sql, new CustomerMapper(), name);
+        }
+        else if(name.isEmpty()) {
+            String sql ="SELECT * FROM KhachHang ORDER BY tongtiendamua ?";
+            return query(sql, new CustomerMapper(), total);
+        }
+        else {
+            String sql ="SELECT * FROM KhachHang WHERE username LIKE ? ORDER BY tongtiendamua ?";
+            name = '%'+name+'%';
+            return query(sql, new CustomerMapper(), name, total);
+        }
+    }
+
     @Override
     public void updateCustomer(CustomerModel customer) {
         String sql = "UPDATE KhachHang SET ngaysinh = ?, sdt = ? WHERE makh = ?;";

@@ -33,4 +33,9 @@ public class CustomerService implements ICustomerService {
     }
 
     public void insertCus(CustomerModel customer){ customerDAL.insertCus(customer);}
+
+    @Override
+    public List<CustomerModel> findAllByProperties(String name, String total) {
+        return customerDAL.findAllByProperties(name, total);
+    }
 }

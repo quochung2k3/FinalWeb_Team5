@@ -17,13 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.List;
-@WebServlet(urlPatterns = {"/admin-ql-customer", "/admin-customer-update", "/admin-customer-delete", "/admin-customer-add"})
+@WebServlet(urlPatterns = {"/admin-ql-customer", "/admin-customer-update", "/admin-customer-delete", "/admin-customer-add", "/admin-customer-search"})
 public class CustomerController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     ICustomerService service = new CustomerService();
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURI();
-        CustomerModel customer = (CustomerModel) req.getSession(false).getAttribute("customer");
         if (url.contains("ql-customer")) {
             findAll(req, resp);
         }
@@ -37,8 +36,21 @@ public class CustomerController extends HttpServlet {
             RequestDispatcher rd = req.getRequestDispatcher("/views/admin/customer/add-customer.jsp");
             rd.forward(req, resp);
         }
+        if(url.contains("customer-search")) {
+            findAllByProperties(req, resp);
+        }
 
     }
+
+    private void findAllByProperties(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String name = req.getParameter("name");
+        String total = req.getParameter("total");
+        List<CustomerModel> list = service.findAllByProperties(name, total);
+        req.setAttribute("listCustomer", list);
+        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/customer/ql-customer.jsp");
+        rd.forward(req, resp);
+    }
+
     private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int maKh = Integer.parseInt(req.getParameter("makh"));
         String ten = req.getParameter("ten");
