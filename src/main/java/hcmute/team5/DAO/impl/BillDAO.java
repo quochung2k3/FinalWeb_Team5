@@ -27,19 +27,17 @@ public class BillDAO extends AbstractDAO<BillModel> implements IBillDAO {
     }
 
     @Override
-    public List<BillModel> findAllByProperties(String maChiNhanh, String maHD) {
-        if(maHD.equals("")) {
+    public List<BillModel> findAllByProperties(int maChiNhanh, int maHD) {
+        if(maHD == 0) {
             String sql ="SELECT * FROM HoaDon WHERE machinhanh = ?";
             return query(sql, new BillMapper(), maChiNhanh);
         }
-        else if(maChiNhanh.equals("All")) {
+        else if(maChiNhanh == 0) {
             String sql ="SELECT * FROM HoaDon WHERE mahd LIKE ?";
-            maHD = '%'+maHD+'%';
             return query(sql, new BillMapper(), maHD);
         }
         else {
             String sql ="SELECT * FROM HoaDon WHERE machinhanh = ? AND mahd LIKE ?";
-            maHD = '%'+maHD+'%';
             return query(sql, new BillMapper(), maChiNhanh, maHD);
         }
     }

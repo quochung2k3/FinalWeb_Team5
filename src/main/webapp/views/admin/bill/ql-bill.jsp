@@ -34,7 +34,7 @@
                         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         <div class="filter-group">
                             <label>Bill Code</label>
-                            <input name="maHoaDon" type="text" class="form-control">
+                            <input name="maHoaDon" type="number" class="form-control">
                         </div>
                         <div class="filter-group">
                             <label>Branch</label>
@@ -43,6 +43,8 @@
                                 <option>CN01</option>
                                 <option>CN02</option>
                                 <option>CN03</option>
+                                <option>CN04</option>
+                                <option>CN05</option>
                             </select>
                         </div>
 <%--                        <div class="filter-group">--%>

@@ -43,8 +43,31 @@ public class BillController extends HttpServlet {
 
     private void findAllByProperties(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String maChiNhanh = req.getParameter("maChiNhanh");
-        String maHD = req.getParameter("maHoaDon");
-        List<BillModel> list = service.findAllByProperties(maChiNhanh, maHD);
+        int maCN = 0;
+        switch ( maChiNhanh ) {
+            case  "CN01":
+                maCN = 1;
+                break;
+            case  "CN02":
+                maCN = 2;
+                break;
+            case  "CN03":
+                maCN = 3;
+                break;
+            case  "CN04":
+                maCN = 4;
+                break;
+            case  "CN05":
+                maCN = 5;
+                break;
+            default:
+        }
+        int maHD = 0;
+        String maHDReq = req.getParameter("maHoaDon");
+        if(!maHDReq.isEmpty()) {
+            maHD = Integer.parseInt(req.getParameter("maHoaDon"));
+        }
+        List<BillModel> list = service.findAllByProperties(maCN, maHD);
         req.setAttribute("listBill", list);
         RequestDispatcher rd = req.getRequestDispatcher("/views/admin/bill/ql-bill.jsp");
         rd.forward(req, resp);

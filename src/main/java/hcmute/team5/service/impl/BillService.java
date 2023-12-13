@@ -21,7 +21,7 @@ public class BillService implements IBillService {
     }
 
     @Override
-    public List<BillModel> findAllByProperties(String maChiNhanh, String maHD) {
+    public List<BillModel> findAllByProperties(int maChiNhanh, int maHD) {
         return billDAO.findAllByProperties(maChiNhanh, maHD);
     }
 }
