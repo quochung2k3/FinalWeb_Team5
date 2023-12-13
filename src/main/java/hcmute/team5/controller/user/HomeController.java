@@ -27,12 +27,12 @@ public class HomeController extends HttpServlet {
 		String url = req.getRequestURI();
 		AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
 		if(url.contains("user-home")) {
-			List<ProductModel> list_p =service_p.findAll();
+//			List<ProductModel> list_p =service_p.findAll();
 			List<CartModel> list = service.findAll(account.getUserName());
 			int length = list.size();
 			req.setAttribute("length", length);
 			req.setAttribute("name", account.getUserName());
-			req.setAttribute("listpro",list_p);
+//			req.setAttribute("listpro",list_p);
 			RequestDispatcher rd = req.getRequestDispatcher("/views/user/productList.jsp");
 			rd.forward(req, resp);
 		}
