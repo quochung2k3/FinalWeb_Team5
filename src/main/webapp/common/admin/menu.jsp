@@ -30,18 +30,10 @@
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-           aria-expanded="true" aria-controls="collapseUtilities">
-            <i style="font-size: 20px;" class="fa-solid fa-hand-holding-dollar"></i>
+        <a class="nav-link collapsed" href="<c:url value="/admin-ql-revenue"/>">
+            <i style="font-size: 20px;" class="fa-solid fa-person"></i>
             <span>Quản lý doanh thu</span>
         </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-             data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="utilities-color.html">Chi nhánh Q1</a>
-                <a class="collapse-item" href="utilities-border.html">Chi nhánh Q9</a>
-            </div>
-        </div>
     </li>
 
 <%--    Quản lý khách hàng--%>

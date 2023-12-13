@@ -15,7 +15,7 @@ public class ProductMapper implements RowMapper<ProductModel>{
             product.setTenSP(rs.getString("tensanpham"));
             product.setMaLoaiSP(rs.getString("maloaisanpham"));
             product.setGia(rs.getInt("gia"));
-            product.setMaChiNhanh(rs.getString("machinhanh"));
+            product.setMaChiNhanh(rs.getInt("machinhanh"));
             product.setTrangThai(rs.getString("trangthai"));
             return product;
         }
