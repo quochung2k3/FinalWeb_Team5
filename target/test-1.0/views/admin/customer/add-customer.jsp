@@ -23,7 +23,7 @@
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">SDT</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
+                                        <i style="font-size: 20px" class="fa-solid fa-phone me-3 fa-fw"></i>
                                         <%--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>--%>
                                         <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
                                             <input name="sdt" type="text" id="form3Example5c" class="form-control" required>
@@ -31,14 +31,14 @@
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Username</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
+                                        <i style="font-size: 20px" class="fa-solid fa-envelope me-3 fa-fw"></i>
                                         <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
                                             <input name="username" type="email" id="" class="form-control" required>
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Password</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
+                                        <i style="font-size: 20px" class="fa-solid fa-lock me-3 fa-fw"></i>
                                         <%--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>--%>
                                         <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
                                             <input name="pass" type="text" class="form-control" required>
