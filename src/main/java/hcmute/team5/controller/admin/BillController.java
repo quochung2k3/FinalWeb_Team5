@@ -1,5 +1,6 @@
 package hcmute.team5.controller.admin;
 
+import hcmute.team5.model.AccountModel;
 import hcmute.team5.model.BillDetailsModel;
 import hcmute.team5.model.BillModel;
 import hcmute.team5.service.IBillService;
@@ -18,6 +19,7 @@ import java.util.List;
 public class BillController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     IBillService service = new BillService();
+    int pageSize = 2;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURI();
@@ -44,6 +46,10 @@ public class BillController extends HttpServlet {
     private void findAllByProperties(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String maChiNhanh = req.getParameter("maChiNhanh");
         int maCN = 0;
+        int index = 0;
+        int num2 = 0;
+        int numpage = 0;
+        String text = req.getParameter("index");
         switch ( maChiNhanh ) {
             case  "CN01":
                 maCN = 1;
@@ -67,14 +73,73 @@ public class BillController extends HttpServlet {
         if(!maHDReq.isEmpty()) {
             maHD = Integer.parseInt(req.getParameter("maHoaDon"));
         }
-        List<BillModel> list = service.findAllByProperties(maCN, maHD);
+        List<BillModel> listNum = service.findAllByProperties(maCN, maHD, 999999999, 0);
+        int numOfAccount = listNum.size();
+        req.setAttribute("numOfAccount", numOfAccount);
+        if(numOfAccount % pageSize == 0) {
+            numpage = numOfAccount/pageSize;
+        }
+        else {
+            numpage = numOfAccount/pageSize + 1;
+        }
+        req.setAttribute("numpage", numpage);
+        if(text == null || text.equals("1")) {
+            index = 0;
+            num2 = pageSize;
+        }
+        else if (text.equals(String.valueOf(numpage))) {
+            int temp = Integer.parseInt(req.getParameter("index"));
+            index = (temp-1)*pageSize;
+            num2 = numOfAccount;
+        }
+        else {
+            int temp = Integer.parseInt(req.getParameter("index"));
+            num2 = temp*pageSize;
+            index = (temp-1)*pageSize;
+        }
+        if(pageSize >= numOfAccount) {
+            num2 = numOfAccount;
+        }
+        req.setAttribute("num2", num2);
+        List<BillModel> list = service.findAllByProperties(maCN, maHD, pageSize, index);
         req.setAttribute("listBill", list);
         RequestDispatcher rd = req.getRequestDispatcher("/views/admin/bill/ql-bill.jsp");
         rd.forward(req, resp);
     }
 
     private void findAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<BillModel> list = service.findAll();
+        String text = req.getParameter("index");
+        int index;
+        int numOfBill = service.getNumOfBill();
+        req.setAttribute("numOfAccount", numOfBill);
+        int numpage = 0;
+        int num2 = 0;
+        if(numOfBill % pageSize == 0) {
+            numpage = numOfBill/pageSize;
+        }
+        else {
+            numpage = numOfBill/pageSize + 1;
+        }
+        req.setAttribute("numpage", numpage);
+        if(text == null || text.equals("1")) {
+            index = 0;
+            num2 = pageSize;
+        }
+        else if (text.equals(String.valueOf(numpage))) {
+            int temp = Integer.parseInt(req.getParameter("index"));
+            index = (temp-1)*pageSize;
+            num2 = numOfBill;
+        }
+        else {
+            int temp = Integer.parseInt(req.getParameter("index"));
+            num2 = temp*pageSize;
+            index = (temp-1)*pageSize;
+        }
+        if(pageSize >= numOfBill) {
+            num2 = numOfBill;
+        }
+        req.setAttribute("num2", num2);
+        List<BillModel> list = service.findAll(pageSize, index);
         req.setAttribute("listBill", list);
         RequestDispatcher rd = req.getRequestDispatcher("/views/admin/bill/ql-bill.jsp");
         rd.forward(req, resp);
