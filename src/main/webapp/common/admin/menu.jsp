@@ -67,6 +67,12 @@
             <span>Quản lý tài khoản</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="<c:url value="/admin-ql-voucher"/>">
+            <i style="font-size: 20px;" class="fa-solid fa-users"></i>
+            <span>Quản lý voucher</span>
+        </a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">

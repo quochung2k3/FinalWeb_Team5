@@ -3,18 +3,18 @@ package hcmute.team5.model;
 import java.sql.Timestamp;
 
 public class VoucherModel extends AbstractModel {
-    private String MaVC;
+    private int MaVC;
     private String TenVC;
     private float PhanTramGiam;
     private Timestamp NgayBatDau;
     private Timestamp NgayKetThuc;
     private int SoLuong;
 
-    public String getMaVC() {
+    public int getMaVC() {
         return MaVC;
     }
 
-    public void setMaVC(String maVC) {
+    public void setMaVC(int maVC) {
         MaVC = maVC;
     }
 
