@@ -21,6 +21,7 @@ import java.util.List;
 public class CustomerController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     ICustomerService service = new CustomerService();
+    int pageSize = 2;
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURI();
         if (url.contains("ql-customer")) {
@@ -43,9 +44,41 @@ public class CustomerController extends HttpServlet {
     }
 
     private void findAllByProperties(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int index = 0;
+        int num2 = 0;
+        int numpage = 0;
+        String text = req.getParameter("index");
         String name = req.getParameter("name");
         String total = req.getParameter("total");
-        List<CustomerModel> list = service.findAllByProperties(name, total);
+        List<CustomerModel> listNum = service.findAllByProperties(name, total, 999999999, 0);
+        int numOfCustomer = listNum.size();
+        req.setAttribute("numOfAccount", numOfCustomer);
+        if(numOfCustomer % pageSize == 0) {
+            numpage = numOfCustomer/pageSize;
+        }
+        else {
+            numpage = numOfCustomer/pageSize + 1;
+        }
+        req.setAttribute("numpage", numpage);
+        if(text == null || text.equals("1")) {
+            index = 0;
+            num2 = pageSize;
+        }
+        else if (text.equals(String.valueOf(numpage))) {
+            int temp = Integer.parseInt(req.getParameter("index"));
+            index = (temp-1)*pageSize;
+            num2 = numOfCustomer;
+        }
+        else {
+            int temp = Integer.parseInt(req.getParameter("index"));
+            num2 = temp*pageSize;
+            index = (temp-1)*pageSize;
+        }
+        if(pageSize >= numOfCustomer) {
+            num2 = numOfCustomer;
+        }
+        req.setAttribute("num2", num2);
+        List<CustomerModel> list = service.findAllByProperties(name, total, pageSize, index);
         req.setAttribute("listCustomer", list);
         RequestDispatcher rd = req.getRequestDispatcher("/views/admin/customer/ql-customer.jsp");
         rd.forward(req, resp);
@@ -84,7 +117,38 @@ public class CustomerController extends HttpServlet {
     }
 
     private void findAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<CustomerModel> list = service.findAll();
+        String text = req.getParameter("index");
+        int index;
+        int numOfAccount = service.getNumOfCustomer();
+        req.setAttribute("numOfAccount", numOfAccount);
+        int numpage = 0;
+        int num2 = 0;
+        if(numOfAccount % pageSize == 0) {
+            numpage = numOfAccount/pageSize;
+        }
+        else {
+            numpage = numOfAccount/pageSize + 1;
+        }
+        req.setAttribute("numpage", numpage);
+        if(text == null || text.equals("1")) {
+            index = 0;
+            num2 = pageSize;
+        }
+        else if (text.equals(String.valueOf(numpage))) {
+            int temp = Integer.parseInt(req.getParameter("index"));
+            index = (temp-1)*pageSize;
+            num2 = numOfAccount;
+        }
+        else {
+            int temp = Integer.parseInt(req.getParameter("index"));
+            num2 = temp*pageSize;
+            index = (temp-1)*pageSize;
+        }
+        if(pageSize >= numOfAccount) {
+            num2 = numOfAccount;
+        }
+        req.setAttribute("num2", num2);
+        List<CustomerModel> list = service.findAll(pageSize, index);
         req.setAttribute("listCustomer", list);
         RequestDispatcher rd = req.getRequestDispatcher("/views/admin/customer/ql-customer.jsp");
         rd.forward(req, resp);

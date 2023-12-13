@@ -13,8 +13,8 @@ import java.util.List;
 public class CustomerService implements ICustomerService {
     ICustomerDAO customerDAL = new CustomerDAO();
     @Override
-    public List<CustomerModel> findAll() {
-        return customerDAL.findAll();
+    public List<CustomerModel> findAll(int pageSize, int index) {
+        return customerDAL.findAll(pageSize, index);
     }
 
     @Override
@@ -35,7 +35,12 @@ public class CustomerService implements ICustomerService {
     public void insertCus(CustomerModel customer){ customerDAL.insertCus(customer);}
 
     @Override
-    public List<CustomerModel> findAllByProperties(String name, String total) {
-        return customerDAL.findAllByProperties(name, total);
+    public List<CustomerModel> findAllByProperties(String name, String total, int pageSize, int index) {
+        return customerDAL.findAllByProperties(name, total, pageSize, index);
+    }
+
+    @Override
+    public int getNumOfCustomer() {
+        return customerDAL.getNumOfCustomer();
     }
 }

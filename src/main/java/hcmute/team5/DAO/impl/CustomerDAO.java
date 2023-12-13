@@ -7,10 +7,7 @@ import hcmute.team5.mapper.CustomerMapper;
 import hcmute.team5.model.AccountModel;
 import hcmute.team5.model.CustomerModel;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 
 public class CustomerDAO extends AbstractDAO<CustomerModel> implements ICustomerDAO {
@@ -19,9 +16,9 @@ public class CustomerDAO extends AbstractDAO<CustomerModel> implements ICustomer
     PreparedStatement ps = null;
     ResultSet rs = null;
     @Override
-    public List<CustomerModel> findAll() {
-        String sql ="SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username";
-        return query(sql, new CustomerMapper());
+    public List<CustomerModel> findAll(int pageSize, int index) {
+        String sql ="SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username ORDER BY makh OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        return query(sql, new CustomerMapper(), index, pageSize);
     }
     @Override
     public CustomerModel findOneByCustomer(int maKh) {
@@ -90,27 +87,79 @@ public class CustomerDAO extends AbstractDAO<CustomerModel> implements ICustomer
     }
 
     @Override
-    public List<CustomerModel> findAllByProperties(String name, String total) {
-        if(total.equals("Tăng dần")) {
-            total = "ASC";
-        }
-        if(total.equals("Giảm dần")) {
-            total = "DESC";
-        }
+    public List<CustomerModel> findAllByProperties(String name, String total, int pageSize, int index) {
         if(total.equals("ALL")) {
-            String sql ="SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username WHERE KhachHang.username LIKE ?";
+            String sql ="SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username\n" +
+                    "WHERE Account.fullname LIKE ? ORDER BY makh OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
             name = '%'+name+'%';
-            return query(sql, new CustomerMapper(), name);
+            return query(sql, new CustomerMapper(), name, index, pageSize);
         }
         else if(name.isEmpty()) {
-            String sql ="SELECT * FROM KhachHang ORDER BY tongtiendamua ?";
-            return query(sql, new CustomerMapper(), total);
+            if(total.equals("Tăng dần")) {
+                String sql ="SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username\n" +
+                        "ORDER BY tongtiendamua ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+                return query(sql, new CustomerMapper(), index, pageSize);
+            }
+            else {
+                String sql ="SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username\n" +
+                        "ORDER BY tongtiendamua DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+                return query(sql, new CustomerMapper(), index, pageSize);
+            }
         }
         else {
-            String sql ="SELECT * FROM KhachHang WHERE username LIKE ? ORDER BY tongtiendamua ?";
-            name = '%'+name+'%';
-            return query(sql, new CustomerMapper(), name, total);
+            if(total.equals("Tăng dần")) {
+                String sql = "SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username\n" +
+                        "WHERE Account.fullname LIKE ? ORDER BY tongtiendamua ASC\n" +
+                        "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+                name = '%' + name + '%';
+                return query(sql, new CustomerMapper(), name, index, pageSize);
+            }
+            else {
+                String sql = "SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username\n" +
+                        "WHERE Account.fullname LIKE ? ORDER BY tongtiendamua DESC\n" +
+                        "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+                name = '%' + name + '%';
+                return query(sql, new CustomerMapper(), name, index, pageSize);
+            }
         }
+    }
+
+    @Override
+    public int getNumOfCustomer() {
+        int num = 0;
+        String sql = "SELECT count(*) FROM KhachHang";
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                num = rs.getInt(1);
+            }
+        }
+        catch (Exception e) {
+            if(conn != null) {
+                try {
+                    conn.rollback();
+                }
+                catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+        finally {
+            try {
+                conn.close();
+                ps.close();
+                rs.close();
+            }
+            catch (SQLException e2){
+                e2.printStackTrace();
+            }
+        }
+        return num;
     }
 
     @Override
