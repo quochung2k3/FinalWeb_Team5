@@ -1,10 +1,13 @@
 package hcmute.team5.controller.admin;
 
 import hcmute.team5.model.AccountModel;
+import hcmute.team5.model.BillModel;
 import hcmute.team5.model.CustomerModel;
 import hcmute.team5.service.IAccountService;
+import hcmute.team5.service.IBillService;
 import hcmute.team5.service.ICustomerService;
 import hcmute.team5.service.impl.AccountService;
+import hcmute.team5.service.impl.BillService;
 import hcmute.team5.service.impl.CustomerService;
 
 import javax.naming.Name;
@@ -21,6 +24,8 @@ import java.util.List;
 public class CustomerController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     ICustomerService service = new CustomerService();
+    IBillService billService = new BillService();
+    IAccountService accountService = new AccountService();
     int pageSize = 2;
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURI();
@@ -41,10 +46,18 @@ public class CustomerController extends HttpServlet {
             findAllByProperties(req, resp);
         }
         if(url.contains("history")) {
-            RequestDispatcher rd = req.getRequestDispatcher("/views/admin/customer/history-purchase.jsp");
-            rd.forward(req, resp);
+            findAllByMaKH(req, resp);
         }
 
+    }
+
+    private void findAllByMaKH(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int maKH = Integer.parseInt(req.getParameter("maKh"));
+        List<BillModel> listBill = billService.findAllBillByMaKH(maKH);
+
+        req.setAttribute("listBill", listBill);
+        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/customer/history-purchase.jsp");
+        rd.forward(req, resp);
     }
 
     private void findAllByProperties(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -158,24 +171,34 @@ public class CustomerController extends HttpServlet {
         rd.forward(req, resp);
     }
     private void postCustomer(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int makh = Integer.parseInt(req.getParameter("makh"));
-        String ten = req.getParameter("ten");
-        String ngaysinh = req.getParameter("ngaysinh");
-        String sdt =req.getParameter("sdt");
-        if (service.findOneByCustomer(makh) == null) {
+        String username = req.getParameter("username");
+        if (accountService.findOneByUsername(username) == null) {
+            String password = req.getParameter("pass");
+            String fullname = req.getParameter("fullname");
+            String sdt = req.getParameter("sdt");
+            AccountModel account = new AccountModel();
+            account.setUserName(username);
+            account.setFullName(fullname);
+            account.setPassWord(password);
+            account.setRoleId(2);
+            account.setStatus("Active");
+            account.setSdt(sdt);
+            accountService.insert(account);
             CustomerModel customer = new CustomerModel();
-            customer.setMaKh(makh);
-            customer.setTen(ten);
-            customer.setNgaySinh(ngaysinh);
+            customer.setUsername(username);
             customer.setSdt(sdt);
-            service.insertCus(customer);
+            accountService.insertCus(customer);
             req.setAttribute("note", "Thêm thành công");
             findAll(req, resp);
 
         } else {
-            req.setAttribute("note", "Khách hàng đã tồn tại!!");
-            RequestDispatcher rd = req.getRequestDispatcher("/views/admin/customer/add-customer.jsp");
-            rd.forward(req, resp);
+            req.setAttribute("note", "Tên tài khoản đã tồn tại!!");
+            try {
+                req.getRequestDispatcher("/views/admin/customer/add-customer.jsp").forward(req, resp);
+            } catch (ServletException | IOException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 

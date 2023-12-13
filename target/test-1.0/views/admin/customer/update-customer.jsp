@@ -18,7 +18,8 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="maKh" value="${customer.maKh}" name="makh" type="text" class="form-control" required>
+                                            <input placeholder="maKh" value="${customer.maKh}" name="makh" type="text" class="form-control" required disabled>
+                                            <input type="hidden" name="makh" value="${customer.maKh}">
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Ten</p>

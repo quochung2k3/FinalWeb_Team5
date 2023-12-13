@@ -17,6 +17,12 @@ import java.util.List;
 public class BillDAO extends AbstractDAO<BillModel> implements IBillDAO {
 
     @Override
+    public List<BillModel> findAllBillByMaKH(int makh) {
+        String sql = "SELECT * FROM HoaDon WHERE makh = ?";
+        return query(sql, new BillMapper(), makh);
+    }
+
+    @Override
     public List<BillModel> findAll(int pageSize, int index) {
         String sql = "SELECT * FROM HoaDon ORDER BY mahd OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         return query(sql, new BillMapper(), index, pageSize);

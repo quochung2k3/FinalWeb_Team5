@@ -70,15 +70,14 @@ public class CustomerDAO extends AbstractDAO<CustomerModel> implements ICustomer
 
     @Override
     public void insertCus(CustomerModel customer) {
-        String sql = "INSERT INTO KhachHang(makh, ten, ngaysinh, sdt, tongtiendamua) VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO KhachHang(ngaysinh, sdt, username, isActive) VALUES(?, ?, ?, ?, ?)";
         try {
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, customer.getMaKh());
-            ps.setString(2, customer.getTen());
-            ps.setString(3, customer.getNgaySinh());
-            ps.setString(4, customer.getSdt());
-            ps.setFloat(5, customer.getTongTienDaMua());
+            ps.setString(1, customer.getNgaySinh());
+            ps.setString(2, customer.getSdt());
+            ps.setString(3, customer.getUsername());
+            ps.setInt(4, 1);
             ps.executeUpdate();
             conn.close();
         } catch (Exception e) {

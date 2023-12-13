@@ -83,7 +83,7 @@
                                             align-items: center;
                                         ">
                                 <a href="admin-customer-update?maKh=${item.maKh}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                                <a href="admin-customer-history?mahd=${item.maKh}" class="settings" title="Purchase History" data-toggle="tooltip"><i class="material-icons">&#xE86A;</i></a>
+                                <a href="admin-customer-history?maKh=${item.maKh}" class="settings" title="Purchase History" data-toggle="tooltip"><i class="material-icons">&#xE86A;</i></a>
                         </td>
                     </tr>
                 </c:forEach>
