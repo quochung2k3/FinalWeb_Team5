@@ -9,7 +9,7 @@ public class ProductModel extends PayModel {
     private int gia;
     private String trangThai;
     private String desCription;
-    private String maChiNhanh;
+    private int maChiNhanh;
 
     public int getMaSp() {
         return maSp;
@@ -27,11 +27,11 @@ public class ProductModel extends PayModel {
         this.tenSp = tenSp;
     }
 
-    public String getMaChiNhanh() {
+    public int getMaChiNhanh() {
         return maChiNhanh;
     }
 
-    public void setMaChiNhanh(String maChiNhanh) {
+    public void setMaChiNhanh(int maChiNhanh) {
         this.maChiNhanh = maChiNhanh;
     }
 

@@ -4,18 +4,20 @@ import java.sql.Timestamp;
 
 public class BillModel extends ProductModel {
     private String MaHD;
-    private String maChiNhanh;
+    private int maChiNhanh;
     private Timestamp NgayIn;
     private String MaKH;
     private float TongTien;
     private float TienDaNhan;
     private float TienThoi;
 
-    public String getMaChiNhanh() {
+    @Override
+    public int getMaChiNhanh() {
         return maChiNhanh;
     }
 
-    public void setMaChiNhanh(String maChiNhanh) {
+    @Override
+    public void setMaChiNhanh(int maChiNhanh) {
         this.maChiNhanh = maChiNhanh;
     }
 

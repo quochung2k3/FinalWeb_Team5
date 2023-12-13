@@ -15,7 +15,7 @@ public interface IProductDAO {
     public List<ProductModel> getListProDuctViewed(String maSP, String username);
     public void insertviewed(String username, String masp);
 
-    List<ProductModel> findAll();
+    List<ProductModel> findAll(int pageSize, int index);
 
     void updateProduct(ProductModel product);
 
@@ -23,5 +23,7 @@ public interface IProductDAO {
     void insert(ProductModel product);
     void deleteProduct(ProductModel product);
     void insertPro(ProductModel product);
-
+    List<ProductModel> findAllByProperties(int maChiNhanh, String status, int maSP, int maLoaiSP, int pageSize, int index);
+    int getNumOfProduct();
+    ProductModel findExistProduct(String tenSP, int maChiNhanh);
 }

@@ -6,7 +6,7 @@ import hcmute.team5.model.ProductModel;
 import java.util.List;
 
 public interface IProductService {
-    List<ProductModel> findAll();
+    List<ProductModel> findAll(int pageSize, int index);
 
     public void updateProduct(ProductModel product);
 
@@ -14,4 +14,7 @@ public interface IProductService {
     public void deleteProduct(ProductModel product);
 
     void insertPro(ProductModel product);
+    List<ProductModel> findAllByProperties(int maChiNhanh, String status, int maSP, int maLoaiSP, int pageSize, int index);
+    public int getNumOfProduct();
+    public ProductModel findExistProduct(String tenSP, int maChiNhanh);
 }

@@ -9,10 +9,7 @@ import hcmute.team5.model.ProductModel;
 import hcmute.team5.model.ProductTypeModel;
 import hcmute.team5.model.ViewedModel;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -158,9 +155,9 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
         }
     }
     @Override
-    public List<ProductModel> findAll() {
-        String sql ="SELECT * FROM SanPham";
-        return query(sql, new ProductMapper());
+    public List<ProductModel> findAll(int pageSize, int index) {
+        String sql ="SELECT * FROM SanPham ORDER BY masanpham OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        return query(sql, new ProductMapper(), index, pageSize);
     }
     @Override
     public ProductModel findOneByProduct(int maSP) {
@@ -176,7 +173,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
                 product.setTenSP(rs.getString(2));
                 product.setMaLoaiSP(rs.getString(3));
                 product.setGia(rs.getInt(4));
-                product.setMaChiNhanh(rs.getString(5));
+                product.setMaChiNhanh(rs.getInt(5));
                 product.setTrangThai(rs.getString(6));
                 conn.close();
                 return product;
@@ -189,16 +186,15 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
     }
     @Override
     public void insert(ProductModel product) {
-        String sql = "INSERT INTO SanPham(masanpham, tensanpham, maloaisanpham, gia, machinhanh, trangthai) VALUES(?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO SanPham(tensanpham, maloaisanpham, gia, machinhanh, trangthai) VALUES(?, ?, ?, ?, ?)";
         try {
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, product.getMaSp());
-            ps.setString(2, product.getTenSP());
-            ps.setString(3, product.getMaLoaiSP());
-            ps.setFloat(4, product.getGia());
-            ps.setString(5, product.getMaChiNhanh());
-            ps.setString(6, product.getTrangThai());
+            ps.setString(1, product.getTenSP());
+            ps.setString(2, product.getMaLoaiSP());
+            ps.setFloat(3, product.getGia());
+            ps.setInt(4, product.getMaChiNhanh());
+            ps.setString(5, product.getTrangThai());
             ps.executeUpdate();
             conn.close();
         } catch (Exception e) {
@@ -213,22 +209,96 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
 
     @Override
     public void insertPro(ProductModel product) {
-        String sql = "INSERT INTO SanPham(masanpham, tensanpham, maloaisanpham, gia, machinhanh, trangthai) VALUES(?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO SanPham(tensanpham, maloaisanpham, gia, machinhanh, trangthai) VALUES(?, ?, ?, ?, ?)";
         try {
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, product.getMaSp());
-            ps.setString(2, product.getTenSP());
-            ps.setString(3, product.getMaLoaiSP());
-            ps.setFloat(4, product.getGia());
-            ps.setString(5, product.getMaChiNhanh());
-            ps.setString(6, product.getTrangThai());
+            ps.setString(1, product.getTenSP());
+            ps.setString(2, product.getMaLoaiSP());
+            ps.setFloat(3, product.getGia());
+            ps.setInt(4, product.getMaChiNhanh());
+            ps.setString(5, product.getTrangThai());
             ps.executeUpdate();
         }
         catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public List<ProductModel> findAllByProperties(int maChiNhanh, String status, int maSP, int maLoaiSP, int pageSize, int index) {
+        String sql = "SELECT * FROM SanPham WHERE (? = 0 or machinhanh = ?) AND (? = 'ALL' or trangthai = ?)" +
+                "AND (? = 0 or masanpham = ?) AND (? = 0 or maloaisanpham = ?)" +
+                "ORDER BY masanpham OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        return query(sql, new ProductMapper(), maChiNhanh, maChiNhanh, status, status, maSP, maSP,
+                maLoaiSP, maLoaiSP, index, pageSize);
+    }
+
+    @Override
+    public int getNumOfProduct() {
+        int num = 0;
+        String sql = "SELECT count(*) FROM SanPham";
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                num = rs.getInt(1);
+            }
+        }
+        catch (Exception e) {
+            if(conn != null) {
+                try {
+                    conn.rollback();
+                }
+                catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+        finally {
+            try {
+                conn.close();
+                ps.close();
+                rs.close();
+            }
+            catch (SQLException e2){
+                e2.printStackTrace();
+            }
+        }
+        return num;
+    }
+
+    @Override
+    public ProductModel findExistProduct(String tenSP, int maChiNhanh) {
+        String sql = "SELECT * FROM SanPham WHERE tensanpham = ? AND machinhanh = ?";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, tenSP);
+            ps.setInt(2, maChiNhanh);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ProductModel product = new ProductModel();
+                product.setMaSp(rs.getInt(1));
+                product.setTenSP(rs.getString(2));
+                product.setMaLoaiSP(rs.getString(3));
+                product.setGia(rs.getInt(4));
+                product.setMaChiNhanh(rs.getInt(5));
+                product.setTrangThai(rs.getString(6));
+                conn.close();
+                return product;
+            }
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public void insertviewed(String username, String masp){
         String sql = "DECLARE @count int SET @count = (SELECT COUNT(*) FROM DaXem WHERE username = ? AND masp = ?) IF @count = 0 INSERT INTO DaXem VALUES (?,?)";
         try {
