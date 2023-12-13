@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.List;
-@WebServlet(urlPatterns = {"/admin-ql-customer", "/admin-customer-update", "/admin-customer-delete", "/admin-customer-add", "/admin-customer-search"})
+@WebServlet(urlPatterns = {"/admin-ql-customer", "/admin-customer-update", "/admin-customer-delete", "/admin-customer-add", "/admin-customer-search", "/admin-customer-history"})
 public class CustomerController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     ICustomerService service = new CustomerService();
@@ -39,6 +39,10 @@ public class CustomerController extends HttpServlet {
         }
         if(url.contains("customer-search")) {
             findAllByProperties(req, resp);
+        }
+        if(url.contains("history")) {
+            RequestDispatcher rd = req.getRequestDispatcher("/views/admin/customer/history-purchase.jsp");
+            rd.forward(req, resp);
         }
 
     }
