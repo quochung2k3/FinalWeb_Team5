@@ -23,7 +23,7 @@
     <%--    Quản lý hàng hóa--%>
     <li class="nav-item">
         <a class="nav-link collapsed" href="<c:url value="/admin-ql-product"/>">
-            <i style="font-size: 20px;" class="fa-solid fa-person"></i>
+            <i style="font-size: 20px;" class="fa-solid fa-wand-magic-sparkles"></i>
             <span>Quản lý hàng hóa</span>
         </a>
     </li>
@@ -69,7 +69,7 @@
     </li>
     <li class="nav-item">
         <a class="nav-link collapsed" href="<c:url value="/admin-ql-voucher"/>">
-            <i style="font-size: 20px;" class="fa-solid fa-users"></i>
+            <i style="font-size: 20px;" class="fa-solid fa-ticket"></i>
             <span>Quản lý voucher</span>
         </a>
     </li>
