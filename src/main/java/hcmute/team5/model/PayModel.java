@@ -1,6 +1,6 @@
 package hcmute.team5.model;
 
-public class PayModel extends AbstractModel {
+public class PayModel extends VoucherModel {
     private String MaNV;
     private String MaKH;
     private String MaVC;

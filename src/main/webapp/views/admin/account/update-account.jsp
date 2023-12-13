@@ -41,7 +41,8 @@
                                         <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
 <%--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>--%>
                                         <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="roleid" value="${account.roleId}" name="roleid" type="text" id="form3Example5c" class="form-control" required>
+                                            <input placeholder="roleid" value="${account.roleId}" type="text" id="form3Example5c" class="form-control" required disabled>
+                                            <input type="hidden" name="roleid" value="${account.roleId}">
                                         </div>
                                     </div>
 

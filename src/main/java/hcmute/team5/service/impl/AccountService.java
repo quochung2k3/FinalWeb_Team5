@@ -2,8 +2,8 @@ package hcmute.team5.service.impl;
 
 import hcmute.team5.DAO.IAccountDAO;
 import hcmute.team5.DAO.impl.AccountDAO;
-import hcmute.team5.mapper.AccountMapper;
 import hcmute.team5.model.AccountModel;
+import hcmute.team5.model.CustomerModel;
 import hcmute.team5.service.IAccountService;
 
 import java.util.List;
@@ -35,8 +35,13 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public List<AccountModel> findAll() {
-        return accountDAL.findAll();
+    public void insertCus(CustomerModel customer) {
+        accountDAL.insertCus(customer);
+    }
+
+    @Override
+    public List<AccountModel> findAll(int fetch, int offset) {
+        return accountDAL.findAll(fetch, offset);
     }
 
     @Override
@@ -50,7 +55,12 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public List<AccountModel> findAllByProperties(String roleName, String status, String username) {
-        return accountDAL.findAllByProperties(roleName, status, username);
+    public List<AccountModel> findAllByProperties(String roleName, String status, String username, int pageSize, int index) {
+        return accountDAL.findAllByProperties(roleName, status, username, pageSize, index);
+    }
+
+    @Override
+    public int getNumOfAccount() {
+        return accountDAL.getNumOfAccount();
     }
 }

@@ -13,9 +13,11 @@ public class BillDetailsMapper implements RowMapper<BillDetailsModel> {
     public BillDetailsModel mapRow(ResultSet rs) {
         try {
             BillDetailsModel bill = new BillDetailsModel();
-            bill.setMaSP(rs.getString("masanpham"));
+            bill.setMaSp(rs.getInt("masanpham"));
             bill.setTenSP(rs.getString("tensanpham"));
+            bill.setPhanTramGiam(rs.getFloat("phantramgiam"));
             bill.setGia(rs.getInt("gia"));
+            bill.setSoLuong(rs.getInt("soluong"));
             return bill;
         }
         catch (SQLException e) {

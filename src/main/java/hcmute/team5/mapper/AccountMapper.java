@@ -15,6 +15,7 @@ public class AccountMapper implements RowMapper<AccountModel> {
             account.setPassWord(rs.getString("password"));
             account.setStatus(rs.getString("status"));
             account.setRoleId(rs.getInt("roleid"));
+            account.setSdt(rs.getString("sdt"));
             return account;
         }
         catch (SQLException e) {

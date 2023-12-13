@@ -11,7 +11,7 @@ public class ProductMapper implements RowMapper<ProductModel>{
     public ProductModel mapRow(ResultSet rs) {
         try {
             ProductModel product = new ProductModel();
-            product.setMaSP(rs.getString("masanpham"));
+            product.setMaSp(rs.getInt("masanpham"));
             product.setTenSP(rs.getString("tensanpham"));
             product.setMaLoaiSP(rs.getString("maloaisanpham"));
             product.setGia(rs.getInt("gia"));

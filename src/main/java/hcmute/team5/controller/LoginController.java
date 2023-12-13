@@ -1,6 +1,7 @@
 package hcmute.team5.controller;
 
 import hcmute.team5.model.AccountModel;
+import hcmute.team5.model.CustomerModel;
 import hcmute.team5.service.IAccountService;
 import hcmute.team5.service.impl.AccountService;
 import javax.servlet.ServletException;
@@ -108,15 +109,22 @@ public class LoginController extends HttpServlet {
 
     private void postRegister(HttpServletRequest req, HttpServletResponse resp) {
         String username = req.getParameter("username");
-        String pass = req.getParameter("password");
         if (service.findOneByUsername(username) == null) {
             String password = req.getParameter("password");
+            String fullname = req.getParameter("fullname");
+            String sdt = req.getParameter("sdt");
             AccountModel account = new AccountModel();
             account.setUserName(username);
+            account.setFullName(fullname);
             account.setPassWord(password);
             account.setRoleId(2);
             account.setStatus("Active");
+            account.setSdt(sdt);
             service.insert(account);
+            CustomerModel customer = new CustomerModel();
+            customer.setUsername(username);
+            customer.setSdt(sdt);
+            service.insertCus(customer);
             req.setAttribute("note", "Đăng kí thành công");
             try {
                 req.getRequestDispatcher("/views/web/home.jsp").forward(req, resp);

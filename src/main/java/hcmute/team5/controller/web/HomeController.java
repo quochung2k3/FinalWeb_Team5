@@ -39,15 +39,21 @@ public class HomeController extends HttpServlet {
 
 	private void resetPass(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String username = req.getParameter("username");
+		String sdt = req.getParameter("sdt");
 		AccountModel account = service.findOneByUsername(username);
 		if (service.findOneByUsername(username) == null) {
 			req.setAttribute("note", "Tên tài khoản không tồn tại!!");
 			RequestDispatcher rd = req.getRequestDispatcher("/views/web/reset-pass.jsp");
 			rd.forward(req, resp);
 		}
-		else {
+		else if(sdt.equals(account.getSdt())) {
 			String pass = account.getPassWord();
 			req.setAttribute("note", "Mật khẩu của bạn là: " + pass);
+			RequestDispatcher rd = req.getRequestDispatcher("/views/web/home.jsp");
+			rd.forward(req, resp);
+		}
+		else {
+			req.setAttribute("note", "Thông tin không hợp lệ");
 			RequestDispatcher rd = req.getRequestDispatcher("/views/web/home.jsp");
 			rd.forward(req, resp);
 		}

@@ -16,30 +16,38 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="show-entries">
-                            <span>Show</span>
-                            <select class="form-control">
-                                <option>5</option>
-                                <option>10</option>
-                                <option>15</option>
-                                <option>20</option>
-                            </select>
-                            <span>entries</span>
+<%--                            <span>Show</span>--%>
+<%--                            <select class="form-control">--%>
+<%--                                <option>5</option>--%>
+<%--                                <option>10</option>--%>
+<%--                                <option>15</option>--%>
+<%--                                <option>20</option>--%>
+<%--                            </select>--%>
+<%--                            <span>entries</span>--%>
                         </div>
                     </div>
                     <div class="col-sm-9">
-                        <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        <form action="admin-ql-bill" method="get">
+                            <button type="submit" class="btn btn-primary">RESET</button>
+                        </form>
+                        <form id="searchForm" action="admin-bill-search" method="get">
+                            <button type="button" class="btn btn-primary" onclick="searchAndUpdateTable()"><i class="fa fa-search"></i></button>
                         <div class="filter-group">
                             <label>Bill Code</label>
-                            <input type="text" class="form-control">
+                            <input name="maHoaDon" type="number" class="form-control">
+                            <c:set var="maHoaDon" value="${param.maHoaDon}" />
                         </div>
                         <div class="filter-group">
                             <label>Branch</label>
-                            <select class="form-control">
+                            <select name="maChiNhanh" class="form-control">
                                 <option>All</option>
                                 <option>CN01</option>
                                 <option>CN02</option>
                                 <option>CN03</option>
+                                <option>CN04</option>
+                                <option>CN05</option>
                             </select>
+                            <c:set var="maChiNhanh" value="${param.maChiNhanh}" />
                         </div>
 <%--                        <div class="filter-group">--%>
 <%--                            <label>Date</label>--%>
@@ -50,6 +58,7 @@
 <%--                            </select>--%>
 <%--                        </div>--%>
                         <span class="filter-icon"><i class="fa fa-filter"></i></span>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -57,6 +66,7 @@
                 <thead>
                 <tr>
                     <th>Mã hóa đơn</th>
+                    <th>Mã chi nhánh</th>
                     <th>Ngày in</th>
                     <th>Mã khách hàng</th>
                     <th>Tổng tiền</th>
@@ -65,10 +75,11 @@
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="tableBody">
                 <c:forEach var = "item" items = "${listBill}">
                     <tr>
                         <td>${item.maHD}</td>
+                        <td>${item.maChiNhanh}</td>
                             <%--                            <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar">${item.userName}</a></td>--%>
                         <td>${item.ngayIn}</td>
                         <td>${item.maKH}</td>
@@ -86,18 +97,23 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <div class="clearfix">
-                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+            <div class="clearfix" id="partialReloadDiv">
+                <div class="hint-text">Showing <b>${num2}</b> out of <b>${numOfAccount}</b> entries</div>
                 <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Previous</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">6</a></li>
-                    <li class="page-item"><a href="#" class="page-link">7</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                    <c:choose>
+                        <c:when test="${not empty maHoaDon or not empty maChiNhanh}">
+                            <li class="page-item"><a id="linkPagging${1}" class="page-link active" onclick="searchAndUpdateTableByPaging(event, 1)" href="admin-bill-search?index=1&maChiNhanh=${param.maChiNhanh}&maHoaDon=${param.maHoaDon}" ${index==1 ? "style=\"color: red;\"" : ""}>1</a></li>
+                            <c:forEach begin = "2" end = "${numpage}" var = "i">
+                                <li class="page-item"><a id="linkPagging${i}" class="page-link" onclick="searchAndUpdateTableByPaging(event, ${i})" href="admin-bill-search?index=${i}&maChiNhanh=${param.maChiNhanh}&maHoaDon=${param.maHoaDon}" ${index==i ? "style=\"color: red;\"" : ""}>${i}</a></li>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item"><a id="linkPagging${1}" class="page-link active" onclick="searchAndUpdateTableByPaging(event, 1)" href="admin-ql-bill?index=1">1</a></li>
+                            <c:forEach begin = "2" end = "${numpage}" var = "i">
+                                <li class="page-item"><a id="linkPagging${i}" class="page-link" onclick="searchAndUpdateTableByPaging(event, ${i})" href="admin-ql-bill?index=${i}">${i}</a></li>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
                 </ul>
             </div>
         </div>
@@ -139,6 +155,40 @@
     <script>
         if ("${note}" != "") {
             alert("${note}");
+        }
+    </script>
+
+    <script>
+        function searchAndUpdateTable() {
+            $.ajax({
+                url: $('#searchForm').attr('action'), // Use the form action URL
+                type: 'GET',
+                data: $('#searchForm').serialize(), // Serialize the form data
+                dataType: 'html',
+                success: function (data) {
+                    $('#tableBody').html($(data).find('#tableBody').html());
+                    $('#partialReloadDiv').html($(data).find('#partialReloadDiv').html());
+                },
+            });
+        }
+    </script>
+
+    <script>
+        function searchAndUpdateTableByPaging(event, i) {
+            var url = "#linkPagging"+i.toString();
+            $('a.page-link').removeClass('active');
+            // Thêm lớp 'active' vào thẻ a được click
+            $(url).addClass('active');
+            event.preventDefault();
+            $.ajax({
+                url: $(url).attr('href'), // Use the form action URL
+                type: 'GET',
+                dataType: 'html',
+                success: function (data) {
+                    $('#tableBody').html($(data).find('#tableBody').html());
+                    $('.hint-text').html($(data).find('.hint-text').html());
+                },
+            });
         }
     </script>
 </body>

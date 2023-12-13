@@ -57,7 +57,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
             rs = ps.executeQuery();
             while (rs.next()) {
                 ProductModel product = new ProductModel();
-                product.setMaSP(rs.getString("masanpham"));
+                product.setMaSp(rs.getInt("masanpham"));
                 product.setTenSP(rs.getString("tensanpham"));
                 product.setGia(rs.getInt("gia"));
                 list.add(product);
@@ -96,7 +96,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
             rs = ps.executeQuery();
             while (rs.next()) {
                 ProductModel product = new ProductModel();
-                product.setMaSP(rs.getString("masanpham"));
+                product.setMaSp(rs.getInt("masanpham"));
                 product.setTenSP(rs.getString("tensanpham"));
                 product.setGia(rs.getInt("gia"));
                 product.setTrangThai(rs.getString("trangthai"));
@@ -120,7 +120,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
             rs = ps.executeQuery();
             while (rs.next()) {
                 ProductModel product = new ProductModel();
-                product.setMaSP(rs.getString("masanpham"));
+                product.setMaSp(rs.getInt("masanpham"));
                 product.setTenSP(rs.getString("tensanpham"));
                 product.setGia(rs.getInt("gia"));
                 list.add(product);
@@ -141,7 +141,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
             rs = ps.executeQuery();
             while (rs.next()) {
                 ProductModel product = new ProductModel();
-                product.setMaSP(rs.getString("masanpham"));
+                product.setMaSp(rs.getInt("masanpham"));
                 product.setTenSP(rs.getString("tensanpham"));
                 product.setMaLoaiSP(rs.getString("maloaisanpham"));
                 product.setGia(rs.getInt("gia"));
@@ -163,16 +163,16 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
         return query(sql, new ProductMapper());
     }
     @Override
-    public ProductModel findOneByProduct(String maSP) {
+    public ProductModel findOneByProduct(int maSP) {
         String sql = "SELECT * FROM SanPham WHERE masanpham = ?";
         try {
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, maSP);
+            ps.setInt(1, maSP);
             rs = ps.executeQuery();
             while (rs.next()) {
                 ProductModel product = new ProductModel();
-                product.setMaSP(rs.getString(1));
+                product.setMaSp(rs.getInt(1));
                 product.setTenSP(rs.getString(2));
                 product.setMaLoaiSP(rs.getString(3));
                 product.setGia(rs.getInt(4));
@@ -193,7 +193,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
         try {
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, product.getMaSP());
+            ps.setInt(1, product.getMaSp());
             ps.setString(2, product.getTenSP());
             ps.setString(3, product.getMaLoaiSP());
             ps.setFloat(4, product.getGia());
@@ -208,7 +208,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
     @Override
     public void deleteProduct(ProductModel product) {
         String sql = "DELETE FROM SanPham WHERE masanpham = ?";
-        update(sql, product.getMaSP());
+        update(sql, product.getMaSp());
     }
 
     @Override
@@ -217,7 +217,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
         try {
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, product.getMaSP());
+            ps.setInt(1, product.getMaSp());
             ps.setString(2, product.getTenSP());
             ps.setString(3, product.getMaLoaiSP());
             ps.setFloat(4, product.getGia());
@@ -248,6 +248,6 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
     public void updateProduct(ProductModel product) {
         String sql = "UPDATE SanPham SET tensanpham = ?, gia = ?, trangthai = ? WHERE masanpham = ?";
         String gia = String.valueOf(product.getGia());
-        update(sql, product.getTenSP(), gia, product.getTrangThai(), product.getMaSP());
+        update(sql, product.getTenSP(), gia, product.getTrangThai(), product.getMaSp());
     }
 }

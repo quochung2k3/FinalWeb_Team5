@@ -19,7 +19,7 @@ public interface IProductDAO {
 
     void updateProduct(ProductModel product);
 
-    ProductModel findOneByProduct(String maSP);
+    ProductModel findOneByProduct(int maSP);
     void insert(ProductModel product);
     void deleteProduct(ProductModel product);
     void insertPro(ProductModel product);

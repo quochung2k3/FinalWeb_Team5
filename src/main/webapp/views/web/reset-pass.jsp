@@ -26,6 +26,12 @@
                                         <input style="font-size: 14px;" id="email" name="username" placeholder="email address" class="form-control" type="email" required>
                                     </div>
                                 </div>
+                                <div style="margin-top: 10px;" class="form-group">
+                                    <div style="margin: 0 auto; width: 20%; height: 40px;" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+                                        <input style="font-size: 14px;" id="sdt" name="sdt" placeholder="sdt" class="form-control" type="text" required>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <button style="margin-bottom: 20px; margin-top: 10px;" class="btn btn-lg btn-primary btn-block" type="submit">Reset Password</button>
                                 </div>

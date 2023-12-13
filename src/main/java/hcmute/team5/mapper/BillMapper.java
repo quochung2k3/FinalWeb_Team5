@@ -12,6 +12,7 @@ public class BillMapper implements RowMapper<BillModel> {
         try {
             BillModel bill = new BillModel();
             bill.setMaHD(rs.getString("mahd"));
+            bill.setMaChiNhanh(rs.getString("machinhanh"));
             bill.setNgayIn(rs.getTimestamp("ngayin"));
             bill.setMaKH(rs.getString("makh"));
             bill.setTongTien(rs.getFloat("tongtien"));

@@ -21,27 +21,17 @@
                 </div>
                 <div class="table-filter">
                     <div class="row">
-                        <div class="col-sm-3">
-                            <div class="show-entries">
-                                <span>Show</span>
-                                <select class="form-control">
-                                    <option>5</option>
-                                    <option>10</option>
-                                    <option>15</option>
-                                    <option>20</option>
-                                </select>
-                                <span>entries</span>
-                            </div>
-                        </div>
+                        <div class="col-sm-3"></div>
                             <div class="col-sm-9">
                                 <form action="admin-ql-account" method="get">
                                     <button type="submit" class="btn btn-primary">RESET</button>
                                 </form>
-                                <form action="admin-account-search" method="get">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                <form id="searchForm" action="admin-account-search" method="get">
+                                    <button type="button" class="btn btn-primary" onclick="searchAndUpdateTable()"><i class="fa fa-search"></i></button>
                                 <div class="filter-group">
                                     <label>Name</label>
                                     <input name="username" type="text" class="form-control">
+                                    <c:set var="username" value="${param.username}" />
                                 </div>
                                 <div class="filter-group">
                                     <label>Role name</label>
@@ -50,14 +40,16 @@
                                         <option>Admin</option>
                                         <option>Customer</option>
                                     </select>
+                                    <c:set var="roleName" value="${param.roleName}" />
                                 </div>
                                 <div class="filter-group">
                                     <label>Status</label>
                                     <select name="status" class="form-control">
                                         <option>All</option>
                                         <option>Active</option>
-                                        <option>Disable</option>
+                                        <option>Disabled</option>
                                     </select>
+                                    <c:set var="status" value="${param.status}" />
                                 </div>
                                 <span class="filter-icon"><i class="fa fa-filter"></i></span>
                                 </form>
@@ -75,39 +67,44 @@
                         <th>Action</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <c:forEach var = "item" items = "${listAccount}">
-                        <tr>
-                            <td>${item.id}</td>
-<%--                            <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar">${item.userName}</a></td>--%>
-                            <td>${item.userName}</td>
-                            <td>${item.passWord}</td>
-                            <td>${item.roleId}</td>
-                            <td><span class="status text-success">&bull;</span>${item.status}</td>
-                            <td style="
-                                            display: flex;
-                                            justify-content: space-between;
-                                            align-items: center;
-                                        ">
-                                <a href="admin-update?username=${item.userName}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                                <a href="admin-delete?id=${item.id}" class="delete trigger-btn" title="Delete" data-item-id="${item.id}" onclick="openModal(event)"><i class="material-icons">&#xE5C9;</i></a>
-                            </td>
-                        </tr>
-                    </c:forEach>
+                    <tbody id="tableBody">
+                        <c:forEach var = "item" items = "${listAccount}">
+                            <tr>
+                                <td>${item.id}</td>
+    <%--                            <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar">${item.userName}</a></td>--%>
+                                <td>${item.userName}</td>
+                                <td>${item.passWord}</td>
+                                <td>${item.roleId}</td>
+                                <td><span class="status text-success">&bull;</span>${item.status}</td>
+                                <td style="
+                                                display: flex;
+                                                justify-content: space-between;
+                                                align-items: center;
+                                            ">
+                                    <a href="admin-update?username=${item.userName}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+                                    <a href="admin-delete?id=${item.id}" class="delete trigger-btn" title="Delete" data-item-id="${item.id}" onclick="openModal(event)"><i class="material-icons">&#xE5C9;</i></a>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
-                <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                <div class="clearfix" id="partialReloadDiv">
+                    <div class="hint-text">Showing <b>${num2}</b> out of <b>${numOfAccount}</b> entries</div>
                     <ul class="pagination">
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item"><a href="#" class="page-link">6</a></li>
-                        <li class="page-item"><a href="#" class="page-link">7</a></li>
-                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                        <c:choose>
+                            <c:when test="${not empty username or not empty roleName or not empty status}">
+                                <li class="page-item"><a id="linkPagging${1}" class="page-link active" onclick="searchAndUpdateTableByPaging(event, 1)" href="admin-account-search?index=1&username=${param.username}&roleName=${param.roleName}&status=${param.status}" ${index==1 ? "style=\"color: red;\"" : ""}>1</a></li>
+                                <c:forEach begin = "2" end = "${numpage}" var = "i">
+                                    <li class="page-item"><a id="linkPagging${i}" class="page-link" onclick="searchAndUpdateTableByPaging(event, ${i})" href="admin-account-search?index=${i}&username=${param.username}&roleName=${param.roleName}&status=${param.status}" ${index==i ? "style=\"color: red;\"" : ""}>${i}</a></li>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item"><a id="linkPagging${1}" class="page-link active" onclick="searchAndUpdateTableByPaging(event, 1)" href="admin-ql-account?index=1">1</a></li>
+                                <c:forEach begin = "2" end = "${numpage}" var = "i">
+                                    <li class="page-item"><a id="linkPagging${i}" class="page-link" onclick="searchAndUpdateTableByPaging(event, ${i})" href="admin-ql-account?index=${i}">${i}</a></li>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
                     </ul>
                 </div>
             </div>
@@ -149,6 +146,40 @@
     <script>
         if ("${note}" != "") {
             alert("${note}");
+        }
+    </script>
+
+    <script>
+        function searchAndUpdateTable() {
+            $.ajax({
+                url: $('#searchForm').attr('action'), // Use the form action URL
+                type: 'GET',
+                data: $('#searchForm').serialize(), // Serialize the form data
+                dataType: 'html',
+                success: function (data) {
+                    $('#tableBody').html($(data).find('#tableBody').html());
+                    $('#partialReloadDiv').html($(data).find('#partialReloadDiv').html());
+                },
+            });
+        }
+    </script>
+
+    <script>
+        function searchAndUpdateTableByPaging(event, i) {
+            var url = "#linkPagging"+i.toString();
+            $('a.page-link').removeClass('active');
+            // Thêm lớp 'active' vào thẻ a được click
+            $(url).addClass('active');
+            event.preventDefault();
+            $.ajax({
+                url: $(url).attr('href'), // Use the form action URL
+                type: 'GET',
+                dataType: 'html',
+                success: function (data) {
+                    $('#tableBody').html($(data).find('#tableBody').html());
+                    $('.hint-text').html($(data).find('.hint-text').html());
+                },
+            });
         }
     </script>
 </body>

@@ -10,7 +10,7 @@ public interface IProductService {
 
     public void updateProduct(ProductModel product);
 
-    public ProductModel findOneByProduct(String maSP);
+    public ProductModel findOneByProduct(int maSP);
     public void deleteProduct(ProductModel product);
 
     void insertPro(ProductModel product);

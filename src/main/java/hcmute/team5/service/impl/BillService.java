@@ -11,12 +11,27 @@ import java.util.List;
 public class BillService implements IBillService {
     IBillDAO billDAO = new BillDAO();
     @Override
-    public List<BillModel> findAll() {
-        return billDAO.findAll();
+    public List<BillModel> findAll(int pageSize, int index) {
+        return billDAO.findAll(pageSize, index);
     }
 
     @Override
-    public List<BillDetailsModel> findAllById(String maHD) {
+    public List<BillModel> findAllBillByMaKH(int makh) {
+        return billDAO.findAllBillByMaKH(makh);
+    }
+
+    @Override
+    public List<BillDetailsModel> findAllById(int maHD) {
         return billDAO.findAllById(maHD);
+    }
+
+    @Override
+    public List<BillModel> findAllByProperties(int maChiNhanh, int maHD, int pageSize, int index) {
+        return billDAO.findAllByProperties(maChiNhanh, maHD, pageSize, index);
+    }
+
+    @Override
+    public int getNumOfBill() {
+        return billDAO.getNumOfBill();
     }
 }

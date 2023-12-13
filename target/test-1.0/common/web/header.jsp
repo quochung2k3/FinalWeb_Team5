@@ -138,7 +138,6 @@
                 <div class="header__cart">
                     <div class="header__cart-wrap">
                         <i class="header__cart-icon fa-solid fa-cart-shopping"></i>
-                        <span class="header__cart-notice">3</span>
                         <!-- No cart: header__cart-list--no-cart -->
                     </div>
                 </div>
@@ -163,6 +162,12 @@
                     <div class="auth-form__form">
                         <div class="auth-form__group">
                             <input name="username" type="email" class="auth-form__input" placeholder="Email của bạn" required>
+                        </div>
+                        <div class="auth-form__group">
+                            <input name="fullname" type="text" class="auth-form__input" placeholder="Họ tên" required>
+                        </div>
+                        <div class="auth-form__group">
+                            <input name="sdt" type="text" class="auth-form__input" placeholder="Số điện thoại" required>
                         </div>
                         <div class="auth-form__group">
                             <input name="password" type="password" class="auth-form__input" placeholder="Mật khẩu của bạn" required>

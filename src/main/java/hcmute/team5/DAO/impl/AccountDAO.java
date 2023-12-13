@@ -4,10 +4,9 @@ import hcmute.team5.DAO.DBConnectionSQL;
 import hcmute.team5.DAO.IAccountDAO;
 import hcmute.team5.mapper.AccountMapper;
 import hcmute.team5.model.AccountModel;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import hcmute.team5.model.CustomerModel;
+
+import java.sql.*;
 import java.util.List;
 
 public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO {
@@ -31,6 +30,7 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
                 account.setPassWord(rs.getString(3));
                 account.setFullName(rs.getString(4));
                 account.setRoleId(rs.getInt(6));
+                account.setSdt(rs.getString("sdt"));
                 conn.close();
                 return account;
             }
@@ -43,14 +43,16 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
 
     @Override
     public void insert(AccountModel account) {
-        String sql = "INSERT INTO Account(username, password, roleid, status) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO Account(username, fullname, password, roleid, status, sdt) VALUES(?, ?, ?, ?, ?, ?)";
         try {
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, account.getUserName());
-            ps.setString(2, account.getPassWord());
-            ps.setInt(3, account.getRoleId());
-            ps.setString(4, account.getStatus());
+            ps.setString(2, account.getFullName());
+            ps.setString(3, account.getPassWord());
+            ps.setInt(4, account.getRoleId());
+            ps.setString(5, account.getStatus());
+            ps.setString(6, account.getSdt());
             ps.executeUpdate();
             conn.close();
         } catch (Exception e) {
@@ -59,20 +61,35 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
     }
 
     @Override
-    public List<AccountModel> findAll() {
-        String sql ="SELECT * FROM Account";
-        return query(sql, new AccountMapper());
+    public void insertCus(CustomerModel customer) {
+        String sql = "INSERT INTO KhachHang(username, sdt) VALUES(?, ?)";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, customer.getUsername());
+            ps.setString(2, customer.getSdt());
+            ps.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<AccountModel> findAll(int fetch, int offset) {
+        String sql ="SELECT * FROM Account ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        return query(sql, new AccountMapper(), offset, fetch);
     }
 
     @Override
     public void deleteAccount(AccountModel account) {
-        String sql = "DELETE FROM Account WHERE id = ?";
+        String sql = "UPDATE Account SET status = 'Disabled' WHERE id = ?";
         update(sql, account.getId());
     }
 
     @Override
     public void insertAcc(AccountModel account) {
-        String sql = "INSERT INTO Account(username, password, roleid, status, fullname) VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Account(username, password, roleid, status, fullname, sdt) VALUES(?, ?, ?, ?, ?, ?)";
         try {
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
@@ -81,6 +98,7 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
             ps.setInt(3, account.getRoleId());
             ps.setString(4, account.getStatus());
             ps.setString(5, account.getFullName());
+            ps.setString(6, account.getSdt());
             ps.executeUpdate();
             conn.close();
         } catch (Exception e) {
@@ -95,7 +113,7 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
     }
 
     @Override
-    public List<AccountModel> findAllByProperties(String roleName, String status, String username) {
+    public List<AccountModel> findAllByProperties(String roleName, String status, String username, int pageSize, int index) {
         int roleId = 0;
         if(roleName.equals("Admin")) {
             roleId = 1;
@@ -104,32 +122,74 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
             roleId = 2;
         }
         if(status.equals("All") && username.equals("")) {
-            String sql ="SELECT * FROM Account WHERE roleid = ?";
-            return query(sql, new AccountMapper(), roleId);
+            String sql ="SELECT * FROM Account WHERE roleid = ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+            return query(sql, new AccountMapper(), roleId, index, pageSize);
         }
         else if(roleName.equals("All") && username.equals("")) {
-            String sql ="SELECT * FROM Account WHERE status = ?";
-            return query(sql, new AccountMapper(), status);
+            String sql ="SELECT * FROM Account WHERE status = ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+            return query(sql, new AccountMapper(), status, index, pageSize);
         }
         else if(status.equals("All") && roleName.equals("All")) {
-            String sql ="SELECT * FROM Account WHERE username = ?";
-            return query(sql, new AccountMapper(), username);
+            String sql ="SELECT * FROM Account WHERE username LIKE ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+            username = '%'+username+'%';
+            return query(sql, new AccountMapper(), username, index, pageSize);
         }
         else if(username.equals("")) {
-            String sql ="SELECT * FROM Account WHERE roleid = ? AND status = ?";
-            return query(sql, new AccountMapper(), roleId, status);
+            String sql ="SELECT * FROM Account WHERE roleid = ? AND status = ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+            return query(sql, new AccountMapper(), roleId, status, index, pageSize);
         }
         else if(status.equals("All")) {
-            String sql ="SELECT * FROM Account WHERE roleid = ? AND username = ?";
-            return query(sql, new AccountMapper(), roleId, username);
+            String sql ="SELECT * FROM Account WHERE roleid = ? AND username LIKE ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+            username = '%'+username+'%';
+            return query(sql, new AccountMapper(), roleId, username, index, pageSize);
         }
         else if(roleName.equals("All")) {
-            String sql ="SELECT * FROM Account WHERE status = ? AND username = ?";
-            return query(sql, new AccountMapper(), status, username);
+            String sql ="SELECT * FROM Account WHERE status = ? AND username LIKE ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+            username = '%'+username+'%';
+            return query(sql, new AccountMapper(), status, username, index, pageSize);
         }
         else {
-            String sql ="SELECT * FROM Account WHERE roleid = ? AND status = ? AND username = ?";
-            return query(sql, new AccountMapper(), roleId, status, username);
+            String sql ="SELECT * FROM Account WHERE roleid = ? AND status = ? AND username LIKE ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+            username = '%'+username+'%';
+            return query(sql, new AccountMapper(), roleId, status, username, index, pageSize);
         }
+    }
+
+    @Override
+    public int getNumOfAccount() {
+        int num = 0;
+        String sql = "SELECT count(*) FROM Account";
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                num = rs.getInt(1);
+            }
+        }
+        catch (Exception e) {
+            if(conn != null) {
+                try {
+                    conn.rollback();
+                }
+                catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+        finally {
+            try {
+                conn.close();
+                ps.close();
+                rs.close();
+            }
+            catch (SQLException e2){
+                e2.printStackTrace();
+            }
+        }
+        return num;
     }
 }

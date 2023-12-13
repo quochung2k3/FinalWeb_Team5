@@ -14,25 +14,11 @@
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Admin add</p>
 
                                 <form action="admin-customer-add" class="mx-1 mx-md-4" method="post">
-                                    <p style="margin-left: 50px; margin-bottom: 2px;">Ma Khach Hang</p>
+                                    <p style="margin-left: 50px; margin-bottom: 2px;">Họ và tên</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="maKh" value="${customer.maKh}" name="makh" type="text" class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <p style="margin-left: 50px; margin-bottom: 2px;">Ten</p>
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="ten" value="${customer.ten}" name="ten" type="text" class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <p style="margin-left: 50px; margin-bottom: 2px;">NgaySinh</p>
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="ngaysinh" value="${customer.ngaySinh}" name="ngaysinh" type="text" id="form3Example4c" class="form-control" required>
+                                            <input name="fullname" type="text" class="form-control" required>
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">SDT</p>
@@ -40,9 +26,25 @@
                                         <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
                                         <%--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>--%>
                                         <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="sdt" value="${customer.sdt}" name="sdt" type="text" id="form3Example5c" class="form-control" required>
+                                            <input name="sdt" type="text" id="form3Example5c" class="form-control" required>
                                         </div>
                                     </div>
+                                    <p style="margin-left: 50px; margin-bottom: 2px;">Username</p>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
+                                            <input name="username" type="email" id="" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <p style="margin-left: 50px; margin-bottom: 2px;">Password</p>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
+                                        <%--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>--%>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
+                                            <input name="pass" type="text" class="form-control" required>
+                                        </div>
+                                    </div>
+
 
                                     <div class="form-check d-flex justify-content-center mb-5">
                                         <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" required>
