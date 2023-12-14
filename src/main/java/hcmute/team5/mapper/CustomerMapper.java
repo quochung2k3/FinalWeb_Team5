@@ -1,6 +1,7 @@
 package hcmute.team5.mapper;
 
 import hcmute.team5.model.CustomerModel;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -16,8 +17,7 @@ public class CustomerMapper implements RowMapper<CustomerModel> {
             customer.setTongTienDaMua(rs.getFloat("tongtiendamua"));
             customer.setUsername(rs.getString("username"));
             return customer;
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             return null;
         }
     }

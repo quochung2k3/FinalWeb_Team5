@@ -1,6 +1,7 @@
 package hcmute.team5.mapper;
 
 import hcmute.team5.model.BillDetailsModel;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -16,8 +17,7 @@ public class BillDetailsMapper implements RowMapper<BillDetailsModel> {
             bill.setGia(rs.getInt("gia"));
             bill.setSoLuong(rs.getInt("soluong"));
             return bill;
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             return null;
         }
     }

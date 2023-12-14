@@ -4,6 +4,7 @@ import hcmute.team5.DAO.DBConnectionSQL;
 import hcmute.team5.DAO.IVoucherDAO;
 import hcmute.team5.mapper.VoucherMapper;
 import hcmute.team5.model.VoucherModel;
+
 import java.sql.*;
 import java.util.List;
 
@@ -11,9 +12,10 @@ public class VoucherDAO extends AbstractDAO<VoucherModel> implements IVoucherDAO
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
+
     @Override
     public List<VoucherModel> findAll(int pageSize, int index) {
-        String sql ="SELECT * FROM Voucher ORDER BY mavoucher OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        String sql = "SELECT * FROM Voucher ORDER BY mavoucher OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         return query(sql, new VoucherMapper(), index, pageSize);
     }
 
@@ -67,24 +69,20 @@ public class VoucherDAO extends AbstractDAO<VoucherModel> implements IVoucherDAO
             while (rs.next()) {
                 name = rs.getString(1);
             }
-        }
-        catch (Exception e) {
-            if(conn != null) {
+        } catch (Exception e) {
+            if (conn != null) {
                 try {
                     conn.rollback();
-                }
-                catch (Exception e1) {
+                } catch (Exception e1) {
                     e1.printStackTrace();
                 }
             }
-        }
-        finally {
+        } finally {
             try {
                 conn.close();
                 ps.close();
                 rs.close();
-            }
-            catch (SQLException e2){
+            } catch (SQLException e2) {
                 e2.printStackTrace();
             }
         }
@@ -109,17 +107,15 @@ public class VoucherDAO extends AbstractDAO<VoucherModel> implements IVoucherDAO
     @Override
     public List<VoucherModel> findAllByProperties(String status, int maVC, int pageSize, int index) {
         String sql = "";
-        if(status.equals("Còn hiệu lực")) {
+        if (status.equals("Còn hiệu lực")) {
             sql = "SELECT * FROM Voucher WHERE status = 'Active'\n" +
                     "AND ngayketthuc > CURRENT_TIMESTAMP\n" +
                     "AND (? = 0 OR mavoucher = ?) ORDER BY mavoucher OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-        }
-        else if (status.equals("Hết hiệu lực")) {
+        } else if (status.equals("Hết hiệu lực")) {
             sql = "SELECT * FROM Voucher WHERE (status = 'Disabled'\n" +
                     "OR ngayketthuc < CURRENT_TIMESTAMP)\n" +
                     "AND (? = 0 OR mavoucher = ?) ORDER BY mavoucher OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-        }
-        else {
+        } else {
             sql = "SELECT * FROM Voucher WHERE mavoucher = ? ORDER BY mavoucher OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
             return query(sql, new VoucherMapper(), maVC, index, pageSize);
         }
@@ -140,24 +136,20 @@ public class VoucherDAO extends AbstractDAO<VoucherModel> implements IVoucherDAO
             while (rs.next()) {
                 num = rs.getInt(1);
             }
-        }
-        catch (Exception e) {
-            if(conn != null) {
+        } catch (Exception e) {
+            if (conn != null) {
                 try {
                     conn.rollback();
-                }
-                catch (Exception e1) {
+                } catch (Exception e1) {
                     e1.printStackTrace();
                 }
             }
-        }
-        finally {
+        } finally {
             try {
                 conn.close();
                 ps.close();
                 rs.close();
-            }
-            catch (SQLException e2){
+            } catch (SQLException e2) {
                 e2.printStackTrace();
             }
         }

@@ -25,20 +25,20 @@ public class VoucherController extends HttpServlet {
         String url = req.getRequestURI();
         AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
         req.setAttribute("name", account.getUserName());
-        if(url.contains("ql-voucher")) {
+        if (url.contains("ql-voucher")) {
             findAll(req, resp);
         }
-        if(url.contains("voucher-update")) {
+        if (url.contains("voucher-update")) {
             findOneById(req, resp);
         }
-        if(url.contains("voucher-add")) {
+        if (url.contains("voucher-add")) {
             RequestDispatcher rd = req.getRequestDispatcher("/views/admin/voucher/add-voucher.jsp");
             rd.forward(req, resp);
         }
-        if(url.contains("voucher-delete")) {
+        if (url.contains("voucher-delete")) {
             deleteVoucher(req, resp);
         }
-        if(url.contains("voucher-search")) {
+        if (url.contains("voucher-search")) {
             findAllByProperties(req, resp);
         }
     }
@@ -51,34 +51,31 @@ public class VoucherController extends HttpServlet {
         String status = req.getParameter("status");
         int maVC = 0;
         String maVCText = req.getParameter("maVC");
-        if(!maVCText.isEmpty()) {
+        if (!maVCText.isEmpty()) {
             maVC = Integer.parseInt(req.getParameter("maVC"));
         }
         List<VoucherModel> listNum = service.findAllByProperties(status, maVC, 999999999, 0);
         int numOfVoucher = listNum.size();
         req.setAttribute("numOfAccount", numOfVoucher);
-        if(numOfVoucher % pageSize == 0) {
-            numpage = numOfVoucher/pageSize;
-        }
-        else {
-            numpage = numOfVoucher/pageSize + 1;
+        if (numOfVoucher % pageSize == 0) {
+            numpage = numOfVoucher / pageSize;
+        } else {
+            numpage = numOfVoucher / pageSize + 1;
         }
         req.setAttribute("numpage", numpage);
-        if(text == null || text.equals("1")) {
+        if (text == null || text.equals("1")) {
             index = 0;
             num2 = pageSize;
-        }
-        else if (text.equals(String.valueOf(numpage))) {
+        } else if (text.equals(String.valueOf(numpage))) {
             int temp = Integer.parseInt(req.getParameter("index"));
-            index = (temp-1)*pageSize;
+            index = (temp - 1) * pageSize;
             num2 = numOfVoucher;
-        }
-        else {
+        } else {
             int temp = Integer.parseInt(req.getParameter("index"));
-            num2 = temp*pageSize;
-            index = (temp-1)*pageSize;
+            num2 = temp * pageSize;
+            index = (temp - 1) * pageSize;
         }
-        if(pageSize >= numOfVoucher) {
+        if (pageSize >= numOfVoucher) {
             num2 = numOfVoucher;
         }
         req.setAttribute("num2", num2);
@@ -110,28 +107,25 @@ public class VoucherController extends HttpServlet {
         req.setAttribute("numOfAccount", numOfVoucher);
         int numpage = 0;
         int num2 = 0;
-        if(numOfVoucher % pageSize == 0) {
-            numpage = numOfVoucher/pageSize;
-        }
-        else {
-            numpage = numOfVoucher/pageSize + 1;
+        if (numOfVoucher % pageSize == 0) {
+            numpage = numOfVoucher / pageSize;
+        } else {
+            numpage = numOfVoucher / pageSize + 1;
         }
         req.setAttribute("numpage", numpage);
-        if(text == null || text.equals("1")) {
+        if (text == null || text.equals("1")) {
             index = 0;
             num2 = pageSize;
-        }
-        else if (text.equals(String.valueOf(numpage))) {
+        } else if (text.equals(String.valueOf(numpage))) {
             int temp = Integer.parseInt(req.getParameter("index"));
-            index = (temp-1)*pageSize;
+            index = (temp - 1) * pageSize;
             num2 = numOfVoucher;
-        }
-        else {
+        } else {
             int temp = Integer.parseInt(req.getParameter("index"));
-            num2 = temp*pageSize;
-            index = (temp-1)*pageSize;
+            num2 = temp * pageSize;
+            index = (temp - 1) * pageSize;
         }
-        if(pageSize >= numOfVoucher) {
+        if (pageSize >= numOfVoucher) {
             num2 = numOfVoucher;
         }
         req.setAttribute("num2", num2);
@@ -144,10 +138,10 @@ public class VoucherController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURI();
-        if(url.contains("voucher-add")) {
+        if (url.contains("voucher-add")) {
             insertIntoVoucher(req, resp);
         }
-        if(url.contains("voucher-update")) {
+        if (url.contains("voucher-update")) {
             updateVoucher(req, resp);
         }
     }

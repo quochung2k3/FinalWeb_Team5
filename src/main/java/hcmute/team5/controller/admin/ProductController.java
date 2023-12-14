@@ -1,4 +1,5 @@
 package hcmute.team5.controller.admin;
+
 import hcmute.team5.model.AccountModel;
 import hcmute.team5.model.ProductModel;
 import hcmute.team5.service.IProductService;
@@ -12,11 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+
 @WebServlet(urlPatterns = {"/admin-ql-product", "/admin-product-update", "/admin-product-delete", "/admin-product-add", "/admin-product-search"})
 public class ProductController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     IProductService service = new ProductService();
     int pageSize = 5;
+
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURI();
         AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
@@ -24,17 +27,17 @@ public class ProductController extends HttpServlet {
         if (url.contains("ql-product")) {
             findAll(req, resp);
         }
-        if(url.contains("product-update")) {
+        if (url.contains("product-update")) {
             findOneByProduct(req, resp);
         }
-        if(url.contains("product-delete")) {
+        if (url.contains("product-delete")) {
             deleteProduct(req, resp);
         }
-        if(url.contains("add")) {
+        if (url.contains("add")) {
             RequestDispatcher rd = req.getRequestDispatcher("/views/admin/product/add-product.jsp");
             rd.forward(req, resp);
         }
-        if(url.contains("product-search")) {
+        if (url.contains("product-search")) {
             findAllByProperties(req, resp);
         }
 
@@ -48,56 +51,53 @@ public class ProductController extends HttpServlet {
         int maChiNhanh = 0;
         int maSP = 0;
         int maLoaiSP = 0;
-        switch ( req.getParameter("maChiNhanh") ) {
-            case  "CN01":
+        switch (req.getParameter("maChiNhanh")) {
+            case "CN01":
                 maChiNhanh = 1;
                 break;
-            case  "CN02":
+            case "CN02":
                 maChiNhanh = 2;
                 break;
-            case  "CN03":
+            case "CN03":
                 maChiNhanh = 3;
                 break;
-            case  "CN04":
+            case "CN04":
                 maChiNhanh = 4;
                 break;
-            case  "CN05":
+            case "CN05":
                 maChiNhanh = 5;
                 break;
             default:
         }
-        if(!req.getParameter("maLoaiSP").isEmpty()) {
+        if (!req.getParameter("maLoaiSP").isEmpty()) {
             maLoaiSP = Integer.parseInt(req.getParameter("maLoaiSP"));
         }
-        if(!req.getParameter("maSP").isEmpty()) {
+        if (!req.getParameter("maSP").isEmpty()) {
             maSP = Integer.parseInt(req.getParameter("maSP"));
         }
         String status = req.getParameter("status");
         List<ProductModel> listNum = service.findAllByProperties(maChiNhanh, status, maSP, maLoaiSP, 999999999, 0);
         int numOfProduct = listNum.size();
         req.setAttribute("numOfAccount", numOfProduct);
-        if(numOfProduct % pageSize == 0) {
-            numpage = numOfProduct/pageSize;
-        }
-        else {
-            numpage = numOfProduct/pageSize + 1;
+        if (numOfProduct % pageSize == 0) {
+            numpage = numOfProduct / pageSize;
+        } else {
+            numpage = numOfProduct / pageSize + 1;
         }
         req.setAttribute("numpage", numpage);
-        if(text == null || text.equals("1")) {
+        if (text == null || text.equals("1")) {
             index = 0;
             num2 = pageSize;
-        }
-        else if (text.equals(String.valueOf(numpage))) {
+        } else if (text.equals(String.valueOf(numpage))) {
             int temp = Integer.parseInt(req.getParameter("index"));
-            index = (temp-1)*pageSize;
+            index = (temp - 1) * pageSize;
             num2 = numOfProduct;
-        }
-        else {
+        } else {
             int temp = Integer.parseInt(req.getParameter("index"));
-            num2 = temp*pageSize;
-            index = (temp-1)*pageSize;
+            num2 = temp * pageSize;
+            index = (temp - 1) * pageSize;
         }
-        if(pageSize >= numOfProduct) {
+        if (pageSize >= numOfProduct) {
             num2 = numOfProduct;
         }
         req.setAttribute("num2", num2);
@@ -121,6 +121,7 @@ public class ProductController extends HttpServlet {
         req.setAttribute("note", "Cập nhật thành công");
         findAll(req, resp);
     }
+
     private void findOneByProduct(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int maSP = Integer.parseInt(req.getParameter("maSP"));
         ProductModel product = service.findOneByProduct(maSP);
@@ -128,6 +129,7 @@ public class ProductController extends HttpServlet {
         RequestDispatcher rd = req.getRequestDispatcher("/views/admin/product/update-product.jsp");
         rd.forward(req, resp);
     }
+
     private void deleteProduct(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int maSP = Integer.parseInt(req.getParameter("maSP"));
         System.out.println(maSP);
@@ -144,28 +146,25 @@ public class ProductController extends HttpServlet {
         req.setAttribute("numOfAccount", numOfProduct);
         int numpage = 0;
         int num2 = 0;
-        if(numOfProduct % pageSize == 0) {
-            numpage = numOfProduct/pageSize;
-        }
-        else {
-            numpage = numOfProduct/pageSize + 1;
+        if (numOfProduct % pageSize == 0) {
+            numpage = numOfProduct / pageSize;
+        } else {
+            numpage = numOfProduct / pageSize + 1;
         }
         req.setAttribute("numpage", numpage);
-        if(text == null || text.equals("1")) {
+        if (text == null || text.equals("1")) {
             index = 0;
             num2 = pageSize;
-        }
-        else if (text.equals(String.valueOf(numpage))) {
+        } else if (text.equals(String.valueOf(numpage))) {
             int temp = Integer.parseInt(req.getParameter("index"));
-            index = (temp-1)*pageSize;
+            index = (temp - 1) * pageSize;
             num2 = numOfProduct;
-        }
-        else {
+        } else {
             int temp = Integer.parseInt(req.getParameter("index"));
-            num2 = temp*pageSize;
-            index = (temp-1)*pageSize;
+            num2 = temp * pageSize;
+            index = (temp - 1) * pageSize;
         }
-        if(pageSize >= numOfProduct) {
+        if (pageSize >= numOfProduct) {
             num2 = numOfProduct;
         }
         req.setAttribute("num2", num2);
@@ -174,6 +173,7 @@ public class ProductController extends HttpServlet {
         RequestDispatcher rd = req.getRequestDispatcher("/views/admin/product/ql-product.jsp");
         rd.forward(req, resp);
     }
+
     private void postProduct(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String tenSP = req.getParameter("tensp");
         String maLoaiSP = req.getParameter("maloaisp");
@@ -200,13 +200,13 @@ public class ProductController extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURI();
-        if(url.contains("delete")){
+        if (url.contains("delete")) {
             deleteProduct(req, resp);
         }
-        if(url.contains("update")) {
+        if (url.contains("update")) {
             update(req, resp);
         }
-        if(url.contains("add")) {
+        if (url.contains("add")) {
             postProduct(req, resp);
         }
     }

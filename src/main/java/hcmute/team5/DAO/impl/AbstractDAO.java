@@ -3,6 +3,7 @@ package hcmute.team5.DAO.impl;
 import hcmute.team5.DAO.DBConnectionSQL;
 import hcmute.team5.DAO.GenericDAO;
 import hcmute.team5.mapper.RowMapper;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,17 +25,14 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                 results.add(rowMapper.mapRow(rs));
             }
             return results;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return null;
-        }
-        finally {
+        } finally {
             try {
                 conn.close();
                 ps.close();
                 rs.close();
-            }
-            catch (SQLException e){
+            } catch (SQLException e) {
                 return null;
             }
         }
@@ -51,27 +49,24 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             setParameter(ps, parameters);
             ps.executeUpdate();
             conn.commit();
-        }
-        catch (Exception e) {
-            if(conn != null) {
+        } catch (Exception e) {
+            if (conn != null) {
                 try {
                     conn.rollback();
-                }
-                catch (Exception e1) {
+                } catch (Exception e1) {
                     e1.printStackTrace();
                 }
             }
-        }
-        finally {
+        } finally {
             try {
                 conn.close();
                 ps.close();
-            }
-            catch (SQLException e2){
+            } catch (SQLException e2) {
                 e2.printStackTrace();
             }
         }
     }
+
     @Override
     public int insert(String sql, Object... parameters) {
         Connection conn = null;
@@ -85,29 +80,25 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             setParameter(ps, parameters);
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();
-            if(rs.next()) {
+            if (rs.next()) {
                 id = rs.getInt(1);
             }
             conn.commit();
             return id;
-        }
-        catch (Exception e) {
-            if(conn != null) {
+        } catch (Exception e) {
+            if (conn != null) {
                 try {
                     conn.rollback();
-                }
-                catch (Exception e1) {
+                } catch (Exception e1) {
                     e1.printStackTrace();
                 }
             }
-        }
-        finally {
+        } finally {
             try {
                 conn.close();
                 ps.close();
                 rs.close();
-            }
-            catch (SQLException e2){
+            } catch (SQLException e2) {
                 e2.printStackTrace();
             }
         }

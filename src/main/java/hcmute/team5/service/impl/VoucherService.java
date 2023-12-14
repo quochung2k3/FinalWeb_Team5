@@ -4,10 +4,12 @@ import hcmute.team5.DAO.IVoucherDAO;
 import hcmute.team5.DAO.impl.VoucherDAO;
 import hcmute.team5.model.VoucherModel;
 import hcmute.team5.service.IVoucherService;
+
 import java.util.List;
 
 public class VoucherService implements IVoucherService {
     IVoucherDAO voucherDAO = new VoucherDAO();
+
     @Override
     public List<VoucherModel> findAll(int pageSize, int index) {
         return voucherDAO.findAll(pageSize, index);
