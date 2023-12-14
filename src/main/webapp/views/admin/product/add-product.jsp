@@ -16,37 +16,37 @@
                                 <form action="admin-product-add" class="mx-1 mx-md-4" method="post">
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Ten San Pham</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                        <i class="fa-solid fa-file-signature fa-lg me-3 fa-fw"></i>
                                         <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
                                             <input placeholder="tensp" value="${product.tenSP}" name="tensp" type="text" class="form-control" required>
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Ma Loai San Pham</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                        <i class="fa-solid fa-filter fa-lg me-3 fa-fw"></i>
                                         <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
                                             <input placeholder="maloaisp" value="${product.maLoaiSP}" name="maloaisp" type="text" id="form3Example4c" class="form-control" required>
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Gia</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
+                                        <i style="font-size: 20px" class="fa-solid fa-money-bill-wave me-3 fa-fw"></i>
                                         <%--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>--%>
                                         <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="gia" value="${product.gia}" name="gia" type="text" id="form3Example5c" class="form-control" required>
+                                            <input placeholder="gia" value="${product.gia}" name="gia" type="text" id="" class="form-control" required>
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Ma Chi Nhanh</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
+                                        <i style="font-size: 20px" class="fa-solid fa-store me-3 fa-fw"></i>
                                         <%--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>--%>
                                         <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="machinhanh" value="${product.maChiNhanh}" name="machinhanh" type="text" id="form3Example5c" class="form-control" required>
+                                            <input placeholder="machinhanh" value="${product.maChiNhanh}" name="machinhanh" type="text" class="form-control" required>
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Trang Thai</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
+                                        <i style="font-size: 20px" class="fa-brands fa-product-hunt me-3 fa-fw"></i>
                                         <%--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>--%>
                                         <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
                                             <input placeholder="trangthai" value="${product.trangThai}" name="trangthai" type="text" id="form3Example5c" class="form-control" required>
