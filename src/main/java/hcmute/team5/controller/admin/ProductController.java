@@ -1,4 +1,5 @@
 package hcmute.team5.controller.admin;
+import hcmute.team5.model.AccountModel;
 import hcmute.team5.model.ProductModel;
 import hcmute.team5.service.IProductService;
 import hcmute.team5.service.impl.ProductService;
@@ -18,6 +19,8 @@ public class ProductController extends HttpServlet {
     int pageSize = 5;
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURI();
+        AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
+        req.setAttribute("name", account.getUserName());
         if (url.contains("ql-product")) {
             findAll(req, resp);
         }

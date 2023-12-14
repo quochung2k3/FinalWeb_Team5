@@ -29,6 +29,8 @@ public class CustomerController extends HttpServlet {
     int pageSize = 5;
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURI();
+        AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
+        req.setAttribute("name", account.getUserName());
         if (url.contains("ql-customer")) {
             findAll(req, resp);
         }

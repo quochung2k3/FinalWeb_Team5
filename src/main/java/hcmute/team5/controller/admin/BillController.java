@@ -23,6 +23,8 @@ public class BillController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURI();
+        AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
+        req.setAttribute("name", account.getUserName());
         if(url.contains("ql-bill")) {
             findAll(req, resp);
         }
