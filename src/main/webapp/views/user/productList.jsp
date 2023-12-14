@@ -102,13 +102,13 @@
                     </div>
                 </c:forEach>
             </div>
-                <button onclick="loadMore()" class="btn btn--primary" style="float: right">Load More</button>
+                <button id="myButton" onclick="loadMore()" class="btn btn--primary" style="float:right;">Load More</button>
         </div>
     </div>
 </div>
 <script>
     function productdetail(productId){
-        window.location.href = "user-product?pid="+productId;
+        window.location.href = "user-product?pid=" + productId;
     }
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -117,7 +117,7 @@
         var amount = document.getElementsByClassName("product").length;
         $.ajax({
             url: "/test_war_exploded/load",
-            type: "get", //send it through get method
+            type: "get",
             data:{
                 exits : amount
             },
@@ -129,6 +129,22 @@
 
             }
         });
+    }
+</script>
+<script>
+    // Kiểm tra nếu URL chứa "user-home"
+    var isUserHome = window.location.href.indexOf("user-home") !== -1;
+
+    // Lấy thẻ button bằng id
+    var myButton = document.getElementById("myButton");
+
+    // Kiểm tra và thay đổi trạng thái của button
+    if (isUserHome) {
+        // Nếu ở URL "user-home", cho phép button
+        myButton.style.display = "block";
+    } else {
+        // Nếu không ở URL "user-home", ẩn button
+        myButton.style.display = "none";
     }
 </script>
 </body>
