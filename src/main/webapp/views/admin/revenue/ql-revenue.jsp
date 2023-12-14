@@ -20,6 +20,7 @@
                 <tr>
                     <th>Mã chi nhánh</th>
                     <th>Địa chỉ</th>
+                    <th>Tổng doanh thu</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -29,6 +30,14 @@
                         <td>${item.maChiNhanh}</td>
                             <%--                            <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar">${item.userName}</a></td>--%>
                         <td>${item.diaChi}</td>
+                        <td>${item.tongTien}</td>
+                        <td style="
+                                            display: flex;
+                                            justify-content: space-between;
+                                            align-items: center;
+                                        ">
+                            <a href="admin-v-revenue?machinhanh=${item.maChiNhanh}" class="settings" data-toggle="tooltip">Xem chi tiết</a>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

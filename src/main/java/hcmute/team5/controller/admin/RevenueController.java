@@ -33,4 +33,5 @@ public class RevenueController extends HttpServlet {
         RequestDispatcher rd = req.getRequestDispatcher("/views/admin/revenue/ql-revenue.jsp");
         rd.forward(req, resp);
     }
+
 }

@@ -18,7 +18,8 @@ public class RevenueDAO extends AbstractDAO<RevenueModel> implements IRevenueDAO
     PreparedStatement ps = null;
     ResultSet rs = null;
     public List<RevenueModel> findAll() {
-        String sql ="SELECT * FROM ChiNhanh";
+        String sql ="SELECT cn.machinhanh,diachi,sum(tongtien) as tongtien FROM ChiNhanh cn JOIN HoaDon hd on cn.machinhanh = hd.machinhanh GROUP BY cn.machinhanh, diachi";
         return query(sql, new RevenueMapper());
     }
+
 }
