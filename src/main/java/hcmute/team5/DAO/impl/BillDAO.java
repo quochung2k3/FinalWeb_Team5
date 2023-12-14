@@ -29,7 +29,6 @@ public class BillDAO extends AbstractDAO<BillModel> implements IBillDAO {
         String sql = "SELECT * FROM HoaDon ORDER BY mahd OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         return query(sql, new BillMapper(), index, pageSize);
     }
-
     @Override
     public List<BillDetailsModel> findAllById(int maHD) {
         String sql = "SELECT * FROM ChiTietHD INNER JOIN SanPham ON ChiTietHD.masanpham = SanPham.masanpham\n" +
