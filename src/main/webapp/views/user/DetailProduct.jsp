@@ -74,7 +74,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type = "button" class="btn btn-warning shadow-0" onclick="submitForm('user-buy-now?pid=${detail.getMaSp()}')" style = "font-size: 1.4rem" > Buy now </button>
+                    <button type = "button" class="btn btn-warning shadow-0" onclick="submitForm2('user-buy-now?pid=${detail.getMaSp()}')" style = "font-size: 1.4rem" > Buy now </button>
                     <button type = "button" class="btn btn-primary shadow-0" onclick="submitForm('user-product?pid=${detail.getMaSp()}')" style = "font-size: 1.4rem"><i class="me-1 fa fa-shopping-basket"></i> Add to cart </button>
                 </form>
 
@@ -172,8 +172,12 @@
         var currentQuantity = parseInt(quantityInput.value);
         quantityInput.value = currentQuantity + 1;
     }
-
     function submitForm(action) {
+        document.getElementById('myForm').action = action;
+        document.getElementById('myForm').submit();
+        alert("Add thành công");
+    }
+    function submitForm2(action) {
         document.getElementById('myForm').action = action;
         document.getElementById('myForm').submit();
     }

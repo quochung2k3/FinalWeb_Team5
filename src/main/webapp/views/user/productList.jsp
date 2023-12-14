@@ -134,12 +134,13 @@
 <script>
     // Kiểm tra nếu URL chứa "user-home"
     var isUserHome = window.location.href.indexOf("user-home") !== -1;
+    var isUserSolvePay = window.location.href.indexOf("user-solve-pay") !== -1;
 
     // Lấy thẻ button bằng id
     var myButton = document.getElementById("myButton");
 
     // Kiểm tra và thay đổi trạng thái của button
-    if (isUserHome) {
+    if (isUserHome || isUserSolvePay) {
         // Nếu ở URL "user-home", cho phép button
         myButton.style.display = "block";
     } else {

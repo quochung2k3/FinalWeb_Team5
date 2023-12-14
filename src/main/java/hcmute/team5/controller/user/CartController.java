@@ -1,16 +1,8 @@
 package hcmute.team5.controller.user;
 
-import hcmute.team5.model.AccountModel;
-import hcmute.team5.model.CartModel;
-import hcmute.team5.model.VoucherModel;
-import hcmute.team5.service.IBillService;
-import hcmute.team5.service.ICartService;
-import hcmute.team5.service.ICustomerService;
-import hcmute.team5.service.IVoucherService;
-import hcmute.team5.service.impl.BillService;
-import hcmute.team5.service.impl.CartService;
-import hcmute.team5.service.impl.CustomerService;
-import hcmute.team5.service.impl.VoucherService;
+import hcmute.team5.model.*;
+import hcmute.team5.service.*;
+import hcmute.team5.service.impl.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,7 +15,7 @@ import java.util.List;
 
 
 @WebServlet(urlPatterns = {"/user-cart", "/user-check-voucher", "/user-solve-pay","/user-delete-cart"})
-public class CartController extends HttpServlet {
+public class CartController extends HomeController {
     private static final long serialVersionUID = 1L;
     ICartService service = new CartService();
     IVoucherService voucherService = new VoucherService();
@@ -94,7 +86,6 @@ public class CartController extends HttpServlet {
         rd.forward(req, resp);
     }
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURI();
@@ -103,8 +94,7 @@ public class CartController extends HttpServlet {
             AddBillDetails(req, resp);
             AddPay(req, resp);
             DeleteCart(req, resp);
-            RequestDispatcher rd = req.getRequestDispatcher("/views/user/cart.jsp");
-            rd.forward(req, resp);
+            loadData(req, resp);
         }
     }
 

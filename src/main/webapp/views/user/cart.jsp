@@ -136,7 +136,7 @@
                                             </div>
 
                                         </form>
-                                        <form action="user-solve-pay" method="post">
+                                        <form action="user-solve-pay" method="post" id="myForm">
                                             <hr class="my-4">
 
                                             <div class="d-flex justify-content-between">
@@ -156,7 +156,7 @@
                                                 <p class="mb-2">${fn:substringBefore(total, '.')}$</p>
                                             </div>
 
-                                            <button style="padding: 0px 32px;font-size: 14px;height: 50px;" type="submit"
+                                            <button style="padding: 0px 32px;font-size: 14px;height: 50px;" type="button" onclick="confirmPay()"
                                                     class="btn btn-info btn-block btn-lg">
                                                 <div class="d-flex justify-content-between">
                                                     <span>${total}</span>
@@ -187,6 +187,20 @@
             alert("Đã xóa!");
         } else {
             alert("Đã hủy bỏ xóa.");
+        }
+    }
+</script>
+
+<script>
+    function confirmPay() {
+        // Sử dụng hàm confirm() để hiển thị hộp thoại đồng ý/hủy bỏ
+        var result = confirm("Đồng ý thanh toán?");
+        // Nếu người dùng nhấn "OK" (đồng ý), thực hiện xóa
+        if (result) {
+            document.getElementById('myForm').submit();
+            alert("Thanh toán thành công!");
+        } else {
+            alert("Đã hủy bỏ thanh toán.");
         }
     }
 </script>

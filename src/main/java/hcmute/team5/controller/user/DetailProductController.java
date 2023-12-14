@@ -32,6 +32,7 @@ public class DetailProductController extends HttpServlet {
             getDetailProduct(req, resp, account);
         }
     }
+
     private void findOne(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
         req.setAttribute("name", account.getUserName());

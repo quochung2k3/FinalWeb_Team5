@@ -23,6 +23,10 @@ public class HomeController extends HttpServlet {
 	IProductDetailService service_p= new ProductDetailService();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		loadData(req, resp);
+	}
+
+	public void loadData(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String url = req.getRequestURI();
 		AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
 		List<SupplierModel> list_sup = service_p.getAllSuppliers();
@@ -33,7 +37,7 @@ public class HomeController extends HttpServlet {
 		req.setAttribute("name", account.getUserName());
 		req.setAttribute("listc",list_c);
 		req.setAttribute("listsup",list_sup);
-		if(url.contains("user-home")) {
+		if(url.contains("user-home") || url.contains("user-solve-pay")) {
 			getTop3(req, resp);
 		}
 		if(url.contains("user-category")) {
