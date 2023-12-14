@@ -9,8 +9,6 @@ import hcmute.team5.service.ICustomerService;
 import hcmute.team5.service.impl.AccountService;
 import hcmute.team5.service.impl.BillService;
 import hcmute.team5.service.impl.CustomerService;
-
-import javax.naming.Name;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.List;
 @WebServlet(urlPatterns = {"/admin-ql-customer", "/admin-customer-update", "/admin-customer-delete", "/admin-customer-add", "/admin-customer-search", "/admin-customer-history"})
 public class CustomerController extends HttpServlet {

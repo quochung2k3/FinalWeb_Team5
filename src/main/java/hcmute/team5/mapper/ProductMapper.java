@@ -1,8 +1,6 @@
 package hcmute.team5.mapper;
 
-import hcmute.team5.model.CustomerModel;
 import hcmute.team5.model.ProductModel;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

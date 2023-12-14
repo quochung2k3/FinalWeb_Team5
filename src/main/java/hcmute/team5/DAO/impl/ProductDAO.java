@@ -5,8 +5,6 @@ import hcmute.team5.DAO.IProductDAO;
 import hcmute.team5.mapper.ProductMapper;
 import hcmute.team5.model.ProductModel;
 import hcmute.team5.model.ProductTypeModel;
-
-
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;

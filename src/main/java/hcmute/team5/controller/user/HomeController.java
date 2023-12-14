@@ -2,12 +2,10 @@ package hcmute.team5.controller.user;
 
 import hcmute.team5.model.AccountModel;
 import hcmute.team5.model.CartModel;
-import hcmute.team5.model.ProductModel;
 import hcmute.team5.service.ICartService;
 import hcmute.team5.service.IProductService;
 import hcmute.team5.service.impl.CartService;
 import hcmute.team5.service.impl.ProductService;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -2,12 +2,10 @@ package hcmute.team5.DAO.impl;
 
 import hcmute.team5.DAO.DBConnectionSQL;
 import hcmute.team5.DAO.IBillDAO;
-import hcmute.team5.mapper.AccountMapper;
 import hcmute.team5.mapper.BillDetailsMapper;
 import hcmute.team5.mapper.BillMapper;
 import hcmute.team5.model.BillDetailsModel;
 import hcmute.team5.model.BillModel;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

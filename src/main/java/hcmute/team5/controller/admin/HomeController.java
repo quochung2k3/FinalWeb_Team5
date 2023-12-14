@@ -1,11 +1,7 @@
 package hcmute.team5.controller.admin;
 
 import hcmute.team5.model.AccountModel;
-import hcmute.team5.service.IAccountService;
-import hcmute.team5.service.impl.AccountService;
-
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

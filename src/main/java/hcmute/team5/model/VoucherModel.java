@@ -1,7 +1,5 @@
 package hcmute.team5.model;
 
-import java.sql.Timestamp;
-
 public class VoucherModel extends AbstractModel {
     private int MaVC;
     private String TenVC;

@@ -1,12 +1,10 @@
 package hcmute.team5.service.impl;
 
-
 import hcmute.team5.DAO.IProductDAO;
 import hcmute.team5.DAO.impl.ProductDAO;
 import hcmute.team5.model.ProductModel;
 import hcmute.team5.model.ProductTypeModel;
 import hcmute.team5.service.IProductDetailService;
-
 import java.util.List;
 
 public class ProductDetailService implements IProductDetailService {

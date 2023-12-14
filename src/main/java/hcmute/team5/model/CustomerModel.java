@@ -1,7 +1,5 @@
 package hcmute.team5.model;
 
-import java.sql.Timestamp;
-
 public class CustomerModel {
     private int maKh;
     private String ten;

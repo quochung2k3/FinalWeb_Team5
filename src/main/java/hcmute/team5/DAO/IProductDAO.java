@@ -1,10 +1,7 @@
 package hcmute.team5.DAO;
 
-import hcmute.team5.model.CartModel;
-import hcmute.team5.model.CustomerModel;
 import hcmute.team5.model.ProductModel;
 import hcmute.team5.model.ProductTypeModel;
-
 import java.util.List;
 
 public interface IProductDAO {

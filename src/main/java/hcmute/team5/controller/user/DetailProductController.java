@@ -1,22 +1,16 @@
 package hcmute.team5.controller.user;
 
-
 import hcmute.team5.model.AccountModel;
 import hcmute.team5.model.ProductModel;
-import hcmute.team5.model.ProductTypeModel;
 import hcmute.team5.service.IProductDetailService;
-import hcmute.team5.service.impl.AccountService;
 import hcmute.team5.service.impl.ProductDetailService;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 @WebServlet(urlPatterns = {"/user-product"})
 public class DetailProductController extends HttpServlet {

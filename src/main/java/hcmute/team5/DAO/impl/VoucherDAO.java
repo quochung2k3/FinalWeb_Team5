@@ -2,11 +2,8 @@ package hcmute.team5.DAO.impl;
 
 import hcmute.team5.DAO.DBConnectionSQL;
 import hcmute.team5.DAO.IVoucherDAO;
-import hcmute.team5.mapper.ProductMapper;
 import hcmute.team5.mapper.VoucherMapper;
-import hcmute.team5.model.AccountModel;
 import hcmute.team5.model.VoucherModel;
-
 import java.sql.*;
 import java.util.List;
 

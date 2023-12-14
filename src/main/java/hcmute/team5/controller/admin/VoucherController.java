@@ -1,7 +1,6 @@
 package hcmute.team5.controller.admin;
 
 import hcmute.team5.model.AccountModel;
-import hcmute.team5.model.CustomerModel;
 import hcmute.team5.model.VoucherModel;
 import hcmute.team5.service.IVoucherService;
 import hcmute.team5.service.impl.VoucherService;
