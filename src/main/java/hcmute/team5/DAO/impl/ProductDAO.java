@@ -3,8 +3,10 @@ package hcmute.team5.DAO.impl;
 import hcmute.team5.DAO.DBConnectionSQL;
 import hcmute.team5.DAO.IProductDAO;
 import hcmute.team5.mapper.ProductMapper;
+import hcmute.team5.model.BranchModel;
 import hcmute.team5.model.ProductModel;
 import hcmute.team5.model.ProductTypeModel;
+import hcmute.team5.model.SupplierModel;
 
 
 import java.sql.Connection;
@@ -67,6 +69,28 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
             return null;
         }
     }
+    public List<ProductModel> getAllProDuctByProductType(String maLoaiSP) {
+        List<ProductModel> list = new ArrayList<>();
+        String sql = "SELECT * FROM SanPham WHERE maloaisanpham = ?";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, maLoaiSP);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ProductModel product = new ProductModel();
+                product.setMaSP(rs.getString("masanpham"));
+                product.setTenSP(rs.getString("tensanpham"));
+                product.setGia(rs.getInt("gia"));
+                product.setImage(rs.getString("image"));
+                list.add(product);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     public List<ProductTypeModel> getAllProductType(){
         List<ProductTypeModel> list = new ArrayList<>();
         String sql = "SELECT * FROM loaisanpham";
@@ -86,6 +110,25 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
         }
         return list;
     }
+    public List<SupplierModel> getAllSuppliers(){
+        List<SupplierModel> list = new ArrayList<>();
+        String sql = "SELECT * FROM NhaCungCap";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                SupplierModel sup = new SupplierModel();
+                sup.setMaNcc(rs.getString("mancc"));
+                sup.setTenNcc(rs.getString("tenncc"));
+                list.add(sup);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     public List<ProductModel> getAllProduct() {
         List<ProductModel> list = new ArrayList<>();
         String sql = "SELECT * FROM SanPham";
@@ -94,6 +137,28 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()){
+                ProductModel product = new ProductModel();
+                product.setMaSP(rs.getString("masanpham"));
+                product.setTenSP(rs.getString("tensanpham"));
+                product.setGia(rs.getInt("gia"));
+                product.setImage(rs.getString("image"));
+                list.add(product);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public List<ProductModel> getAllProductByNCC(String mancc) {
+        List<ProductModel> list = new ArrayList<>();
+        String sql = "SELECT * FROM SanPham WHERE manhacungcap = ?";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, mancc);
+            rs = ps.executeQuery();
+            while (rs.next()) {
                 ProductModel product = new ProductModel();
                 product.setMaSP(rs.getString("masanpham"));
                 product.setTenSP(rs.getString("tensanpham"));

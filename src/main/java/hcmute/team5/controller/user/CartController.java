@@ -43,7 +43,7 @@ public class CartController extends HttpServlet {
         AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
         req.setAttribute("name", account.getUserName());
         String masp = req.getParameter("pid");
-        int soluong = 1;
+        int soluong = Integer.parseInt(req.getParameter("quantity"));
         List<CartModel> list = service.findOne(masp,soluong);
         int length = list.size();
         req.setAttribute("length", length);
