@@ -42,14 +42,14 @@
                 </div>
             </aside>
             <main class="col-lg-6">
-                <h4 class="title text-dark" style="font-size: 4rem">
+                <h4 class="title text-dark" style="font-size: 4rem; text-align: justify;">
                     ${detail.getTenSP()}
                 </h4>
                 <div class="mb-3">
                     <span class="h5"
                           style="font-size: 2.5rem; color: #17a2b8">${detail.getGia()}$ (Đã bao gồm VAT)</span>
                 </div>
-                <p style="font-size: 1.5rem">
+                <p style="font-size: 1.5rem; text-align: justify;">
                     ${detail.getDescription()}
                 </p>
                 <div class="row">
@@ -64,7 +64,7 @@
                 </div>
 
                 <hr/>
-                <form action="user-product?pid=${detail.getMaSp()}" method="post">
+                <form action="" method="post" id="myForm">
                     <div class="row mb-4">
                         <div class="col-md-4 col-6 mb-3">
                             <label class="mb-4 d-block" style = "font-size: 2rem">Số lượng</label>
@@ -75,8 +75,8 @@
                             </div>
                         </div>
                     </div>
-                    <a href="user-buy-now?pid=${detail.getMaSP()}?quantity=${quantity}" class="btn btn-warning shadow-0" style = "font-size: 1.4rem" > Buy now </a>
-                    <button type = "submit" class="btn btn-primary shadow-0" style = "font-size: 1.4rem"><i class="me-1 fa fa-shopping-basket"></i> Add to cart </button>
+                    <button type = "button" class="btn btn-warning shadow-0" onclick="submitForm('user-buy-now?pid=${detail.getMaSp()}')" style = "font-size: 1.4rem" > Buy now </button>
+                    <button type = "button" class="btn btn-primary shadow-0" onclick="submitForm('user-product?pid=${detail.getMaSp()}')" style = "font-size: 1.4rem"><i class="me-1 fa fa-shopping-basket"></i> Add to cart </button>
                 </form>
 
             </main>
@@ -99,7 +99,7 @@
                                              class="img-md img-thumbnail"/>
                                     </a>
                                     <div class="info" style="font-size: 1.5rem; max-width: 280px">
-                                        <a href="user-product?pid=${o.getMaSp()}" class="nav-link mb-1">
+                                        <a href="user-product?pid=${o.getMaSp()}" class="nav-link mb-1" style="text-align: justify;">
                                                 ${o.getTenSP()}
                                         </a>
                                         <strong class="text-dark" style="font-size: 1.3rem"> ${o.getGia()}$</strong>
@@ -122,7 +122,7 @@
                                              class="img-md img-thumbnail"/>
                                     </a>
                                     <div class="info" style="font-size: 1.5rem; max-width: 280px">
-                                        <a href="user-product?pid=${o.getMaSp()}" class="nav-link mb-1">
+                                        <a href="user-product?pid=${o.getMaSp()}" class="nav-link mb-" style="text-align: justify;">
                                                 ${o.getTenSP()}
                                         </a>
                                         <strong class="text-dark" style="font-size: 1.3rem">${o.getGia()}$</strong>
@@ -145,7 +145,7 @@
                                              class="img-md img-thumbnail"/>
                                     </a>
                                     <div class="info" style="font-size: 1.5rem; max-width: 280px">
-                                        <a href="user-product?pid=${o.getMaSp()}" class="nav-link mb-1">
+                                        <a href="user-product?pid=${o.getMaSp()}" class="nav-link mb-1" style="text-align: justify;">
                                                 ${o.getTenSP()}
                                         </a>
                                         <strong class="text-dark" style="font-size: 1.3rem">${o.getGia()}$</strong>
@@ -163,7 +163,6 @@
     function minusQuantity() {
         var quantityInput = document.getElementById('quantity-bottom');
         var currentQuantity = parseInt(quantityInput.value);
-
         if (currentQuantity > 1) {
             quantityInput.value = currentQuantity - 1;
         }
@@ -173,6 +172,11 @@
         var quantityInput = document.getElementById('quantity-bottom');
         var currentQuantity = parseInt(quantityInput.value);
         quantityInput.value = currentQuantity + 1;
+    }
+
+    function submitForm(action) {
+        document.getElementById('myForm').action = action;
+        document.getElementById('myForm').submit();
     }
 </script>
 </body>

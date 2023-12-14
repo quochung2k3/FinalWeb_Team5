@@ -11,9 +11,9 @@ import java.util.List;
 public class main {
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-        List<SupplierModel> c= dao.getAllSuppliers();
-        for(SupplierModel o:c){
-            System.out.println(o.getMaNcc());
+        List<ProductModel> c= dao.getNext3Product(3);
+        for(ProductModel o:c){
+            System.out.println(o.getMaSp());
         }
     }
 }

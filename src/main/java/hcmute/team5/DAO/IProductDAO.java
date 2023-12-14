@@ -19,12 +19,10 @@ public interface IProductDAO {
 
     public void insertviewed(String username, String masp);
     public List<SupplierModel> getAllSuppliers();
-    List<ProductModel> findAll();
     void inserttoCart(String username, String masp, int Soluong);
     void updateProduct(ProductModel product);
     public List<ProductModel> getAllProductByNCC(String mancc);
     public List<ProductModel> getAllProDuctByProductType(String maLoaiSP);
-    ProductModel findOneByProduct(String maSP);
     void insert(ProductModel product);
 
     void deleteProduct(ProductModel product);
@@ -34,8 +32,9 @@ public interface IProductDAO {
     List<ProductModel> findAllByProperties(int maChiNhanh, String status, int maSP, int maLoaiSP, int pageSize, int index);
 
     int getNumOfProduct();
-
+    public List<ProductModel> getTop3();
+    public List<ProductModel> getNext3Product(int amount);
     ProductModel findExistProduct(String tenSP, int maChiNhanh);
-
-    void inserttoCart(String username, String masp, int Soluong);
+    public ProductModel findOneByProduct(int maSP);
+    public List<ProductModel> findAll(int pageSize, int index);
 }

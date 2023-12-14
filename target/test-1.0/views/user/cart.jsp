@@ -7,9 +7,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body p-4">
-
                         <div class="row">
-
                             <div style="font-size: 16px" class="col-lg-7">
                                 <h5 class="mb-3"><a href="<c:url value="/user-home"/>" class="text-body"><i
                                         class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
@@ -35,13 +33,12 @@
                                                 <div class="d-flex flex-row align-items-center">
                                                     <div>
                                                         <img
-                                                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                                                class="img-fluid rounded-3" alt="Shopping item"
-                                                                style="width: 65px;">
+                                                                src="${item.getImage()}"
+                                                                style="width: 100px;">
                                                     </div>
-                                                    <div class="ms-3">
+                                                    <div class="ms-3" style="width: 400px;">
                                                         <h5>${item.tenSP}</h5>
-                                                        <p class="small mb-0">${item.description}</p>
+                                                        <p class="small mb-0" style="font-size: 1rem;text-align: justify;">${item.description}</p>
                                                     </div>
                                                 </div>
                                                 <div class="d-flex flex-row align-items-center">

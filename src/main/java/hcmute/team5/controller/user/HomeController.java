@@ -26,7 +26,6 @@ public class HomeController extends HttpServlet {
 		String url = req.getRequestURI();
 		AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
 		List<SupplierModel> list_sup = service_p.getAllSuppliers();
-		List<ProductModel> list_p = service_p.getAllProduct();
 		List<ProductTypeModel> list_c = service_p.getAllProductType();
 		List<CartModel> list = service.findAll(account.getUserName());
 		int length = list.size();
@@ -35,7 +34,7 @@ public class HomeController extends HttpServlet {
 		req.setAttribute("listc",list_c);
 		req.setAttribute("listsup",list_sup);
 		if(url.contains("user-home")) {
-			getAllProduct(req, resp);
+			getTop3(req, resp);
 		}
 		if(url.contains("user-category")) {
 			getProductByProductType(req, resp);
@@ -43,6 +42,7 @@ public class HomeController extends HttpServlet {
 		if(url.contains("user-supplier")) {
 			getProductByNCC(req, resp);
 		}
+
 		RequestDispatcher rd = req.getRequestDispatcher("/views/user/productList.jsp");
 		rd.forward(req, resp);
 	}
@@ -50,8 +50,8 @@ public class HomeController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 	}
-	private void getAllProduct(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<ProductModel> list_p = service_p.getAllProduct();
+	private void getTop3(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		List<ProductModel> list_p = service_p.getTop3();
 		req.setAttribute("listpro",list_p);
 	}
 	private void getProductByNCC(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

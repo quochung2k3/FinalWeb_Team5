@@ -24,4 +24,6 @@ public interface IProductDetailService {
     List<ProductModel> getAllProductByNCC(String mancc);
     public List<ProductModel> getAllProDuctByProductType(String maLoaiSP);
     void inserttoCart(String username, String masp, int Soluong);
+    public List<ProductModel> getTop3();
+    public List<ProductModel> getNext3Product(int amount);
 }

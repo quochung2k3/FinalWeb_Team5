@@ -3,7 +3,6 @@ package hcmute.team5.DAO.impl;
 import hcmute.team5.DAO.DBConnectionSQL;
 import hcmute.team5.DAO.IProductDAO;
 import hcmute.team5.mapper.ProductMapper;
-import hcmute.team5.model.BranchModel;
 import hcmute.team5.model.ProductModel;
 import hcmute.team5.model.ProductTypeModel;
 import hcmute.team5.model.SupplierModel;
@@ -75,7 +74,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
             rs = ps.executeQuery();
             while (rs.next()) {
                 ProductModel product = new ProductModel();
-                product.setMaSP(rs.getString("masanpham"));
+                product.setMaSp(rs.getInt("masanpham"));
                 product.setTenSP(rs.getString("tensanpham"));
                 product.setGia(rs.getInt("gia"));
                 product.setImage(rs.getString("image"));
@@ -146,6 +145,49 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
             return null;
         }
     }
+    public List<ProductModel> getNext3Product(int amount) {
+        List<ProductModel> list = new ArrayList<>();
+        String sql = "SELECT * FROM SanPham ORDER BY masanpham OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1,amount);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ProductModel product = new ProductModel();
+                product.setMaSp(rs.getInt("masanpham"));
+                product.setTenSP(rs.getString("tensanpham"));
+                product.setGia(rs.getInt("gia"));
+                product.setImage(rs.getString("image"));
+                list.add(product);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public List<ProductModel> getTop3() {
+        List<ProductModel> list = new ArrayList<>();
+        String sql = "SELECT TOP 3 * FROM SanPham";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ProductModel product = new ProductModel();
+                product.setMaSp(rs.getInt("masanpham"));
+                product.setTenSP(rs.getString("tensanpham"));
+                product.setGia(rs.getInt("gia"));
+                product.setImage(rs.getString("image"));
+                list.add(product);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     public List<ProductModel> getAllProductByNCC(String mancc) {
         List<ProductModel> list = new ArrayList<>();
         String sql = "SELECT * FROM SanPham WHERE manhacungcap = ?";
@@ -156,7 +198,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
             rs = ps.executeQuery();
             while (rs.next()) {
                 ProductModel product = new ProductModel();
-                product.setMaSP(rs.getString("masanpham"));
+                product.setMaSp(rs.getInt("masanpham"));
                 product.setTenSP(rs.getString("tensanpham"));
                 product.setGia(rs.getInt("gia"));
                 product.setImage(rs.getString("image"));

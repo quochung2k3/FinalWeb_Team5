@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/user-cart", "/user-buy-now"})
+@WebServlet(urlPatterns = {"/user-cart"})
 public class CartController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     ICartService service = new CartService();
@@ -24,9 +24,6 @@ public class CartController extends HttpServlet {
         String url = req.getRequestURI();
         if (url.contains("user-cart")) {
             findAll(req, resp);
-        }
-        if (url.contains("user-buy-now")) {
-            findOne(req, resp);
         }
     }
 
@@ -41,18 +38,7 @@ public class CartController extends HttpServlet {
         rd.forward(req, resp);
     }
 
-    private void findOne(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
-        req.setAttribute("name", account.getUserName());
-        String masp = req.getParameter("pid");
-        int soluong = Integer.parseInt(req.getParameter("quantity"));
-        List<CartModel> list = service.findOne(masp,soluong);
-        int length = list.size();
-        req.setAttribute("length", length);
-        req.setAttribute("listCart", list);
-        RequestDispatcher rd = req.getRequestDispatcher("/views/user/cart.jsp");
-        rd.forward(req, resp);
-    }
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

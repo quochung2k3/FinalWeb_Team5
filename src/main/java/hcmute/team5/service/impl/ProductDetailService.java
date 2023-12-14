@@ -26,5 +26,7 @@ public class ProductDetailService implements IProductDetailService {
     public void inserttoCart(String username, String masp, int Soluong){productDAL.inserttoCart(username, masp, Soluong);}
     public List<SupplierModel> getAllSuppliers(){return productDAL.getAllSuppliers();}
     public List<ProductModel> getAllProductByNCC(String mancc) {return  productDAL.getAllProductByNCC(mancc);}
+    public List<ProductModel> getTop3(){return productDAL.getTop3();}
+    public List<ProductModel> getNext3Product(int amount){return productDAL.getNext3Product(amount);}
     public List<ProductModel> getAllProDuctByProductType(String maLoaiSP){return productDAL.getAllProDuctByProductType(maLoaiSP);}
 }

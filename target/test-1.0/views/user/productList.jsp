@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ include file="/common/taglib.jsp"%>
+         pageEncoding="UTF-8" %>
+<%@ include file="/common/taglib.jsp" %>
 <head>
     <style>
         body {
@@ -88,30 +88,47 @@
             </div>
         </div>
         <div class="col-md-9">
-            <div class="row g-2">
+            <div id="loadlist" class="row g-2">
                 <c:forEach var="p" items="${listpro}">
-                    <div class="col-md-4" type="button" onclick="productdetail(${p.getMaSP()})">
-                        <div class="card">
-                            <div class="text-center"><img src=${p.getImage()}></div>
-                            <div class="about text-center">
-                                <h5>${p.getTenSP()}</h5>
-                                <span>${p.getGia()}$</span>
-                            </div>
-                            <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"
-                                 style="align-self: center">
-                                <button class="btn btn-primary text-uppercase">Add to cart</button>
+                    <div class="product col-md-4" type="button" onclick="productdetail(${p.getMaSp()})" >
+                        <div class="card" style= "height: 350px">
+                            <div class="text-center"><img style= "width: 250px" src=${p.getImage()} ></div>
+                            <div class="about text-center" >
+                                <h5 >${p.getTenSP()}</h5>
+                                <span><i class="me-1 fa fa-shopping-basket"></i> ${p.getGia()}$</span>
                             </div>
                         </div>
                         <br>
                     </div>
                 </c:forEach>
             </div>
+                <button onclick="loadMore()" class="btn btn--primary" style="float: right">Load More</button>
         </div>
     </div>
 </div>
 <script>
     function productdetail(productId){
         window.location.href = "user-product?pid="+productId;
+    }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function loadMore() {
+        var amount = document.getElementsByClassName("product").length;
+        $.ajax({
+            url: "/test_war_exploded/load",
+            type: "get", //send it through get method
+            data:{
+                exits : amount
+            },
+            success: function (data) {
+                var row = document.getElementById("loadlist");
+                row.innerHTML += data;
+            },
+            error: function (xhr) {
+
+            }
+        });
     }
 </script>
 </body>

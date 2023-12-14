@@ -14,6 +14,7 @@ public class CartMapper implements RowMapper<CartModel> {
             cart.setSoLuong(rs.getInt("soluong"));
             cart.setGia(rs.getInt("gia"));
             cart.setDescription(rs.getString("description"));
+            cart.setImage(rs.getString("image"));
             return cart;
         } catch (SQLException e) {
             return null;
