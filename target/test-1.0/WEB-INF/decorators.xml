@@ -15,4 +15,8 @@
     <decorator name = "web" page = "web.jsp">
         <pattern>/*</pattern>
     </decorator>
+
+    <decorator name = "load">
+        <pattern>/load*</pattern>
+    </decorator>
 </decorators>
