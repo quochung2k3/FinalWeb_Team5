@@ -84,7 +84,7 @@
                                                        siez="17"
                                                        placeholder="Cardholder's Name"
                                                        style="border-radius: 10px;border: 1px solid #ccc;font-size: 14px;height: 40px;"/>
-                                                <%--                                                <label class="form-label" for="typeName">Cardholder's Name</label>--%>
+                                                <%--<label class="form-label" for="typeName">Cardholder's Name</label>--%>
                                             </div>
 
                                             <div class="form-outline form-white mb-4">
@@ -92,7 +92,7 @@
                                                 <input type="text" id="" class="form-control form-control-lg" siez="17"
                                                        placeholder="1234 5678 9012 3457" minlength="19" maxlength="19"
                                                        style="border-radius: 10px;border: 1px solid #ccc;font-size: 14px;height: 40px;"/>
-                                                <%--                                                <label class="form-label" for="typeText">Card Number</label>--%>
+                                                <%-- <label class="form-label" for="typeText">Card Number</label>--%>
                                             </div>
 
                                             <div class="row mb-4">
@@ -104,7 +104,7 @@
                                                                placeholder="MM/YYYY" size="7" minlength="7"
                                                                maxlength="7"
                                                                style="border-radius: 10px;border: 1px solid #ccc;font-size: 14px;height: 40px;"/>
-                                                        <%--                                                        <label class="form-label" for="typeExp">Expiration</label>--%>
+                                                        <%-- <label class="form-label" for="typeExp">Expiration</label>--%>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">

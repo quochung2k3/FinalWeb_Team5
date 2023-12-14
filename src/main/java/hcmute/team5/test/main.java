@@ -10,8 +10,9 @@ import hcmute.team5.model.SupplierModel;
 import java.util.List;
 public class main {
     public static void main(String[] args) {
-        CartDAO dao = new CartDAO();
-        dao.deleteCartById("10","luankh@gmail.com");
+        ProductDAO dao = new ProductDAO();
+        SupplierModel p = dao.getDetailProduct("1");
+        System.out.println(p.getTenNcc());
 
     }
 }

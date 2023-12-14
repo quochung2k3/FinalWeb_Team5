@@ -216,18 +216,19 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
         }
     }
     @Override
-    public ProductModel getDetailProduct(String maSP){
-        String sql = "SELECT * FROM SanPham WHERE masanpham = ?";
+    public SupplierModel getDetailProduct(String maSP){
+        String sql = "SELECT * FROM SanPham sp JOIN NhaCungCap ncc ON sp.manhacungcap = ncc.mancc WHERE masanpham = ?";
         try {
             conn = new DBConnectionSQL().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, maSP);
             rs = ps.executeQuery();
             while (rs.next()) {
-                ProductModel product = new ProductModel();
+                SupplierModel product = new SupplierModel();
                 product.setMaSp(rs.getInt("masanpham"));
                 product.setTenSP(rs.getString("tensanpham"));
                 product.setMaLoaiSP(rs.getString("maloaisanpham"));
+                product.setTenNcc(rs.getString("tenncc"));
                 product.setGia(rs.getInt("gia"));
                 product.setTrangThai(rs.getString("trangthai"));
                 product.setDescription(rs.getString("description"));

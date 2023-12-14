@@ -13,7 +13,7 @@ public class ProductDetailService implements IProductDetailService {
     IProductDAO productDAL = new ProductDAO();
 
     @Override
-    public ProductModel getDetailProduct(String maSP) {
+    public SupplierModel getDetailProduct(String maSP) {
         return productDAL.getDetailProduct(maSP);
     }
 
