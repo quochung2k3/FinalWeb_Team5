@@ -35,4 +35,29 @@ public class BillService implements IBillService {
     public int getNumOfBill() {
         return billDAO.getNumOfBill();
     }
+
+    @Override
+    public void addBill(String ngay, int makh, int maCN, String tongTien) {
+        billDAO.addBill(ngay, makh, maCN, tongTien);
+    }
+
+    @Override
+    public int findCodeBill(int maKH) {
+        return billDAO.findCodeBill(maKH);
+    }
+
+    @Override
+    public void AddBillDetails(int maHD, int maSP, int soLuong) {
+        billDAO.AddBillDetails(maHD, maSP, soLuong);
+    }
+
+    @Override
+    public void AddPay(int maKH, int maVC, int maHD) {
+        billDAO.AddPay(maKH, maVC, maHD);
+    }
+
+    @Override
+    public void DeleteCart(String name) {
+        billDAO.DeleteCart(name);
+    }
 }

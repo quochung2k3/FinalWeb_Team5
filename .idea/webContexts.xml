@@ -14,6 +14,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/admin/voucher/add-voucher.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/admin/voucher" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/login.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/user/DetailProduct.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/user" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/views/user/cart.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/web/home.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/web" />
       </map>
     </option>

@@ -20,4 +20,5 @@ public interface IVoucherDAO {
     List<VoucherModel> findAllByProperties(String status, int maVC, int pageSize, int index);
 
     int getNumOfVoucher();
+    VoucherModel findVoucher(int maVC);
 }

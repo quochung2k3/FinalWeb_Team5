@@ -155,6 +155,41 @@ public class CustomerDAO extends AbstractDAO<CustomerModel> implements ICustomer
     }
 
     @Override
+    public int findId(String name) {
+        int num = 0;
+        String sql = "SELECT makh FROM KhachHang WHERE username = ?";
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, name);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                num = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        } finally {
+            try {
+                conn.close();
+                ps.close();
+                rs.close();
+            } catch (SQLException e2) {
+                e2.printStackTrace();
+            }
+        }
+        return num;
+    }
+
+    @Override
     public void updateCustomer(CustomerModel customer) {
         String sql = "UPDATE KhachHang SET ngaysinh = ?, sdt = ? WHERE makh = ?;";
         update(sql, customer.getNgaySinh(), customer.getSdt(), customer.getMaKh());

@@ -50,4 +50,9 @@ public class VoucherService implements IVoucherService {
         return voucherDAO.getNumOfVoucher();
     }
 
+    @Override
+    public VoucherModel findVoucher(int maVC) {
+        return voucherDAO.findVoucher(maVC);
+    }
+
 }

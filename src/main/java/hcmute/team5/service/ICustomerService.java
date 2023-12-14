@@ -18,6 +18,7 @@ public interface ICustomerService {
     List<CustomerModel> findAllByProperties(String name, String total, int pageSize, int index);
 
     public int getNumOfCustomer();
+    int findId(String name);
 }
 
 

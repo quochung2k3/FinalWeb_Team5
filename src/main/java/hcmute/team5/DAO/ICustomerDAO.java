@@ -20,4 +20,5 @@ public interface ICustomerDAO {
     List<CustomerModel> findAllByProperties(String name, String total, int pageSize, int index);
 
     int getNumOfCustomer();
+    int findId(String name);
 }

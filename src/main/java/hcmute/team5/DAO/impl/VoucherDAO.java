@@ -155,4 +155,30 @@ public class VoucherDAO extends AbstractDAO<VoucherModel> implements IVoucherDAO
         }
         return num;
     }
+
+    @Override
+    public VoucherModel findVoucher(int maVC) {
+        String sql = "SELECT * FROM Voucher WHERE mavoucher = ?";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, maVC);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                VoucherModel voucher = new VoucherModel();
+                voucher.setMaVC(rs.getInt("mavoucher"));
+                voucher.setTenVC(rs.getString("tenvoucher"));
+                voucher.setPhanTramGiam(rs.getFloat("phantramgiam"));
+                voucher.setNgayBatDau(rs.getString("ngaybatdau"));
+                voucher.setNgayKetThuc(rs.getString("ngayketthuc"));
+                voucher.setSoLuong(rs.getInt("soluong"));
+                conn.close();
+                return voucher;
+            }
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

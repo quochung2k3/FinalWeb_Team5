@@ -14,6 +14,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class BillDAO extends AbstractDAO<BillModel> implements IBillDAO {
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
 
     @Override
     public List<BillModel> findAllBillByMaKH(int makh) {
@@ -82,5 +85,120 @@ public class BillDAO extends AbstractDAO<BillModel> implements IBillDAO {
             }
         }
         return num;
+    }
+
+    @Override
+    public void addBill(String ngay, int makh, int maCN, String tongTien) {
+        String sql = "INSERT INTO HoaDon(ngayin, makh, machinhanh, tongtien, tiendanhan, tienthoi) VALUES(?, ?, ?, ?, ?, ?)";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, ngay);
+            ps.setInt(2, makh);
+            ps.setInt(3, maCN);
+            ps.setString(4, tongTien);
+            ps.setString(5, tongTien);
+            ps.setFloat(6, 0);
+            ps.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public int findCodeBill(int maKH) {
+        int num = 0;
+        String sql = "SELECT TOP 1 mahd FROM HoaDon WHERE makh = ? ORDER BY mahd DESC";
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, maKH);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                num = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        } finally {
+            try {
+                conn.close();
+                ps.close();
+                rs.close();
+            } catch (SQLException e2) {
+                e2.printStackTrace();
+            }
+        }
+        return num;
+    }
+
+    @Override
+    public void AddBillDetails(int maHD, int maSP, int soLuong) {
+        String sql = "INSERT INTO ChiTietHD(mahd, masanpham, soluong) VALUES(?, ?, ?)";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, maHD);
+            ps.setInt(2, maSP);
+            ps.setInt(3, soLuong);
+            ps.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void AddPay(int maKH, int maVC, int maHD) {
+        if (maVC == 0) {
+            String sql = "INSERT INTO ThanhToan(makh, mahd) VALUES(?, ?)";
+            try {
+                conn = new DBConnectionSQL().getConnection();
+                ps = conn.prepareStatement(sql);
+                ps.setInt(1, maKH);
+                ps.setInt(2, maHD);
+                ps.executeUpdate();
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            String sql = "INSERT INTO ThanhToan(makh, mavoucher, mahd) VALUES(?, ?, ?)";
+            try {
+                conn = new DBConnectionSQL().getConnection();
+                ps = conn.prepareStatement(sql);
+                ps.setInt(1, maKH);
+                ps.setInt(2, maVC);
+                ps.setInt(3, maHD);
+                ps.executeUpdate();
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void DeleteCart(String name) {
+        String sql = "DELETE FROM GioHang WHERE username = ?";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

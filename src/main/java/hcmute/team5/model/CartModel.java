@@ -2,7 +2,7 @@ package hcmute.team5.model;
 
 public class CartModel extends ProductModel {
     private String username;
-    private String maSanPham;
+    private int maSanPham;
     private int soLuong;
 
     public String getUsername() {
@@ -13,11 +13,11 @@ public class CartModel extends ProductModel {
         this.username = username;
     }
 
-    public String getMaSanPham() {
+    public int getMaSanPham() {
         return maSanPham;
     }
 
-    public void setMaSanPham(String maSanPham) {
+    public void setMaSanPham(int maSanPham) {
         this.maSanPham = maSanPham;
     }
 

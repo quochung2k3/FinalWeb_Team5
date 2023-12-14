@@ -43,4 +43,9 @@ public class CustomerService implements ICustomerService {
     public int getNumOfCustomer() {
         return customerDAL.getNumOfCustomer();
     }
+
+    @Override
+    public int findId(String name) {
+        return customerDAL.findId(name);
+    }
 }
