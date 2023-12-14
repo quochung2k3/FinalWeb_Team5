@@ -296,6 +296,11 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
         }
     }
 
+    @Override
+    public void inserttoCart(String username, String masp, int Soluong) {
+
+    }
+
     public void insertviewed(String username, String masp){
         String sql = "DECLARE @count int SET @count = (SELECT COUNT(*) FROM DaXem WHERE username = ? AND masp = ?) IF @count = 0 INSERT INTO DaXem VALUES (?,?)";
         try {
