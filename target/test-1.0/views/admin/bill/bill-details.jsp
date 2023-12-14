@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ include file="/common/taglib.jsp"%>
+         pageEncoding="UTF-8" %>
+<%@ include file="/common/taglib.jsp" %>
 <style>
     th {
         width: 33.33%;
@@ -41,31 +41,35 @@
                     <tr>
                         <th scope="col">Product Code</th>
                         <th scope="col">Product Name</th>
+                        <th scope="col">Quantity</th>
                         <th scope="col">Cost</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var = "item" items = "${listBillDetails}">
-                    <tr>
-                        <td>${item.maSP}</td>
-                        <td>${item.tenSP}</td>
-                        <td><i class="fas fa-dollar-sign"></i>${item.gia}</td>
-                    </tr>
-                        <c:set var="totalPrice" value="${(totalPrice ne null) ? totalPrice + item.gia : item.gia}" />
-                        <c:set var="percentDecrease" value="${item.phanTramGiam}" />
+                    <c:forEach var="item" items="${listBillDetails}">
+                        <tr>
+                            <td>${item.maSp}</td>
+                            <td>${item.tenSP}</td>
+                            <td>${item.soLuong}</td>
+                            <td><i class="fas fa-dollar-sign"></i>${item.gia*item.soLuong}</td>
+                        </tr>
+                        <c:set var="totalPrice"
+                               value="${(totalPrice ne null) ? totalPrice + item.gia * item.soLuong : item.gia*item.soLuong}"/>
+                        <c:set var="percentDecrease" value="${item.phanTramGiam}"/>
                     </c:forEach>
                     </tbody>
                 </table>
             </div>
-            <c:set var="discount" value="${totalPrice*percentDecrease/100}" />
-            <c:set var="total" value="${totalPrice-discount}" />
+            <c:set var="discount" value="${totalPrice*percentDecrease/100}"/>
+            <c:set var="total" value="${totalPrice-discount}"/>
             <div class="row">
                 <div class="col-xl-8">
                     <ul class="list-unstyled float-end me-0">
-                        <li><span class="me-3 float-start">Total Amount:</span><i class="fas fa-dollar-sign"></i>${totalPrice}</li>
-                        <li> <span class="me-5">Discount:</span><i class="fas fa-dollar-sign"></i>${discount}</li>
-<%--                        <li><span class="float-start" style="margin-right: 35px;">Shippment: </span><i--%>
-<%--                                class="fas fa-dollar-sign"></i> 500,00</li>--%>
+                        <li><span class="me-3 float-start">Total Amount:</span><i
+                                class="fas fa-dollar-sign"></i>${totalPrice}</li>
+                        <li><span class="me-5">Discount:</span><i class="fas fa-dollar-sign"></i>${discount}</li>
+                        <%--                        <li><span class="float-start" style="margin-right: 35px;">Shippment: </span><i--%>
+                        <%--                                class="fas fa-dollar-sign"></i> 500,00</li>--%>
                     </ul>
                 </div>
             </div>

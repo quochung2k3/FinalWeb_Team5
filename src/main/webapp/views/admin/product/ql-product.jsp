@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ include file="/common/taglib.jsp"%>
+         pageEncoding="UTF-8" %>
+<%@ include file="/common/taglib.jsp" %>
 <head>
     <title>Title</title>
 </head>
@@ -14,41 +14,54 @@
                         <h2>Product <b>Details</b></h2>
                     </div>
                     <div class="col-sm-8">
-                        <a href="<c:url value="/admin-product-add"/>" class="btn btn-primary"><span>Add Product</span></a>
+                        <a href="<c:url value="/admin-product-add"/>"
+                           class="btn btn-primary"><span>Add Product</span></a>
                         <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>
                     </div>
                 </div>
             </div>
             <div class="table-filter">
                 <div class="row">
-                    <div class="col-sm-3">
-                        <div class="show-entries">
-                            <span>Show</span>
-                            <select class="form-control">
-                                <option>5</option>
-                                <option>10</option>
-                                <option>15</option>
-                                <option>20</option>
-                            </select>
-                            <span>entries</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-9">
-                        <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                        <div class="filter-group">
-                            <label>SĐT</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="filter-group">
-                            <label>Tổng tiền đã mua</label>
-                            <select class="form-control">
-                                <option>ALL</option>
-                                <option>Dưới 1 triệu</option>
-                                <option>1 triệu - 3 triệu</option>
-                                <option>Trên 3 triệu</option>
-                            </select>
-                        </div>
-                        <span class="filter-icon"><i class="fa fa-filter"></i></span>
+                    <div style="width: 100%;" class="col-sm-12">
+                        <form action="admin-ql-product" method="get">
+                            <button type="submit" class="btn btn-primary">RESET</button>
+                        </form>
+                        <form id="searchForm" action="admin-product-search" method="get">
+                            <button type="button" class="btn btn-primary" onclick="searchAndUpdateTable()"><i
+                                    class="fa fa-search"></i></button>
+                            <div class="filter-group">
+                                <label>Chi nhánh</label>
+                                <select name="maChiNhanh" class="form-control">
+                                    <option>ALL</option>
+                                    <option>CN01</option>
+                                    <option>CN02</option>
+                                    <option>CN03</option>
+                                    <option>CN04</option>
+                                    <option>CN05</option>
+                                </select>
+                                <c:set var="maChiNhanh" value="${param.maChiNhanh}"/>
+                            </div>
+                            <div class="filter-group">
+                                <label>Trạng thái</label>
+                                <select name="status" class="form-control">
+                                    <option>ALL</option>
+                                    <option>Còn hàng</option>
+                                    <option>Hết hàng</option>
+                                </select>
+                                <c:set var="status" value="${param.status}"/>
+                            </div>
+                            <div class="filter-group">
+                                <label>Mã sản phẩm</label>
+                                <input style="width: 150px;" name="maSP" type="text" class="form-control">
+                                <c:set var="maSP" value="${param.maSP}"/>
+                            </div>
+                            <div class="filter-group">
+                                <label>Mã loại phẩm</label>
+                                <input style="width: 150px;" name="maLoaiSP" type="text" class="form-control">
+                                <c:set var="maLoaiSP" value="${param.maLoaiSP}"/>
+                            </div>
+                            <span class="filter-icon"><i class="fa fa-filter"></i></span>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -64,10 +77,10 @@
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tbody>
-                <c:forEach var = "item" items = "${listProduct}">
+                <tbody id="tableBody">
+                <c:forEach var="item" items="${listProduct}">
                     <tr>
-                        <td>${item.maSP}</td>
+                        <td>${item.maSp}</td>
                             <%--                            <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar">${item.userName}</a></td>--%>
                         <td>${item.tenSP}</td>
                         <td>${item.maLoaiSP}</td>
@@ -79,25 +92,43 @@
                                             justify-content: space-between;
                                             align-items: center;
                                         ">
-                            <a href="admin-product-update?maSP=${item.maSP}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                            <a href="admin-product-delete?maSP=${item.maSP}" class="delete trigger-btn" title="Delete" data-item-id="${item.maSP}" onclick="openModal(event)"><i class="material-icons">&#xE5C9;</i></a>
+                            <a href="admin-product-update?maSP=${item.maSp}" class="settings" title="Settings"
+                               data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+                            <a href="admin-product-delete?maSP=${item.maSp}" class="delete trigger-btn" title="Delete"
+                               data-item-id="${item.maSp}" onclick="openModal(event)"><i
+                                    class="material-icons">&#xE5C9;</i></a>
                         </td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
-            <div class="clearfix">
-                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+            <div class="clearfix" id="partialReloadDiv">
+                <div class="hint-text">Showing <b>${num2}</b> out of <b>${numOfAccount}</b> entries</div>
                 <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Previous</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">6</a></li>
-                    <li class="page-item"><a href="#" class="page-link">7</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                    <c:choose>
+                        <c:when test="${not empty maChiNhanh or not empty status or not empty maSP or not empty maLoaiSP}">
+                            <li class="page-item"><a id="linkPagging${1}" class="page-link active"
+                                                     onclick="searchAndUpdateTableByPaging(event, 1)"
+                                                     href="admin-product-search?index=1&maChiNhanh=${param.maChiNhanh}&status=${param.status}&maSP=${param.maSP}&maLoaiSP=${param.maLoaiSP}" ${index==1 ? "style=\"color: red;\"" : ""}>1</a>
+                            </li>
+                            <c:forEach begin="2" end="${numpage}" var="i">
+                                <li class="page-item"><a id="linkPagging${i}" class="page-link"
+                                                         onclick="searchAndUpdateTableByPaging(event, ${i})"
+                                                         href="admin-product-search?index=${i}&maChiNhanh=${param.maChiNhanh}&status=${param.status}&maSP=${param.maSP}&maLoaiSP=${param.maLoaiSP}" ${index==i ? "style=\"color: red;\"" : ""}>${i}</a>
+                                </li>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item"><a id="linkPagging${1}" class="page-link active"
+                                                     onclick="searchAndUpdateTableByPaging(event, 1)"
+                                                     href="admin-ql-product?index=1">1</a></li>
+                            <c:forEach begin="2" end="${numpage}" var="i">
+                                <li class="page-item"><a id="linkPagging${i}" class="page-link"
+                                                         onclick="searchAndUpdateTableByPaging(event, ${i})"
+                                                         href="admin-ql-product?index=${i}">${i}</a></li>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
                 </ul>
             </div>
         </div>
@@ -115,8 +146,12 @@
             <div class="modal-body text-center">
                 <h4>Warning!</h4>
                 <p>Are you sure about this action?</p>
-                <button type="button" style="background-color: red" class="btn btn-success" data-dismiss="modal">Cancel</button>
-                <button type="button" style="background-color: #5ede5e" class="btn btn-success" onclick="confirmAction(currentItemId)">Yes</button>
+                <button type="button" style="background-color: red" class="btn btn-success" data-dismiss="modal">
+                    Cancel
+                </button>
+                <button type="button" style="background-color: #5ede5e" class="btn btn-success"
+                        onclick="confirmAction(currentItemId)">Yes
+                </button>
             </div>
         </div>
     </div>
@@ -131,15 +166,50 @@
         // Hiển thị modal
         $('#myModal').modal('show');
     }
+
     function confirmAction(itemId) {
         // Chuyển hướng đến URL mong muốn
-        window.location.href = "admin-product-delete?maSP="+itemId;
+        window.location.href = "admin-product-delete?maSP=" + itemId;
     }
 </script>
 <script>
     if ("${note}" != "") {
         alert("${note}");
-        ${node} = "";
+        ${node}
+        = "";
+    }
+</script>
+<script>
+    function searchAndUpdateTable() {
+        $.ajax({
+            url: $('#searchForm').attr('action'), // Use the form action URL
+            type: 'GET',
+            data: $('#searchForm').serialize(), // Serialize the form data
+            dataType: 'html',
+            success: function (data) {
+                $('#tableBody').html($(data).find('#tableBody').html());
+                $('#partialReloadDiv').html($(data).find('#partialReloadDiv').html());
+            },
+        });
+    }
+</script>
+
+<script>
+    function searchAndUpdateTableByPaging(event, i) {
+        var url = "#linkPagging" + i.toString();
+        $('a.page-link').removeClass('active');
+        // Thêm lớp 'active' vào thẻ a được click
+        $(url).addClass('active');
+        event.preventDefault();
+        $.ajax({
+            url: $(url).attr('href'), // Use the form action URL
+            type: 'GET',
+            dataType: 'html',
+            success: function (data) {
+                $('#tableBody').html($(data).find('#tableBody').html());
+                $('.hint-text').html($(data).find('.hint-text').html());
+            },
+        });
     }
 </script>
 </body>

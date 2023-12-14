@@ -1,7 +1,7 @@
 package hcmute.team5.model;
 
 public class ProductModel extends PayModel {
-    private String maSp;
+    private int maSp;
     private String tenSp;
     private String maLoaisp;
     private String image;
@@ -9,12 +9,13 @@ public class ProductModel extends PayModel {
     private int gia;
     private String trangThai;
     private String desCription;
-    private String maChiNhanh;
-    public String getMaSP() {
+    private int maChiNhanh;
+
+    public int getMaSp() {
         return maSp;
     }
 
-    public void setMaSP(String maSp) {
+    public void setMaSp(int maSp) {
         this.maSp = maSp;
     }
 
@@ -26,11 +27,11 @@ public class ProductModel extends PayModel {
         this.tenSp = tenSp;
     }
 
-    public String getMaChiNhanh() {
+    public int getMaChiNhanh() {
         return maChiNhanh;
     }
 
-    public void setMaChiNhanh(String maChiNhanh) {
+    public void setMaChiNhanh(int maChiNhanh) {
         this.maChiNhanh = maChiNhanh;
     }
 
@@ -50,8 +51,14 @@ public class ProductModel extends PayModel {
         this.gia = gia;
     }
 
-    public String getMaNcc(){return maNcc;}
-    public void setMaNcc(String maNcc){this.maNcc = maNcc;}
+    public String getMaNcc() {
+        return maNcc;
+    }
+
+    public void setMaNcc(String maNcc) {
+        this.maNcc = maNcc;
+    }
+
     public String getTrangThai() {
         return trangThai;
     }
@@ -67,9 +74,11 @@ public class ProductModel extends PayModel {
     public void setImage(String image) {
         this.image = image;
     }
+
     public String getDescription() {
         return desCription;
     }
+
     public void setDescription(String desCription) {
         this.desCription = desCription;
     }

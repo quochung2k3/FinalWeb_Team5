@@ -6,11 +6,17 @@ import java.util.List;
 
 public interface IProductDAO {
     public List<ProductModel> getListProDuctByProductType(String maLoaiSP, String maSP);
-    public List<ProductModel> getListProductByNCC (String mancc, String maSP);
-    public  ProductModel getDetailProduct(String maSP);
+
+    public List<ProductModel> getListProductByNCC(String mancc, String maSP);
+
+    public ProductModel getDetailProduct(String maSP);
+
     public List<ProductTypeModel> getAllProductType();
+
     public List<ProductModel> getAllProduct();
+
     public List<ProductModel> getListProDuctViewed(String maSP, String username);
+
     public void insertviewed(String username, String masp);
     public List<SupplierModel> getAllSuppliers();
     List<ProductModel> findAll();
@@ -20,7 +26,16 @@ public interface IProductDAO {
     public List<ProductModel> getAllProDuctByProductType(String maLoaiSP);
     ProductModel findOneByProduct(String maSP);
     void insert(ProductModel product);
+
     void deleteProduct(ProductModel product);
+
     void insertPro(ProductModel product);
 
+    List<ProductModel> findAllByProperties(int maChiNhanh, String status, int maSP, int maLoaiSP, int pageSize, int index);
+
+    int getNumOfProduct();
+
+    ProductModel findExistProduct(String tenSP, int maChiNhanh);
+
+    void inserttoCart(String username, String masp, int Soluong);
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ include file="/common/taglib.jsp"%>
+         pageEncoding="UTF-8" %>
+<%@ include file="/common/taglib.jsp" %>
 <section class="h-100 h-custom" style="background-color: #eee;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -22,13 +22,13 @@
                                     </div>
                                     <div>
                                         <p class="mb-0"><span class="text-muted">Sort by:</span>
-                                            <a href="#!"  class="text-body">price
+                                            <a href="#!" class="text-body">price
                                                 <i class="fas fa-angle-down mt-1"></i>
                                             </a>
                                         </p>
                                     </div>
                                 </div>
-                                <c:forEach var = "item" items = "${listCart}">
+                                <c:forEach var="item" items="${listCart}">
                                     <div class="card mb-3">
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between">
@@ -36,7 +36,8 @@
                                                     <div>
                                                         <img
                                                                 src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                                                class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                                class="img-fluid rounded-3" alt="Shopping item"
+                                                                style="width: 65px;">
                                                     </div>
                                                     <div class="ms-3">
                                                         <h5>${item.tenSP}</h5>
@@ -49,9 +50,11 @@
                                                     </div>
                                                     <div style="width: 80px;">
                                                         <h5 class="mb-0">${item.soLuong*item.gia}</h5>
-                                                        <c:set var="totalPrice" value="${(totalPrice ne null) ? totalPrice + item.soLuong*item.gia : item.soLuong*item.gia}" />
+                                                        <c:set var="totalPrice"
+                                                               value="${(totalPrice ne null) ? totalPrice + item.soLuong*item.gia : item.soLuong*item.gia}"/>
                                                     </div>
-                                                    <a href="user-delete-cart?maSP=${item.tenSP}" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                                                    <a href="user-delete-cart?maSP=${item.tenSP}"
+                                                       style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -75,15 +78,17 @@
                                                 class="fab fa-cc-visa fa-2x me-2"></i></a>
                                         <a href="#!" type="submit" class="text-white"><i
                                                 class="fab fa-cc-amex fa-2x me-2"></i></a>
-                                        <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
+                                        <a href="#!" type="submit" class="text-white"><i
+                                                class="fab fa-cc-paypal fa-2x"></i></a>
 
                                         <form class="mt-4">
                                             <div class="form-outline form-white mb-4">
                                                 <span style="padding-left: 5px;">Cardholder's Name</span>
-                                                <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
+                                                <input type="text" id="typeName" class="form-control form-control-lg"
+                                                       siez="17"
                                                        placeholder="Cardholder's Name"
                                                        style="border-radius: 10px;border: 1px solid #ccc;font-size: 14px;height: 40px;"/>
-<%--                                                <label class="form-label" for="typeName">Cardholder's Name</label>--%>
+                                                <%--                                                <label class="form-label" for="typeName">Cardholder's Name</label>--%>
                                             </div>
 
                                             <div class="form-outline form-white mb-4">
@@ -91,26 +96,30 @@
                                                 <input type="text" id="" class="form-control form-control-lg" siez="17"
                                                        placeholder="1234 5678 9012 3457" minlength="19" maxlength="19"
                                                        style="border-radius: 10px;border: 1px solid #ccc;font-size: 14px;height: 40px;"/>
-<%--                                                <label class="form-label" for="typeText">Card Number</label>--%>
+                                                <%--                                                <label class="form-label" for="typeText">Card Number</label>--%>
                                             </div>
 
                                             <div class="row mb-4">
                                                 <div class="col-md-6">
                                                     <div class="form-outline form-white">
                                                         <span style="padding-left: 5px;">Expiration</span>
-                                                        <input type="text" id="typeExp" class="form-control form-control-lg"
-                                                               placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7"
-                                                        style="border-radius: 10px;border: 1px solid #ccc;font-size: 14px;height: 40px;"/>
-<%--                                                        <label class="form-label" for="typeExp">Expiration</label>--%>
+                                                        <input type="text" id="typeExp"
+                                                               class="form-control form-control-lg"
+                                                               placeholder="MM/YYYY" size="7" id="exp" minlength="7"
+                                                               maxlength="7"
+                                                               style="border-radius: 10px;border: 1px solid #ccc;font-size: 14px;height: 40px;"/>
+                                                        <%--                                                        <label class="form-label" for="typeExp">Expiration</label>--%>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-outline form-white">
                                                         <span style="padding-left: 5px;">Cvv</span>
-                                                        <input type="password" id="typeText" class="form-control form-control-lg"
-                                                               placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3"
+                                                        <input type="password" id="typeText"
+                                                               class="form-control form-control-lg"
+                                                               placeholder="&#9679;&#9679;&#9679;" size="1"
+                                                               minlength="3" maxlength="3"
                                                                style="border-radius: 10px;border: 1px solid #ccc;font-size: 14px;height: 40px;"/>
-<%--                                                        <label class="form-label" for="typeText">Cvv</label>--%>
+                                                        <%--                                                        <label class="form-label" for="typeText">Cvv</label>--%>
                                                     </div>
                                                 </div>
                                             </div>
@@ -136,7 +145,8 @@
                                             <p class="mb-2">${fn:substringBefore(total, '.')}$</p>
                                         </div>
 
-                                        <button style="padding: 0px 32px;font-size: 14px;height: 50px;" type="button" class="btn btn-info btn-block btn-lg">
+                                        <button style="padding: 0px 32px;font-size: 14px;height: 50px;" type="button"
+                                                class="btn btn-info btn-block btn-lg">
                                             <div class="d-flex justify-content-between">
                                                 <span>$4818.00</span>
                                                 <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>

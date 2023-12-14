@@ -6,7 +6,13 @@ import hcmute.team5.model.BillModel;
 import java.util.List;
 
 public interface IBillDAO {
-    List<BillModel> findAll();
-    List<BillDetailsModel> findAllById(String maHD);
-    List<BillModel> findAllByProperties(String maChiNhanh, String maHD);
+    List<BillModel> findAllBillByMaKH(int makh);
+
+    List<BillModel> findAll(int pageSize, int index);
+
+    List<BillDetailsModel> findAllById(int maHD);
+
+    List<BillModel> findAllByProperties(int maChiNhanh, int maHD, int pageSize, int index);
+
+    int getNumOfBill();
 }

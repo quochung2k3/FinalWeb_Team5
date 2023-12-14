@@ -1,6 +1,5 @@
 package hcmute.team5.service.impl;
 
-
 import hcmute.team5.DAO.IProductDAO;
 import hcmute.team5.DAO.impl.ProductDAO;
 import hcmute.team5.model.ProductModel;
@@ -14,7 +13,9 @@ public class ProductDetailService implements IProductDetailService {
     IProductDAO productDAL = new ProductDAO();
 
     @Override
-    public ProductModel getDetailProduct(String maSP) {return productDAL.getDetailProduct(maSP);}
+    public ProductModel getDetailProduct(String maSP) {
+        return productDAL.getDetailProduct(maSP);
+    }
 
     public List<ProductModel> getListProDuctByProductType(String maLoaiSP, String maSP) {return productDAL.getListProDuctByProductType(maLoaiSP,maSP);}
     public List<ProductModel> getAllProduct(){return productDAL.getAllProduct();}

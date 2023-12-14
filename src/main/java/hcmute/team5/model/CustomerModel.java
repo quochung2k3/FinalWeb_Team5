@@ -1,19 +1,26 @@
 package hcmute.team5.model;
 
-import java.sql.Timestamp;
-
 public class CustomerModel {
-    private String maKh;
+    private int maKh;
     private String ten;
     private String ngaySinh;
     private String sdt;
+    private String username;
     private float tongTienDaMua;
 
-    public String getMaKh() {
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getMaKh() {
         return maKh;
     }
 
-    public void setMaKh(String maKh) {
+    public void setMaKh(int maKh) {
         this.maKh = maKh;
     }
 

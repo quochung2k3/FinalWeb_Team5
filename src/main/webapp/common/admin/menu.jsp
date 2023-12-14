@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ include file="/common/taglib.jsp"%>
+         pageEncoding="UTF-8" %>
+<%@ include file="/common/taglib.jsp" %>
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -23,7 +23,7 @@
     <%--    Quản lý hàng hóa--%>
     <li class="nav-item">
         <a class="nav-link collapsed" href="<c:url value="/admin-ql-product"/>">
-            <i style="font-size: 20px;" class="fa-solid fa-person"></i>
+            <i style="font-size: 20px;" class="fa-solid fa-wand-magic-sparkles"></i>
             <span>Quản lý hàng hóa</span>
         </a>
     </li>
@@ -44,7 +44,7 @@
         </div>
     </li>
 
-<%--    Quản lý khách hàng--%>
+    <%--    Quản lý khách hàng--%>
     <li class="nav-item">
         <a class="nav-link collapsed" href="<c:url value="/admin-ql-customer"/>">
             <i style="font-size: 20px;" class="fa-solid fa-person"></i>
@@ -65,6 +65,12 @@
         <a class="nav-link collapsed" href="<c:url value="/admin-ql-account"/>">
             <i style="font-size: 20px;" class="fa-solid fa-users"></i>
             <span>Quản lý tài khoản</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="<c:url value="/admin-ql-voucher"/>">
+            <i style="font-size: 20px;" class="fa-solid fa-ticket"></i>
+            <span>Quản lý voucher</span>
         </a>
     </li>
 
