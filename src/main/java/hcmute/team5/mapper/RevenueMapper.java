@@ -11,9 +11,11 @@ public class RevenueMapper implements RowMapper<RevenueModel>{
     public RevenueModel mapRow(ResultSet rs) {
         try {
             RevenueModel revenue = new RevenueModel();
-            revenue.setMaChiNhanh(rs.getInt("maChiNhanh"));
-            revenue.setDiaChi(rs.getString("diachi"));
-            revenue.setTongTien(rs.getFloat("tongTien"));
+            revenue.setMaHD(rs.getString("mahd"));
+            revenue.setMaChiNhanh(rs.getInt("machinhanh"));
+            revenue.setNgayIn(rs.getTimestamp("ngayin"));
+            revenue.setMaKH(rs.getString("makh"));
+            revenue.setTongTien(rs.getFloat("tongtien"));
             return revenue;
         }
         catch (SQLException e) {

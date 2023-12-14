@@ -15,33 +15,65 @@
                     </div>
                 </div>
             </div>
+            <div class="table-filter">
+                <div class="row">
+                    <div style="width: 100%;" class="col-sm-12">
+                        <form action="admin-ql-revenue" method="get">
+                            <button type="submit" class="btn btn-primary">RESET</button>
+                        </form>
+                        <form id="searchForm" action="admin-revenue-search" method="get">
+                            <button type="button" class="btn btn-primary" onclick="searchAndUpdateTable()"><i class="fa fa-search"></i></button>
+                            <div class="filter-group">
+                                <label>Chi nhánh</label>
+                                <select name="maChiNhanh" class="form-control">
+                                    <option>ALL</option>
+                                    <option>CN01</option>
+                                    <option>CN02</option>
+                                    <option>CN03</option>
+                                    <option>CN04</option>
+                                    <option>CN05</option>
+                                </select>
+                                <c:set var="maChiNhanh" value="${param.maChiNhanh}" />
+                            </div>
+                            <div class="filter-group">
+                                <label>Ngày bắt đầu</label>
+                                <input style="width: 150px;" name="ngayIn" type="date" class="form-control">
+                                <c:set var="ngayIn" value="${param.ngayIn}" />
+                            </div>
+                            <div class="filter-group">
+                                <label>Ngày kết thúc</label>
+                                <input style="width: 150px;" name="ngayIn" type="date" class="form-control">
+                                <c:set var="ngayIn" value="${param.ngayIn}" />
+                            </div>
+                            <span class="filter-icon"><i class="fa fa-filter"></i></span>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
-                    <th>Mã chi nhánh</th>
-                    <th>Địa chỉ</th>
-                    <th>Tổng doanh thu</th>
-                    <th>Action</th>
+                    <th>Mã hóa đơn</th>
+                    <th>Ngày in</th>
+                    <th>Tổng tiền hóa đơn</th>
                 </tr>
                 </thead>
-                <tbody>
-                <c:forEach var = "item" items = "${listRevenue}">
+                <tbody id="tableBody">
+                <c:forEach var = "item" items = "${listBill}">
                     <tr>
-                        <td>${item.maChiNhanh}</td>
+                        <td>${item.maHD}</td>
                             <%--                            <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar">${item.userName}</a></td>--%>
-                        <td>${item.diaChi}</td>
+                        <td>${item.ngayIn}</td>
                         <td>${item.tongTien}</td>
-                        <td style="
-                                            display: flex;
-                                            justify-content: space-between;
-                                            align-items: center;
-                                        ">
-                            <a href="admin-v-revenue?machinhanh=${item.maChiNhanh}" class="settings" data-toggle="tooltip">Xem chi tiết</a>
-                        </td>
                     </tr>
+                    <c:set var="totalPrice" value="${(totalPrice ne null) ? totalPrice + item.tongTien : item.tongTien}" />
                 </c:forEach>
                 </tbody>
             </table>
+            <div style="margin-top: 36px;" class="filter-group float-lg-right">
+                <label style="color: red; font-weight: 700; font-size: 18px;">Tổng doanh thu:</label>
+                <input value="${totalPrice}" style="width: 150px;" name="ngayIn" type="text" class="form-control" disabled>
+            </div>
         </div>
     </div>
 </div>
