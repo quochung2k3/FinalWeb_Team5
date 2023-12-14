@@ -150,7 +150,6 @@
                         <div class="header__cart-wrap">
                             <i class="header__cart-icon fa-solid fa-cart-shopping"></i>
                             <span class="header__cart-notice">${length}</span>
-                            <!-- No cart: header__cart-list--no-cart -->
                         </div>
                     </a>
                 </div>

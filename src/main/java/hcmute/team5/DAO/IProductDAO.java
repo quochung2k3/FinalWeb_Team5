@@ -7,7 +7,7 @@ import java.util.List;
 public interface IProductDAO {
     public List<ProductModel> getListProDuctByProductType(String maLoaiSP, String maSP);
     public List<ProductModel> getListProductByNCC (String mancc, String maSP);
-    public  ProductModel getDetailProduct(String maSP);
+    public  SupplierModel getDetailProduct(String maSP);
     public List<ProductTypeModel> getAllProductType();
     public List<ProductModel> getListProDuctViewed(String maSP, String username);
     public void insertviewed(String username, String masp);

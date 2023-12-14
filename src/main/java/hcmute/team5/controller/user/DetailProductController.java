@@ -3,6 +3,7 @@ package hcmute.team5.controller.user;
 import hcmute.team5.model.AccountModel;
 import hcmute.team5.model.CartModel;
 import hcmute.team5.model.ProductModel;
+import hcmute.team5.model.SupplierModel;
 import hcmute.team5.service.ICartService;
 import hcmute.team5.service.IProductDetailService;
 import hcmute.team5.service.impl.CartService;
@@ -45,8 +46,12 @@ public class DetailProductController extends HttpServlet {
     }
     private void getDetailProduct(HttpServletRequest req, HttpServletResponse resp, AccountModel account) throws ServletException, IOException {
         String maSP = req.getParameter("pid");
-        ProductModel p = service.getDetailProduct(maSP);
+        SupplierModel p = service.getDetailProduct(maSP);
         req.setAttribute("detail", p);
+
+        List<CartModel> list = service_cart.findAll(account.getUserName());
+        int length = list.size();
+        req.setAttribute("length", length);
 
         String maLoaiSP = p.getMaLoaiSP();
         List<ProductModel> p_similar = service.getListProDuctByProductType(maLoaiSP, maSP);

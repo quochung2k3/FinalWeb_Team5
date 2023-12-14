@@ -7,7 +7,7 @@ import hcmute.team5.model.SupplierModel;
 import java.util.List;
 
 public interface IProductDetailService {
-    ProductModel getDetailProduct(String maSP);
+    SupplierModel getDetailProduct(String maSP);
 
     List<ProductModel> getListProductByNCC(String mancc, String maSP);
 

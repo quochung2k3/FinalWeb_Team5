@@ -55,8 +55,8 @@
                     <dt class="col-3" style="font-size: 2rem">Mã sản phẩm:</dt>
                     <dd class="col-9" style="font-size: 2rem">${detail.getMaSp()}</dd>
 
-                    <dt class="col-3" style="font-size: 2rem">Mã nhà cung cấp:</dt>
-                    <dd class="col-9" style="font-size: 2rem">${detail.getMaNcc()}</dd>
+                    <dt class="col-3" style="font-size: 2rem">Nhà cung cấp:</dt>
+                    <dd class="col-9" style="font-size: 2rem">${detail.getTenNcc()}</dd>
 
                     <dt class="col-3" style="font-size: 2rem">Tình trạng:</dt>
                     <dd class="col-9" style="font-size: 2rem">${detail.getTrangThai()}</dd>

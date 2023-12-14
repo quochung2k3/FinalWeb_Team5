@@ -26,6 +26,7 @@ public class LoadMoreController extends HttpServlet {
     }
     private void getTop3(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int amount = Integer.parseInt(req.getParameter("exits"));
+        resp.setContentType("text/html; charset=UTF-8");
         List<ProductModel> list = service.getNext3Product(amount);
         PrintWriter out = resp.getWriter();
         for(ProductModel o: list){

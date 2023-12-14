@@ -1,6 +1,6 @@
 package hcmute.team5.model;
 
-public class SupplierModel {
+public class SupplierModel extends ProductModel {
     private String maNcc;
     private String tenNcc;
 
