@@ -3,7 +3,7 @@ package hcmute.team5.model;
 public class PayModel extends VoucherModel {
     private String MaNV;
     private String MaKH;
-    private String MaVC;
+    private int MaVC;
     private String MaHD;
     private String TrangThai;
 
@@ -23,11 +23,13 @@ public class PayModel extends VoucherModel {
         MaKH = maKH;
     }
 
-    public String getMaVC() {
+    @Override
+    public int getMaVC() {
         return MaVC;
     }
 
-    public void setMaVC(String maVC) {
+    @Override
+    public void setMaVC(int maVC) {
         MaVC = maVC;
     }
 

@@ -21,19 +21,19 @@
             </div>
             <div class="table-filter">
                 <div class="row">
-                    <div class="col-sm-3">
-                        <div class="show-entries">
-                            <span>Show</span>
-                            <select class="form-control">
-                                <option>5</option>
-                                <option>10</option>
-                                <option>15</option>
-                                <option>20</option>
-                            </select>
-                            <span>entries</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-9">
+<%--                    <div class="col-sm-3">--%>
+<%--                        <div class="show-entries">--%>
+<%--                            <span>Show</span>--%>
+<%--                            <select class="form-control">--%>
+<%--                                <option>5</option>--%>
+<%--                                <option>10</option>--%>
+<%--                                <option>15</option>--%>
+<%--                                <option>20</option>--%>
+<%--                            </select>--%>
+<%--                            <span>entries</span>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+                    <div class="col-sm-12">
                         <form action="admin-ql-customer" method="get">
                             <button type="submit" class="btn btn-primary">RESET</button>
                         </form>

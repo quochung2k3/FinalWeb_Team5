@@ -15,7 +15,7 @@ import java.util.List;
 public class ProductController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     IProductService service = new ProductService();
-    int pageSize = 2;
+    int pageSize = 5;
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURI();
         if (url.contains("ql-product")) {
