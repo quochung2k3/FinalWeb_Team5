@@ -104,7 +104,7 @@
             <!-- Header with search -->
             <div class="header-with-search">
                 <div class="header__logo">
-                    <img src="<c:url value='/template/user/img/iconShop.png'/>" alt="" class="header__logo-img">
+                    <a href="user-home"><img src="<c:url value='/template/user/img/iconShop.png'/>" alt="" class="header__logo-img"></a>
                 </div>
 
                 <div class="header__search">
