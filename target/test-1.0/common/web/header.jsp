@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ include file="/common/taglib.jsp"%>
+         pageEncoding="UTF-8" %>
+<%@ include file="/common/taglib.jsp" %>
 <div class="app">
     <header class="header">
         <div class="grid">
@@ -12,10 +12,12 @@
                             <img src="<c:url value='/template/web/img/QR.png'/>" alt="qr_code" class="header__QR-img">
                             <div class="header__QR-apps">
                                 <a href="" class="header__QR-link">
-                                    <img src="<c:url value='/template/web/img/appStore.png'/>" alt="" class="header__QR-download-img">
+                                    <img src="<c:url value='/template/web/img/appStore.png'/>" alt=""
+                                         class="header__QR-download-img">
                                 </a>
                                 <a href="" class="header__QR-link">
-                                    <img src="<c:url value='/template/web/img/ggPlay.png'/>" alt="" class="header__QR-download-img">
+                                    <img src="<c:url value='/template/web/img/ggPlay.png'/>" alt=""
+                                         class="header__QR-download-img">
                                 </a>
 
                             </div>
@@ -47,7 +49,8 @@
                             <ul class="header__notify-list">
                                 <li class="header__notify-items header__notify-items--viewed">
                                     <a href="" class="header__notify-link">
-                                        <img src="<c:url value='/template/web/img/myPham.webp'/>" alt="" class="header__notify-img">
+                                        <img src="<c:url value='/template/web/img/myPham.webp'/>" alt=""
+                                             class="header__notify-img">
                                         <div class="header__notify-info">
                                             <span class="header__notify-name">Mỹ phẩm Ohui chính hãng</span>
                                             <span class="header__notify-description">Mô tả mỹ phẩm</span>
@@ -57,7 +60,8 @@
 
                                 <li class="header__notify-items header__notify-items--viewed">
                                     <a href="" class="header__notify-link">
-                                        <img src="<c:url value='/template/web/img/myPham.webp'/>" alt="" class="header__notify-img">
+                                        <img src="<c:url value='/template/web/img/myPham.webp'/>" alt=""
+                                             class="header__notify-img">
                                         <div class="header__notify-info">
                                             <span class="header__notify-name">Mỹ phẩm Ohui chính hãng</span>
                                             <span class="header__notify-description">Mô tả mỹ phẩm</span>
@@ -67,7 +71,8 @@
 
                                 <li class="header__notify-items header__notify-items--viewed">
                                     <a href="" class="header__notify-link">
-                                        <img src="<c:url value='/template/web/img/myPham.webp'/>" alt="" class="header__notify-img">
+                                        <img src="<c:url value='/template/web/img/myPham.webp'/>" alt=""
+                                             class="header__notify-img">
                                         <div class="header__notify-info">
                                             <span class="header__notify-name">Mỹ phẩm Ohui chính hãng</span>
                                             <span class="header__notify-description">Mô tả mỹ phẩm</span>
@@ -86,7 +91,9 @@
                             Trợ giúp
                         </a>
                     </li>
-                    <li class="header__navbar-items header__navbar-items--strong header__navbar-items--separate js-modal__register">Đăng kí</li>
+                    <li class="header__navbar-items header__navbar-items--strong header__navbar-items--separate js-modal__register">
+                        Đăng kí
+                    </li>
                     <li class="header__navbar-items header__navbar-items--strong js-modal__login">Đăng nhập</li>
                 </ul>
             </div>
@@ -94,7 +101,8 @@
             <!-- Header with search -->
             <div class="header-with-search">
                 <div class="header__logo">
-                    <a href="<c:url value="/trang-chu"/>" style="display: block;width: 75%;"><img src="<c:url value='/template/web/img/iconShop.png'/>" alt="" class="header__logo-img"></a>
+                    <a href="<c:url value="/trang-chu"/>" style="display: block;width: 75%;"><img
+                            src="<c:url value='/template/web/img/iconShop.png'/>" alt="" class="header__logo-img"></a>
                 </div>
 
                 <div class="header__search">
@@ -111,7 +119,7 @@
                                     <a href="" class="header__search-history-link">Kem trị mụn</a>
                                 </li>
                                 <li class="header__search-history-items">
-                                    <a href="" class="header__search-history-link">Gel  tẩy lông</a>
+                                    <a href="" class="header__search-history-link">Gel tẩy lông</a>
                                 </li>
                             </ul>
                         </div>
@@ -161,7 +169,8 @@
                     </div>
                     <div class="auth-form__form">
                         <div class="auth-form__group">
-                            <input name="username" type="email" class="auth-form__input" placeholder="Email của bạn" required>
+                            <input name="username" type="email" class="auth-form__input" placeholder="Email của bạn"
+                                   required>
                         </div>
                         <div class="auth-form__group">
                             <input name="fullname" type="text" class="auth-form__input" placeholder="Họ tên" required>
@@ -170,10 +179,12 @@
                             <input name="sdt" type="text" class="auth-form__input" placeholder="Số điện thoại" required>
                         </div>
                         <div class="auth-form__group">
-                            <input name="password" type="password" class="auth-form__input" placeholder="Mật khẩu của bạn" required>
+                            <input name="password" type="password" class="auth-form__input"
+                                   placeholder="Mật khẩu của bạn" required>
                         </div>
                         <div class="auth-form__group">
-                            <input name="password" type="password" class="auth-form__input" placeholder="Nhập lại mật khẩu" required>
+                            <input name="password" type="password" class="auth-form__input"
+                                   placeholder="Nhập lại mật khẩu" required>
                         </div>
                     </div>
                     <div class="auth-form__aside">
@@ -210,16 +221,19 @@
                     </div>
                     <div class="auth-form__form">
                         <div class="auth-form__group">
-                            <input name="username" type="email" class="auth-form__input" placeholder="Email của bạn" required>
+                            <input name="username" type="email" class="auth-form__input" placeholder="Email của bạn"
+                                   required>
                         </div>
                         <div class="auth-form__group">
-                            <input name="password" type="password" class="auth-form__input" placeholder="Mật khẩu của bạn" required>
+                            <input name="password" type="password" class="auth-form__input"
+                                   placeholder="Mật khẩu của bạn" required>
                         </div>
                     </div>
 
                     <div class="auth-form__aside">
                         <div class="auth-form__help">
-                            <a href="<c:url value="/reset-pass"/>" class="auth-form__help-link auth-form__help-link-forgot">Quên mật khẩu</a>
+                            <a href="<c:url value="/reset-pass"/>"
+                               class="auth-form__help-link auth-form__help-link-forgot">Quên mật khẩu</a>
                             <span class="auth-form__help-separate"></span>
                             <a href="" class="auth-form__help-link">Cần trợ giúp?</a>
                         </div>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ include file="/common/taglib.jsp"%>
+         pageEncoding="UTF-8" %>
+<%@ include file="/common/taglib.jsp" %>
 <div class="app">
     <header class="header">
         <div class="grid">
@@ -10,13 +10,16 @@
                         <li class="header__navbar-items header__navbar-items--has-qr header__navbar-items--separate">
                             Vào cửa hàng trên ứng dụng ViVu Shop
                             <div style="z-index: 99" class="header__QR">
-                                <img src="<c:url value='/template/user/img/QR.png'/>" alt="qr_code" class="header__QR-img">
+                                <img src="<c:url value='/template/user/img/QR.png'/>" alt="qr_code"
+                                     class="header__QR-img">
                                 <div class="header__QR-apps">
                                     <a href="" class="header__QR-link">
-                                        <img src="<c:url value='/template/user/img/appStore.png'/>" alt="" class="header__QR-download-img">
+                                        <img src="<c:url value='/template/user/img/appStore.png'/>" alt=""
+                                             class="header__QR-download-img">
                                     </a>
                                     <a href="" class="header__QR-link">
-                                        <img src="<c:url value='/template/user/img/ggPlay.png'/>" alt="" class="header__QR-download-img">
+                                        <img src="<c:url value='/template/user/img/ggPlay.png'/>" alt=""
+                                             class="header__QR-download-img">
                                     </a>
 
                                 </div>
@@ -48,7 +51,8 @@
                                 <ul class="header__notify-list">
                                     <li class="header__notify-items header__notify-items--viewed">
                                         <a href="" class="header__notify-link">
-                                            <img src="<c:url value='/template/user/img/myPham.webp'/>" alt="" class="header__notify-img">
+                                            <img src="<c:url value='/template/user/img/myPham.webp'/>" alt=""
+                                                 class="header__notify-img">
                                             <div class="header__notify-info">
                                                 <span class="header__notify-name">Mỹ phẩm Ohui chính hãng</span>
                                                 <span class="header__notify-description">Mô tả mỹ phẩm</span>
@@ -58,7 +62,8 @@
 
                                     <li class="header__notify-items header__notify-items--viewed">
                                         <a href="" class="header__notify-link">
-                                            <img src="<c:url value='/template/user/img/myPham.webp'/>" alt="" class="header__notify-img">
+                                            <img src="<c:url value='/template/user/img/myPham.webp'/>" alt=""
+                                                 class="header__notify-img">
                                             <div class="header__notify-info">
                                                 <span class="header__notify-name">Mỹ phẩm Ohui chính hãng</span>
                                                 <span class="header__notify-description">Mô tả mỹ phẩm</span>
@@ -68,7 +73,8 @@
 
                                     <li class="header__notify-items header__notify-items--viewed">
                                         <a href="" class="header__notify-link">
-                                            <img src="<c:url value='/template/user/img/myPham.webp'/>" alt="" class="header__notify-img">
+                                            <img src="<c:url value='/template/user/img/myPham.webp'/>" alt=""
+                                                 class="header__notify-img">
                                             <div class="header__notify-info">
                                                 <span class="header__notify-name">Mỹ phẩm Ohui chính hãng</span>
                                                 <span class="header__notify-description">Mô tả mỹ phẩm</span>
@@ -88,7 +94,9 @@
                             </a>
                         </li>
                         <li class="header__navbar-items header__navbar-items--strong header__navbar-items--separate js-modal__register">${name}</li>
-                        <button style="background-color: #569cdd; border: none" type="submit" class="header__navbar-items header__navbar-items--strong js-modal__login">Đăng xuất</button>
+                        <button style="background-color: #569cdd; border: none" type="submit"
+                                class="header__navbar-items header__navbar-items--strong js-modal__login">Đăng xuất
+                        </button>
                     </ul>
                 </div>
             </form>
@@ -113,7 +121,7 @@
                                     <a href="" class="header__search-history-link">Kem trị mụn</a>
                                 </li>
                                 <li class="header__search-history-items">
-                                    <a href="" class="header__search-history-link">Gel  tẩy lông</a>
+                                    <a href="" class="header__search-history-link">Gel tẩy lông</a>
                                 </li>
                             </ul>
                         </div>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ include file="/common/taglib.jsp"%>
+         pageEncoding="UTF-8" %>
+<%@ include file="/common/taglib.jsp" %>
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -44,7 +44,7 @@
         </div>
     </li>
 
-<%--    Quản lý khách hàng--%>
+    <%--    Quản lý khách hàng--%>
     <li class="nav-item">
         <a class="nav-link collapsed" href="<c:url value="/admin-ql-customer"/>">
             <i style="font-size: 20px;" class="fa-solid fa-person"></i>

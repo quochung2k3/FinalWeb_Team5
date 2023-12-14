@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ include file="/common/taglib.jsp"%>
+         pageEncoding="UTF-8" %>
+<%@ include file="/common/taglib.jsp" %>
 <body>
 <section class="vh-100" style="background-color: #eee;">
     <div class="container h-100">
@@ -17,31 +17,39 @@
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Ma San Pham</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fa-solid fa-code fa-lg me-3 fa-fw"></i>
-                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="masp" value="${product.maSp}" name="masp" type="text" class="form-control" required disabled>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px"
+                                             class="form-outline flex-fill mb-0">
+                                            <input placeholder="masp" value="${product.maSp}" name="masp" type="text"
+                                                   class="form-control" required disabled>
                                             <input type="hidden" name="masp" value="${product.maSp}">
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Ten San Pham</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fa-solid fa-file-signature fa-lg me-3 fa-fw"></i>
-                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="tensp" value="${product.tenSP}" name="tensp" type="text" class="form-control" required>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px"
+                                             class="form-outline flex-fill mb-0">
+                                            <input placeholder="tensp" value="${product.tenSP}" name="tensp" type="text"
+                                                   class="form-control" required>
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Gia</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i style="font-size: 20px" class="fa-solid fa-money-bill-wave me-3 fa-fw"></i>
-                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="gia" value="${product.gia}" name="gia" type="text" id="form3Example4c" class="form-control" required>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px"
+                                             class="form-outline flex-fill mb-0">
+                                            <input placeholder="gia" value="${product.gia}" name="gia" type="text"
+                                                   id="form3Example4c" class="form-control" required>
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Trang Thai</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i style="font-size: 20px" class="fa-brands fa-product-hunt me-3 fa-fw"></i>
                                         <%--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>--%>
-                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input placeholder="trangthai" value="${product.trangThai}" name="trangthai" type="text" id="form3Example5c" class="form-control" required>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px"
+                                             class="form-outline flex-fill mb-0">
+                                            <input placeholder="trangthai" value="${product.trangThai}" name="trangthai"
+                                                   type="text" id="form3Example5c" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
@@ -64,7 +72,8 @@
 <script>
     if ("${note}" != "") {
         alert("${note}");
-        ${node} = "";
+        ${node}
+        = "";
     }
 </script>
 </body>

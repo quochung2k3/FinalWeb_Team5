@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ include file="/common/taglib.jsp"%>
+         pageEncoding="UTF-8" %>
+<%@ include file="/common/taglib.jsp" %>
 <body>
 <section class="vh-100" style="background-color: #eee;">
     <div class="container h-100">
@@ -17,52 +17,65 @@
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Mã voucher</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input name="maVC" value="${voucher.maVC}" type="text" class="form-control" required disabled>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px"
+                                             class="form-outline flex-fill mb-0">
+                                            <input name="maVC" value="${voucher.maVC}" type="text" class="form-control"
+                                                   required disabled>
                                             <input type="hidden" name="maVC" value="${voucher.maVC}">
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Tên voucher</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input name="tenVoucher" value="${voucher.tenVC}" type="text" class="form-control" required>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px"
+                                             class="form-outline flex-fill mb-0">
+                                            <input name="tenVoucher" value="${voucher.tenVC}" type="text"
+                                                   class="form-control" required>
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Phần trăm giảm</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
                                         <%--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>--%>
-                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input name="phanTramGiam" value="${voucher.phanTramGiam}" type="number" id="form3Example5c" class="form-control" required>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px"
+                                             class="form-outline flex-fill mb-0">
+                                            <input name="phanTramGiam" value="${voucher.phanTramGiam}" type="number"
+                                                   id="form3Example5c" class="form-control" required>
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Ngày bắt đầu</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
-                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input name="ngayBatDau" value="${voucher.ngayBatDau}" type="date" id="" class="form-control" required>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px"
+                                             class="form-outline flex-fill mb-0">
+                                            <input name="ngayBatDau" value="${voucher.ngayBatDau}" type="date" id=""
+                                                   class="form-control" required>
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Ngày kết thúc</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
                                         <%--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>--%>
-                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input name="ngayKetThuc" value="${voucher.ngayKetThuc}" type="date" class="form-control" required>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px"
+                                             class="form-outline flex-fill mb-0">
+                                            <input name="ngayKetThuc" value="${voucher.ngayKetThuc}" type="date"
+                                                   class="form-control" required>
                                         </div>
                                     </div>
                                     <p style="margin-left: 50px; margin-bottom: 2px;">Số lượng</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i style="font-size: 20px" class="fa-solid fa-user-tie me-3 fa-fw"></i>
                                         <%--                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>--%>
-                                        <div style="border: 1px solid #ccc; border-radius: 10px" class="form-outline flex-fill mb-0">
-                                            <input name="soLuong" value="${voucher.soLuong}" type="number" class="form-control" required>
+                                        <div style="border: 1px solid #ccc; border-radius: 10px"
+                                             class="form-outline flex-fill mb-0">
+                                            <input name="soLuong" value="${voucher.soLuong}" type="number"
+                                                   class="form-control" required>
                                         </div>
                                     </div>
 
                                     <div class="form-check d-flex justify-content-center mb-5">
-                                        <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" required>
+                                        <input class="form-check-input me-2" type="checkbox" value=""
+                                               id="form2Example3c" required>
                                         <label class="form-check-label">
                                             I agree all statements in <a href="#!">Terms of service</a>
                                         </label>
