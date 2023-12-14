@@ -14,8 +14,8 @@ public class VoucherMapper implements RowMapper<VoucherModel>{
             voucher.setMaVC(rs.getInt("mavoucher"));
             voucher.setTenVC(rs.getString("tenvoucher"));
             voucher.setPhanTramGiam(rs.getFloat("phantramgiam"));
-            voucher.setNgayBatDau(rs.getTimestamp("ngaybatdau"));
-            voucher.setNgayKetThuc(rs.getTimestamp("ngayketthuc"));
+            voucher.setNgayBatDau(rs.getString("ngaybatdau"));
+            voucher.setNgayKetThuc(rs.getString("ngayketthuc"));
             voucher.setSoLuong(rs.getInt("soluong"));
             return voucher;
         }

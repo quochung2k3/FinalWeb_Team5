@@ -19,7 +19,7 @@ import java.util.List;
 public class BillController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     IBillService service = new BillService();
-    int pageSize = 2;
+    int pageSize = 5;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURI();

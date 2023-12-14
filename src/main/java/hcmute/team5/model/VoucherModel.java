@@ -6,8 +6,8 @@ public class VoucherModel extends AbstractModel {
     private int MaVC;
     private String TenVC;
     private float PhanTramGiam;
-    private Timestamp NgayBatDau;
-    private Timestamp NgayKetThuc;
+    private String NgayBatDau;
+    private String NgayKetThuc;
     private int SoLuong;
 
     public int getMaVC() {
@@ -34,19 +34,19 @@ public class VoucherModel extends AbstractModel {
         PhanTramGiam = phanTramGiam;
     }
 
-    public Timestamp getNgayBatDau() {
+    public String getNgayBatDau() {
         return NgayBatDau;
     }
 
-    public void setNgayBatDau(Timestamp ngayBatDau) {
+    public void setNgayBatDau(String ngayBatDau) {
         NgayBatDau = ngayBatDau;
     }
 
-    public Timestamp getNgayKetThuc() {
+    public String getNgayKetThuc() {
         return NgayKetThuc;
     }
 
-    public void setNgayKetThuc(Timestamp ngayKetThuc) {
+    public void setNgayKetThuc(String ngayKetThuc) {
         NgayKetThuc = ngayKetThuc;
     }
 
