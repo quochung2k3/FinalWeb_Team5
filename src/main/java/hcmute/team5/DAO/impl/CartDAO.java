@@ -34,7 +34,7 @@ public class CartDAO extends AbstractDAO<CartModel> implements ICartDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 CartModel cart = new CartModel();
-                cart.setMaSanPham(rs.getString("masp"));
+                cart.setMaSanPham(rs.getString("masanpham"));
                 cart.setTenSP(rs.getString("tensanpham"));
                 cart.setSoLuong(soluong);
                 cart.setGia(rs.getInt("gia"));

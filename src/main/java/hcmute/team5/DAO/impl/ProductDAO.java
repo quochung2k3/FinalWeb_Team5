@@ -58,6 +58,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
                 product.setMaSp(rs.getInt("masanpham"));
                 product.setTenSP(rs.getString("tensanpham"));
                 product.setGia(rs.getInt("gia"));
+                product.setImage(rs.getString("image"));
                 list.add(product);
             }
             return list;
@@ -118,27 +119,6 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
                 sup.setMaNcc(rs.getString("mancc"));
                 sup.setTenNcc(rs.getString("tenncc"));
                 list.add(sup);
-            }
-            return list;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-    public List<ProductModel> getAllProduct() {
-        List<ProductModel> list = new ArrayList<>();
-        String sql = "SELECT * FROM SanPham";
-        try {
-            conn = new DBConnectionSQL().getConnection();
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                ProductModel product = new ProductModel();
-                product.setMaSp(rs.getInt("masanpham"));
-                product.setTenSP(rs.getString("tensanpham"));
-                product.setGia(rs.getInt("gia"));
-                product.setTrangThai(rs.getString("trangthai"));
-                list.add(product);
             }
             return list;
         } catch (Exception e) {
@@ -226,6 +206,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
                 product.setMaSp(rs.getInt("masanpham"));
                 product.setTenSP(rs.getString("tensanpham"));
                 product.setGia(rs.getInt("gia"));
+                product.setImage(rs.getString("image"));
                 list.add(product);
             }
             return list;
@@ -251,6 +232,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
                 product.setTrangThai(rs.getString("trangthai"));
                 product.setDescription(rs.getString("description"));
                 product.setMaNcc(rs.getString("manhacungcap"));
+                product.setImage(rs.getString("image"));
                 conn.close();
                 return product;
             }
@@ -422,5 +404,25 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
     public void updateProduct(ProductModel product) {String sql = "UPDATE SanPham SET tensanpham = ?, gia = ?, trangthai = ? WHERE masanpham = ?";
         String gia = String.valueOf(product.getGia());
         update(sql, product.getTenSP(), gia, product.getTrangThai(), product.getMaSp());
+    }
+    public void inserttoCart(String username, String masp, int Soluong)
+    {
+        String sql = "DECLARE @count int SET @count = (SELECT COUNT(*) FROM GioHang WHERE username = ? AND masp = ?) IF @count = 0 INSERT INTO GioHang VALUES (?,?,?) ELSE UPDATE GioHang SET soluong = soluong + ? WHERE username = ? AND masp = ?";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2,masp);
+            ps.setString(3, username);
+            ps.setString(4,masp);
+            ps.setInt(5, Soluong);
+            ps.setInt(6, Soluong);
+            ps.setString(7, username);
+            ps.setString(8,masp);
+            rs = ps.executeQuery();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

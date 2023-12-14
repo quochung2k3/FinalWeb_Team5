@@ -6,10 +6,8 @@
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col">
                 <div class="card">
-                    <div style="min-height: 800px;" class="card-body p-4">
-
+                    <div class="card-body p-4">
                         <div class="row">
-
                             <div style="font-size: 16px" class="col-lg-7">
                                 <h5 class="mb-3"><a href="<c:url value="/user-home"/>" class="text-body"><i
                                         class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
@@ -35,13 +33,12 @@
                                                 <div class="d-flex flex-row align-items-center">
                                                     <div>
                                                         <img
-                                                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                                                class="img-fluid rounded-3" alt="Shopping item"
-                                                                style="width: 65px;">
+                                                                src="${item.getImage()}"
+                                                                style="width: 100px;">
                                                     </div>
-                                                    <div class="ms-3">
+                                                    <div class="ms-3" style="width: 400px;">
                                                         <h5>${item.tenSP}</h5>
-                                                        <p class="small mb-0">${item.description}</p>
+                                                        <p class="small mb-0" style="font-size: 1rem;text-align: justify;">${item.description}</p>
                                                     </div>
                                                 </div>
                                                 <div class="d-flex flex-row align-items-center">
@@ -49,12 +46,12 @@
                                                         <h5 class="fw-normal mb-0">${item.soLuong}</h5>
                                                     </div>
                                                     <div style="width: 80px;">
-                                                        <h5 class="mb-0">${item.soLuong*item.gia}</h5>
+                                                        <h5 class="mb-0">${item.soLuong*item.gia}$</h5>
                                                         <c:set var="totalPrice"
                                                                value="${(totalPrice ne null) ? totalPrice + item.soLuong*item.gia : item.soLuong*item.gia}"/>
                                                     </div>
-                                                    <a href="user-delete-cart?maSP=${item.tenSP}"
-                                                       style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                                                    <a type="button"
+                                                       style="color: #cecece;" onclick="confirmDelete(${item.getMaSanPham()})"><i class="fas fa-trash-alt"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -179,3 +176,17 @@
         </div>
     </div>
 </section>
+<script>
+    function confirmDelete(productId) {
+        // Sử dụng hàm confirm() để hiển thị hộp thoại đồng ý/hủy bỏ
+        var result = confirm("Bạn có chắc muốn xóa không?");
+
+        // Nếu người dùng nhấn "OK" (đồng ý), thực hiện xóa
+        if (result) {
+            window.location.href= "user-delete-cart?pid="+productId;
+            alert("Đã xóa!");
+        } else {
+            alert("Đã hủy bỏ xóa.");
+        }
+    }
+</script>

@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet(urlPatterns = {"/user-cart", "/user-buy-now", "/user-check-voucher", "/user-solve-pay","/user-delete-cart"})
+@WebServlet(urlPatterns = {"/user-cart", "/user-check-voucher", "/user-solve-pay","/user-delete-cart"})
 public class CartController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     ICartService service = new CartService();

@@ -13,8 +13,6 @@ public interface IProductDetailService {
 
     List<ProductTypeModel> getAllProductType();
 
-    List<ProductModel> getAllProduct();
-
     List<ProductModel> getListProDuctByProductType(String maLoaiSP, String maSP);
 
     List<ProductModel> getListProDuctViewed(String maSP, String username);
