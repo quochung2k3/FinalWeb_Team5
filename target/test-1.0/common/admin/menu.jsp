@@ -31,7 +31,7 @@
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="<c:url value="/admin-ql-revenue"/>">
-            <i style="font-size: 20px;" class="fa-solid fa-person"></i>
+            <i style="font-size: 20px;" class="fa-solid fa-chart-pie"></i>
             <span>Quản lý doanh thu</span>
         </a>
     </li>

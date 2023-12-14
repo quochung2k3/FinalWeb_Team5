@@ -43,8 +43,8 @@
                                 <label>Trạng thái</label>
                                 <select name="status" class="form-control">
                                     <option>ALL</option>
-                                    <option>Còn hàng</option>
-                                    <option>Hết hàng</option>
+                                    <option>Con hang</option>
+                                    <option>Het hang</option>
                                 </select>
                                 <c:set var="status" value="${param.status}" />
                             </div>

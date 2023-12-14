@@ -78,7 +78,7 @@
                     </table>
                 </div>
             </div>
-            <div style="margin-top: 36px;" class="filter-group float-lg-right">
+            <div id="sumTotal" style="margin-top: 36px;" class="filter-group float-lg-right">
                 <label style="color: red; font-weight: 700; font-size: 18px;">Tổng doanh thu:</label>
                 <input value="${totalPrice}" style="width: 150px;" name="ngayIn" type="text" class="form-control" disabled>
             </div>
@@ -134,6 +134,7 @@
             success: function (data) {
                 $('#tableBody').html($(data).find('#tableBody').html());
                 $('#partialReloadDiv').html($(data).find('#partialReloadDiv').html());
+                $('#sumTotal').html($(data).find('#sumTotal').html());
             },
         });
     }
