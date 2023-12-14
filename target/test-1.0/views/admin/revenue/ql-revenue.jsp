@@ -36,40 +36,48 @@
                                 <c:set var="maChiNhanh" value="${param.maChiNhanh}" />
                             </div>
                             <div class="filter-group">
-                                <label>Ngày bắt đầu</label>
-                                <input style="width: 150px;" name="ngayIn" type="date" class="form-control">
-                                <c:set var="ngayIn" value="${param.ngayIn}" />
+                                <label>Ngày kết thúc</label>
+                                <input style="width: 150px;" name="ngayKetThuc" type="date" class="form-control">
+                                <c:set var="ngayKetThuc" value="${param.ngayKetThuc}" />
                             </div>
                             <div class="filter-group">
-                                <label>Ngày kết thúc</label>
-                                <input style="width: 150px;" name="ngayIn" type="date" class="form-control">
-                                <c:set var="ngayIn" value="${param.ngayIn}" />
+                                <label>Ngày bắt đầu</label>
+                                <input style="width: 150px;" name="ngayBatDau" type="date" class="form-control">
+                                <c:set var="ngayBatDau" value="${param.ngayBatDau}" />
                             </div>
                             <span class="filter-icon"><i class="fa fa-filter"></i></span>
                         </form>
                     </div>
                 </div>
             </div>
-            <table class="table table-striped table-hover">
-                <thead>
-                <tr>
-                    <th>Mã hóa đơn</th>
-                    <th>Ngày in</th>
-                    <th>Tổng tiền hóa đơn</th>
-                </tr>
-                </thead>
-                <tbody id="tableBody">
-                <c:forEach var = "item" items = "${listBill}">
-                    <tr>
-                        <td>${item.maHD}</td>
-                            <%--                            <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar">${item.userName}</a></td>--%>
-                        <td>${item.ngayIn}</td>
-                        <td>${item.tongTien}</td>
-                    </tr>
-                    <c:set var="totalPrice" value="${(totalPrice ne null) ? totalPrice + item.tongTien : item.tongTien}" />
-                </c:forEach>
-                </tbody>
-            </table>
+            <div class="scroll-bar">
+                <div class="table-responsive" style="overflow-x: scroll; height: 480px;">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>Mã hóa đơn</th>
+                            <th>Ngày in</th>
+                            <th>Mã khách hàng</th>
+                            <th>Mã chi nhánh</th>
+                            <th>Tổng tiền hóa đơn</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                        <c:forEach var = "item" items = "${listBill}">
+                            <tr>
+                                <td>${item.maHD}</td>
+                                    <%--                            <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar">${item.userName}</a></td>--%>
+                                <td>${item.ngayIn}</td>
+                                <td>${item.maKH}</td>
+                                <td>${item.maChiNhanh}</td>
+                                <td>${item.tongTien}</td>
+                            </tr>
+                            <c:set var="totalPrice" value="${(totalPrice ne null) ? totalPrice + item.tongTien : item.tongTien}" />
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <div style="margin-top: 36px;" class="filter-group float-lg-right">
                 <label style="color: red; font-weight: 700; font-size: 18px;">Tổng doanh thu:</label>
                 <input value="${totalPrice}" style="width: 150px;" name="ngayIn" type="text" class="form-control" disabled>
@@ -114,6 +122,39 @@
     if ("${note}" != "") {
         alert("${note}");
         ${node} = "";
+    }
+</script>
+<script>
+    function searchAndUpdateTable() {
+        $.ajax({
+            url: $('#searchForm').attr('action'), // Use the form action URL
+            type: 'GET',
+            data: $('#searchForm').serialize(), // Serialize the form data
+            dataType: 'html',
+            success: function (data) {
+                $('#tableBody').html($(data).find('#tableBody').html());
+                $('#partialReloadDiv').html($(data).find('#partialReloadDiv').html());
+            },
+        });
+    }
+</script>
+
+<script>
+    function searchAndUpdateTableByPaging(event, i) {
+        var url = "#linkPagging"+i.toString();
+        $('a.page-link').removeClass('active');
+        // Thêm lớp 'active' vào thẻ a được click
+        $(url).addClass('active');
+        event.preventDefault();
+        $.ajax({
+            url: $(url).attr('href'), // Use the form action URL
+            type: 'GET',
+            dataType: 'html',
+            success: function (data) {
+                $('#tableBody').html($(data).find('#tableBody').html());
+                $('.hint-text').html($(data).find('.hint-text').html());
+            },
+        });
     }
 </script>
 </body>

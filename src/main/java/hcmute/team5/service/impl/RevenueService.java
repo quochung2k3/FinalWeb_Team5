@@ -15,4 +15,9 @@ public class RevenueService implements IRevenueService {
         return revenueDAL.findAll();
     }
 
+    @Override
+    public List<RevenueModel> findAllByProperties(int maChiNhanh, String ngayBatDau, String ngayKetThuc) {
+        return revenueDAL.findAllByProperties(maChiNhanh, ngayBatDau, ngayKetThuc);
+    }
+
 }

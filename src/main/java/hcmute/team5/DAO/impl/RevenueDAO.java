@@ -23,5 +23,9 @@ public class RevenueDAO extends AbstractDAO<RevenueModel> implements IRevenueDAO
         return query(sql, new RevenueMapper());
     }
 
-
+    @Override
+    public List<RevenueModel> findAllByProperties(int maChiNhanh, String ngayBatDau, String ngayKetThuc) {
+        String sql = "SELECT * FROM HoaDon WHERE (? = 0 OR maChiNhanh = ?) AND ngayin BETWEEN ? AND ?";
+        return query(sql, new RevenueMapper(), maChiNhanh, maChiNhanh, ngayBatDau, ngayKetThuc);
+    }
 }

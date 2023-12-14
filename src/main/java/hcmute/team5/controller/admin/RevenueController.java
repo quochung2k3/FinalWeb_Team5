@@ -29,9 +29,41 @@ public class RevenueController extends HttpServlet {
         if (url.contains("ql-revenue")) {
             findAll(req, resp);
         }
+        if(url.contains("revenue-search")) {
+            findAllByProperties(req, resp);
+        }
     }
+
+    private void findAllByProperties(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int maChiNhanh = 0;
+        String ngayBatDau = req.getParameter("ngayBatDau");
+        String ngayKetThuc = req.getParameter("ngayKetThuc");
+        switch ( req.getParameter("maChiNhanh") ) {
+            case  "CN01":
+                maChiNhanh = 1;
+                break;
+            case  "CN02":
+                maChiNhanh = 2;
+                break;
+            case  "CN03":
+                maChiNhanh = 3;
+                break;
+            case  "CN04":
+                maChiNhanh = 4;
+                break;
+            case  "CN05":
+                maChiNhanh = 5;
+                break;
+            default:
+        }
+        List<RevenueModel> list = service.findAllByProperties(maChiNhanh, ngayBatDau, ngayKetThuc);
+        req.setAttribute("listBill", list);
+        RequestDispatcher rd = req.getRequestDispatcher("/views/admin/revenue/ql-revenue.jsp");
+        rd.forward(req, resp);
+    }
+
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String url = req.getRequestURI();
+
     }
     private void findAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<RevenueModel> list = service.findAll();
@@ -39,5 +71,4 @@ public class RevenueController extends HttpServlet {
         RequestDispatcher rd = req.getRequestDispatcher("/views/admin/revenue/ql-revenue.jsp");
         rd.forward(req, resp);
     }
-
 }
