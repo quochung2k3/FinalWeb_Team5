@@ -298,7 +298,23 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
 
     @Override
     public void inserttoCart(String username, String masp, int Soluong) {
-
+        String sql = "DECLARE @count int SET @count = (SELECT COUNT(*) FROM GioHang WHERE username = ? AND masp = ?) IF @count = 0 INSERT INTO GioHang VALUES (?,?,?) ELSE UPDATE GioHang SET soluong = soluong + ? WHERE username = ? AND masp = ?";
+        try {
+            conn = new DBConnectionSQL().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, masp);
+            ps.setString(3, username);
+            ps.setString(4, masp);
+            ps.setInt(5, Soluong);
+            ps.setInt(6, Soluong);
+            ps.setString(7, username);
+            ps.setString(8, masp);
+            rs = ps.executeQuery();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void insertviewed(String username, String masp){
