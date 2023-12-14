@@ -7,6 +7,7 @@ public class AccountModel extends AbstractModel {
     private String status;
     private String sdt;
     private int roleId;
+
     public String getStatus() {
         return status;
     }

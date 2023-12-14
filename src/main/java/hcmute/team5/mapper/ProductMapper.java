@@ -1,10 +1,11 @@
 package hcmute.team5.mapper;
 
 import hcmute.team5.model.ProductModel;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ProductMapper implements RowMapper<ProductModel>{
+public class ProductMapper implements RowMapper<ProductModel> {
     @Override
     public ProductModel mapRow(ResultSet rs) {
         try {
@@ -16,8 +17,7 @@ public class ProductMapper implements RowMapper<ProductModel>{
             product.setMaChiNhanh(rs.getInt("machinhanh"));
             product.setTrangThai(rs.getString("trangthai"));
             return product;
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             return null;
         }
     }

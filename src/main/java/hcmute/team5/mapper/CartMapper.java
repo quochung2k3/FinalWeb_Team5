@@ -1,6 +1,7 @@
 package hcmute.team5.mapper;
 
 import hcmute.team5.model.CartModel;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -14,8 +15,7 @@ public class CartMapper implements RowMapper<CartModel> {
             cart.setGia(rs.getInt("gia"));
             cart.setDescription(rs.getString("description"));
             return cart;
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             return null;
         }
     }

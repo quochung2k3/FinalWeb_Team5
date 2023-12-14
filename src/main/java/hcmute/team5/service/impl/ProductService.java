@@ -4,10 +4,12 @@ import hcmute.team5.DAO.IProductDAO;
 import hcmute.team5.DAO.impl.ProductDAO;
 import hcmute.team5.model.ProductModel;
 import hcmute.team5.service.IProductService;
+
 import java.util.List;
 
 public class ProductService implements IProductService {
     IProductDAO productDAL = new ProductDAO();
+
     @Override
     public List<ProductModel> findAll(int pageSize, int index) {
         return productDAL.findAll(pageSize, index);

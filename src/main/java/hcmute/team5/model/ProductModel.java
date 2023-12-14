@@ -51,8 +51,14 @@ public class ProductModel extends PayModel {
         this.gia = gia;
     }
 
-    public String getMaNcc(){return maNcc;}
-    public void setMaNcc(String maNcc){this.maNcc = maNcc;}
+    public String getMaNcc() {
+        return maNcc;
+    }
+
+    public void setMaNcc(String maNcc) {
+        this.maNcc = maNcc;
+    }
+
     public String getTrangThai() {
         return trangThai;
     }
@@ -68,9 +74,11 @@ public class ProductModel extends PayModel {
     public void setImage(String image) {
         this.image = image;
     }
+
     public String getDescription() {
         return desCription;
     }
+
     public void setDescription(String desCription) {
         this.desCription = desCription;
     }

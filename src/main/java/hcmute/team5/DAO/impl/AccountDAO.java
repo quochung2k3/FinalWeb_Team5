@@ -5,12 +5,12 @@ import hcmute.team5.DAO.IAccountDAO;
 import hcmute.team5.mapper.AccountMapper;
 import hcmute.team5.model.AccountModel;
 import hcmute.team5.model.CustomerModel;
+
 import java.sql.*;
 import java.util.List;
 
 public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO {
     Connection conn = null;
-    Statement stmt = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
 
@@ -76,7 +76,7 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
 
     @Override
     public List<AccountModel> findAll(int fetch, int offset) {
-        String sql ="SELECT * FROM Account ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        String sql = "SELECT * FROM Account ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         return query(sql, new AccountMapper(), offset, fetch);
     }
 
@@ -114,42 +114,36 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
     @Override
     public List<AccountModel> findAllByProperties(String roleName, String status, String username, int pageSize, int index) {
         int roleId = 0;
-        if(roleName.equals("Admin")) {
+        if (roleName.equals("Admin")) {
             roleId = 1;
         }
-        if(roleName.equals("Customer")) {
+        if (roleName.equals("Customer")) {
             roleId = 2;
         }
-        if(status.equals("All") && username.equals("")) {
-            String sql ="SELECT * FROM Account WHERE roleid = ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        if (status.equals("All") && username.equals("")) {
+            String sql = "SELECT * FROM Account WHERE roleid = ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
             return query(sql, new AccountMapper(), roleId, index, pageSize);
-        }
-        else if(roleName.equals("All") && username.equals("")) {
-            String sql ="SELECT * FROM Account WHERE status = ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        } else if (roleName.equals("All") && username.equals("")) {
+            String sql = "SELECT * FROM Account WHERE status = ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
             return query(sql, new AccountMapper(), status, index, pageSize);
-        }
-        else if(status.equals("All") && roleName.equals("All")) {
-            String sql ="SELECT * FROM Account WHERE username LIKE ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-            username = '%'+username+'%';
+        } else if (status.equals("All") && roleName.equals("All")) {
+            String sql = "SELECT * FROM Account WHERE username LIKE ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+            username = '%' + username + '%';
             return query(sql, new AccountMapper(), username, index, pageSize);
-        }
-        else if(username.equals("")) {
-            String sql ="SELECT * FROM Account WHERE roleid = ? AND status = ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        } else if (username.equals("")) {
+            String sql = "SELECT * FROM Account WHERE roleid = ? AND status = ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
             return query(sql, new AccountMapper(), roleId, status, index, pageSize);
-        }
-        else if(status.equals("All")) {
-            String sql ="SELECT * FROM Account WHERE roleid = ? AND username LIKE ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-            username = '%'+username+'%';
+        } else if (status.equals("All")) {
+            String sql = "SELECT * FROM Account WHERE roleid = ? AND username LIKE ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+            username = '%' + username + '%';
             return query(sql, new AccountMapper(), roleId, username, index, pageSize);
-        }
-        else if(roleName.equals("All")) {
-            String sql ="SELECT * FROM Account WHERE status = ? AND username LIKE ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-            username = '%'+username+'%';
+        } else if (roleName.equals("All")) {
+            String sql = "SELECT * FROM Account WHERE status = ? AND username LIKE ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+            username = '%' + username + '%';
             return query(sql, new AccountMapper(), status, username, index, pageSize);
-        }
-        else {
-            String sql ="SELECT * FROM Account WHERE roleid = ? AND status = ? AND username LIKE ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-            username = '%'+username+'%';
+        } else {
+            String sql = "SELECT * FROM Account WHERE roleid = ? AND status = ? AND username LIKE ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+            username = '%' + username + '%';
             return query(sql, new AccountMapper(), roleId, status, username, index, pageSize);
         }
     }
@@ -168,24 +162,20 @@ public class AccountDAO extends AbstractDAO<AccountModel> implements IAccountDAO
             while (rs.next()) {
                 num = rs.getInt(1);
             }
-        }
-        catch (Exception e) {
-            if(conn != null) {
+        } catch (Exception e) {
+            if (conn != null) {
                 try {
                     conn.rollback();
-                }
-                catch (Exception e1) {
+                } catch (Exception e1) {
                     e1.printStackTrace();
                 }
             }
-        }
-        finally {
+        } finally {
             try {
                 conn.close();
                 ps.close();
                 rs.close();
-            }
-            catch (SQLException e2){
+            } catch (SQLException e2) {
                 e2.printStackTrace();
             }
         }

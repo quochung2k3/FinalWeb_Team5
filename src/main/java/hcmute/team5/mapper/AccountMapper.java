@@ -1,6 +1,7 @@
 package hcmute.team5.mapper;
 
 import hcmute.team5.model.AccountModel;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -17,8 +18,7 @@ public class AccountMapper implements RowMapper<AccountModel> {
             account.setRoleId(rs.getInt("roleid"));
             account.setSdt(rs.getString("sdt"));
             return account;
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             return null;
         }
     }

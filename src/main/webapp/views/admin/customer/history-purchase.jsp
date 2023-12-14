@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ include file="/common/taglib.jsp"%>
+         pageEncoding="UTF-8" %>
+<%@ include file="/common/taglib.jsp" %>
 <section class="container-fluid p-4">
     <div class="row ">
         <div class="col-lg-12 col-md-12 col-12">
@@ -23,7 +23,7 @@
                         <h4 class="mb-0">Your Order</h4>
                         <p>Check the status of recent orders, manage returns, and discover similar products.</p>
                     </div>
-                    <c:forEach var = "item" items = "${listBill}">
+                    <c:forEach var="item" items="${listBill}">
                         <div class="mb-8">
                             <!-- text -->
                             <div class="border-bottom mb-3 pb-3 d-lg-flex align-items-center justify-content-between ">

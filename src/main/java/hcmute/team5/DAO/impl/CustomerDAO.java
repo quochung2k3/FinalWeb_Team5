@@ -4,19 +4,21 @@ import hcmute.team5.DAO.DBConnectionSQL;
 import hcmute.team5.DAO.ICustomerDAO;
 import hcmute.team5.mapper.CustomerMapper;
 import hcmute.team5.model.CustomerModel;
+
 import java.sql.*;
 import java.util.List;
 
 public class CustomerDAO extends AbstractDAO<CustomerModel> implements ICustomerDAO {
     Connection conn = null;
-    Statement stmt = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
+
     @Override
     public List<CustomerModel> findAll(int pageSize, int index) {
-        String sql ="SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username ORDER BY makh OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        String sql = "SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username ORDER BY makh OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         return query(sql, new CustomerMapper(), index, pageSize);
     }
+
     @Override
     public CustomerModel findOneByCustomer(int maKh) {
         String sql = "SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username WHERE makh = ?";
@@ -42,6 +44,7 @@ public class CustomerDAO extends AbstractDAO<CustomerModel> implements ICustomer
             return null;
         }
     }
+
     @Override
     public void insert(CustomerModel customer) {
         String sql = "INSERT INTO KhachHang(makh, ten, ngaysinh, sdt, tongtiendamua) VALUES(?, ?, ?, ?, ?)";
@@ -59,6 +62,7 @@ public class CustomerDAO extends AbstractDAO<CustomerModel> implements ICustomer
             e.printStackTrace();
         }
     }
+
     @Override
     public void deleteCustomer(CustomerModel customer) {
         String sql = "DELETE FROM KhachHang WHERE makh = ?";
@@ -84,33 +88,29 @@ public class CustomerDAO extends AbstractDAO<CustomerModel> implements ICustomer
 
     @Override
     public List<CustomerModel> findAllByProperties(String name, String total, int pageSize, int index) {
-        if(total.equals("ALL")) {
-            String sql ="SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username\n" +
+        if (total.equals("ALL")) {
+            String sql = "SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username\n" +
                     "WHERE Account.fullname LIKE ? ORDER BY makh OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-            name = '%'+name+'%';
+            name = '%' + name + '%';
             return query(sql, new CustomerMapper(), name, index, pageSize);
-        }
-        else if(name.isEmpty()) {
-            if(total.equals("Tăng dần")) {
-                String sql ="SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username\n" +
+        } else if (name.isEmpty()) {
+            if (total.equals("Tăng dần")) {
+                String sql = "SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username\n" +
                         "ORDER BY tongtiendamua ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
                 return query(sql, new CustomerMapper(), index, pageSize);
-            }
-            else {
-                String sql ="SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username\n" +
+            } else {
+                String sql = "SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username\n" +
                         "ORDER BY tongtiendamua DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
                 return query(sql, new CustomerMapper(), index, pageSize);
             }
-        }
-        else {
-            if(total.equals("Tăng dần")) {
+        } else {
+            if (total.equals("Tăng dần")) {
                 String sql = "SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username\n" +
                         "WHERE Account.fullname LIKE ? ORDER BY tongtiendamua ASC\n" +
                         "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
                 name = '%' + name + '%';
                 return query(sql, new CustomerMapper(), name, index, pageSize);
-            }
-            else {
+            } else {
                 String sql = "SELECT * FROM KhachHang INNER JOIN Account ON KhachHang.username = Account.username\n" +
                         "WHERE Account.fullname LIKE ? ORDER BY tongtiendamua DESC\n" +
                         "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
@@ -134,24 +134,20 @@ public class CustomerDAO extends AbstractDAO<CustomerModel> implements ICustomer
             while (rs.next()) {
                 num = rs.getInt(1);
             }
-        }
-        catch (Exception e) {
-            if(conn != null) {
+        } catch (Exception e) {
+            if (conn != null) {
                 try {
                     conn.rollback();
-                }
-                catch (Exception e1) {
+                } catch (Exception e1) {
                     e1.printStackTrace();
                 }
             }
-        }
-        finally {
+        } finally {
             try {
                 conn.close();
                 ps.close();
                 rs.close();
-            }
-            catch (SQLException e2){
+            } catch (SQLException e2) {
                 e2.printStackTrace();
             }
         }

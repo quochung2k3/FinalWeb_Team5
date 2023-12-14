@@ -4,6 +4,7 @@ import hcmute.team5.model.AccountModel;
 import hcmute.team5.model.CustomerModel;
 import hcmute.team5.service.IAccountService;
 import hcmute.team5.service.impl.AccountService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -44,7 +45,7 @@ public class LoginController extends HttpServlet {
             }
         }
         try {
-            resp.sendRedirect(req.getContextPath() +"/waiting");
+            resp.sendRedirect(req.getContextPath() + "/waiting");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,20 +57,20 @@ public class LoginController extends HttpServlet {
         if (account != null) {
             if (account.getRoleId() == 1) {
                 try {
-                    resp.sendRedirect(req.getContextPath() +"/admin-home");
+                    resp.sendRedirect(req.getContextPath() + "/admin-home");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             } else {
                 try {
-                    resp.sendRedirect(req.getContextPath() +"/user-home");
+                    resp.sendRedirect(req.getContextPath() + "/user-home");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         } else {
             try {
-                resp.sendRedirect(req.getContextPath() +"/trang-chu");
+                resp.sendRedirect(req.getContextPath() + "/trang-chu");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -93,7 +94,7 @@ public class LoginController extends HttpServlet {
                 }
             }
         }
-        resp.sendRedirect(req.getContextPath() +"/trang-chu");
+        resp.sendRedirect(req.getContextPath() + "/trang-chu");
     }
 
     @Override
@@ -152,13 +153,13 @@ public class LoginController extends HttpServlet {
             // if remember is checked, set cookie
             if (remember != null) {
                 Cookie cookie = new Cookie("username", username);
-                cookie.setMaxAge(60 *  30);
+                cookie.setMaxAge(60 * 30);
                 resp.addCookie(cookie);
             }
 
             req.getSession().setAttribute("account", account);
             try {
-                resp.sendRedirect(req.getContextPath() +"/waiting");
+                resp.sendRedirect(req.getContextPath() + "/waiting");
             } catch (IOException e) {
                 e.printStackTrace();
             }

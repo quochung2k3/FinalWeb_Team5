@@ -6,6 +6,7 @@ import hcmute.team5.mapper.BillDetailsMapper;
 import hcmute.team5.mapper.BillMapper;
 import hcmute.team5.model.BillDetailsModel;
 import hcmute.team5.model.BillModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,16 +38,14 @@ public class BillDAO extends AbstractDAO<BillModel> implements IBillDAO {
 
     @Override
     public List<BillModel> findAllByProperties(int maChiNhanh, int maHD, int pageSize, int index) {
-        if(maHD == 0) {
-            String sql ="SELECT * FROM HoaDon WHERE machinhanh = ? ORDER BY mahd OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        if (maHD == 0) {
+            String sql = "SELECT * FROM HoaDon WHERE machinhanh = ? ORDER BY mahd OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
             return query(sql, new BillMapper(), maChiNhanh, index, pageSize);
-        }
-        else if(maChiNhanh == 0) {
-            String sql ="SELECT * FROM HoaDon WHERE mahd = ? ORDER BY mahd OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        } else if (maChiNhanh == 0) {
+            String sql = "SELECT * FROM HoaDon WHERE mahd = ? ORDER BY mahd OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
             return query(sql, new BillMapper(), maHD, index, pageSize);
-        }
-        else {
-            String sql ="SELECT * FROM HoaDon WHERE machinhanh = ? AND mahd = ? ORDER BY mahd OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        } else {
+            String sql = "SELECT * FROM HoaDon WHERE machinhanh = ? AND mahd = ? ORDER BY mahd OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
             return query(sql, new BillMapper(), maChiNhanh, maHD, index, pageSize);
         }
     }
@@ -65,24 +64,20 @@ public class BillDAO extends AbstractDAO<BillModel> implements IBillDAO {
             while (rs.next()) {
                 num = rs.getInt(1);
             }
-        }
-        catch (Exception e) {
-            if(conn != null) {
+        } catch (Exception e) {
+            if (conn != null) {
                 try {
                     conn.rollback();
-                }
-                catch (Exception e1) {
+                } catch (Exception e1) {
                     e1.printStackTrace();
                 }
             }
-        }
-        finally {
+        } finally {
             try {
                 conn.close();
                 ps.close();
                 rs.close();
-            }
-            catch (SQLException e2){
+            } catch (SQLException e2) {
                 e2.printStackTrace();
             }
         }
