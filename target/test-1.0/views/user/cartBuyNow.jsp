@@ -77,7 +77,7 @@
                                                 class="fab fa-cc-amex fa-2x me-2"></i></a>
                                         <a href="#!" type="submit" class="text-white"><i
                                                 class="fab fa-cc-paypal fa-2x"></i></a>
-                                        <form action="user-check-voucher" class="mt-4" method="get">
+                                        <form action="user-buynow-voucher" class="mt-4" method="get">
                                             <div class="form-outline form-white mb-4">
                                                 <span style="padding-left: 5px;">Cardholder's Name</span>
                                                 <input type="text" id="typeName" class="form-control form-control-lg"
@@ -119,19 +119,19 @@
                                                     </div>
                                                 </div>
                                                 <div style="display: flex; align-items: center;">
-                                                        <div style="margin-top: 10px;" class="col-md-6">
-                                                            <div class="form-outline form-white">
-                                                                <span style="padding-left: 5px;">Voucher Code</span>
-                                                                <input value="${maVCController}" name="maVC" type="text"
-                                                                       class="form-control form-control-lg"
-                                                                       style="border-radius: 10px;border: 1px solid #ccc;font-size: 14px;height: 40px;"/>
-                                                                <c:set var="maVC" value="${maVCController}"/>
-                                                            </div>
+                                                    <div style="margin-top: 10px;" class="col-md-6">
+                                                        <div class="form-outline form-white">
+                                                            <span style="padding-left: 5px;">Voucher Code</span>
+                                                            <input value="${maVCController}" name="maVC" type="text"
+                                                                   class="form-control form-control-lg"
+                                                                   style="border-radius: 10px;border: 1px solid #ccc;font-size: 14px;height: 40px;"/>
+                                                            <c:set var="maVC" value="${maVCController}"/>
                                                         </div>
-                                                        <button type="submit" style="margin-top: 30px;margin-left: 10px;height: 40px;" class="header__search-btn">
-                                                            <i class="header__search-btn-icon fa-solid fa-check"></i>
-                                                        </button>
-                                                            <p style="color: yellow; font-size: 1.6rem;margin-top: 40px;margin-left: 10px;">${note}</p>
+                                                    </div>
+                                                    <button type="submit" style="margin-top: 30px;margin-left: 10px;height: 40px;" class="header__search-btn">
+                                                        <i class="header__search-btn-icon fa-solid fa-check"></i>
+                                                    </button>
+                                                    <p style="color: yellow; font-size: 1.6rem;margin-top: 40px;margin-left: 10px;">${note}</p>
                                                 </div>
                                             </div>
 

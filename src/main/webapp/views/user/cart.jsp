@@ -131,7 +131,7 @@
                                                         <button type="submit" style="margin-top: 30px;margin-left: 10px;height: 40px;" class="header__search-btn">
                                                             <i class="header__search-btn-icon fa-solid fa-check"></i>
                                                         </button>
-                                                            <p>${note}</p>
+                                                            <p style="color: yellow; font-size: 1.6rem;margin-top: 40px;margin-left: 10px;">${note}</p>
                                                 </div>
                                             </div>
 
@@ -147,19 +147,19 @@
                                             <div class="d-flex justify-content-between">
                                                 <p class="mb-2">Discount</p>
                                                 <c:set var="discount" value="${totalPrice * discountController / 100}"/>
-                                                <p class="mb-2">${fn:substringBefore(discount, '.')}$</p>
+                                                <p class="mb-2">${discount}$</p>
                                             </div>
 
                                             <div class="d-flex justify-content-between mb-4">
                                                 <p class="mb-2">Total(Incl. taxes)</p>
                                                 <c:set var="total" value="${totalPrice - discount}"/>
-                                                <p class="mb-2">${fn:substringBefore(total, '.')}$</p>
+                                                <p class="mb-2">${total}$</p>
                                             </div>
 
                                             <button style="padding: 0px 32px;font-size: 14px;height: 50px;" type="button" onclick="confirmPay()"
                                                     class="btn btn-info btn-block btn-lg">
                                                 <div class="d-flex justify-content-between">
-                                                    <span>${total}</span>
+                                                    <span>${total}$</span>
                                                     <input type="hidden" name="totalController" value="${total}">
                                                     <input type="hidden" name="maVCController" value="${maVC}">
                                                     <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
