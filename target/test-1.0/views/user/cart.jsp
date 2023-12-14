@@ -46,12 +46,12 @@
                                                         <h5 class="fw-normal mb-0">${item.soLuong}</h5>
                                                     </div>
                                                     <div style="width: 80px;">
-                                                        <h5 class="mb-0">${item.soLuong*item.gia}</h5>
+                                                        <h5 class="mb-0">${item.soLuong*item.gia}$</h5>
                                                         <c:set var="totalPrice"
                                                                value="${(totalPrice ne null) ? totalPrice + item.soLuong*item.gia : item.soLuong*item.gia}"/>
                                                     </div>
-                                                    <a href="user-delete-cart?maSP=${item.tenSP}"
-                                                       style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                                                    <a type="button"
+                                                       style="color: #cecece;" onclick="confirmDelete(${item.getMaSanPham()})"><i class="fas fa-trash-alt"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -159,3 +159,17 @@
         </div>
     </div>
 </section>
+<script>
+    function confirmDelete(productId) {
+        // Sử dụng hàm confirm() để hiển thị hộp thoại đồng ý/hủy bỏ
+        var result = confirm("Bạn có chắc muốn xóa không?");
+
+        // Nếu người dùng nhấn "OK" (đồng ý), thực hiện xóa
+        if (result) {
+            window.location.href= "user-delete-cart?pid="+productId;
+            alert("Đã xóa!");
+        } else {
+            alert("Đã hủy bỏ xóa.");
+        }
+    }
+</script>

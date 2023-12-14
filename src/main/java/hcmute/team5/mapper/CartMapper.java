@@ -10,6 +10,7 @@ public class CartMapper implements RowMapper<CartModel> {
     public CartModel mapRow(ResultSet rs) {
         try {
             CartModel cart = new CartModel();
+            cart.setMaSanPham(rs.getString("masp"));
             cart.setTenSP(rs.getString("tensanpham"));
             cart.setSoLuong(rs.getInt("soluong"));
             cart.setGia(rs.getInt("gia"));

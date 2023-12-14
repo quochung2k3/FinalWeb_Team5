@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/user-cart"})
+@WebServlet(urlPatterns = {"/user-cart","/user-delete-cart"})
 public class CartController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     ICartService service = new CartService();
@@ -25,8 +25,18 @@ public class CartController extends HttpServlet {
         if (url.contains("user-cart")) {
             findAll(req, resp);
         }
+        if (url.contains("user-delete-cart")){
+            deleteCardById(req,resp);
+        }
     }
 
+    private void deleteCardById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
+        String masp = req.getParameter("pid");
+        String username = account.getUserName();
+        service.deleteCartById(masp,username);
+        findAll(req,resp);
+    }
     private void findAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
         req.setAttribute("name", account.getUserName());
@@ -37,7 +47,6 @@ public class CartController extends HttpServlet {
         RequestDispatcher rd = req.getRequestDispatcher("/views/user/cart.jsp");
         rd.forward(req, resp);
     }
-
 
 
     @Override

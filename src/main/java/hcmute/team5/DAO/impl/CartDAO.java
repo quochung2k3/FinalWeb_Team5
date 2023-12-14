@@ -15,6 +15,10 @@ public class CartDAO extends AbstractDAO<CartModel> implements ICartDAO {
     PreparedStatement ps = null;
 
     @Override
+    public void deleteCartById(String masp,String username){
+        String sql = "DELETE GioHang WHERE masp = ? and username = ? ";
+        update(sql,masp,username);
+    }
     public List<CartModel> findAll(String username) {
         String sql = "SELECT * FROM GioHang INNER JOIN SanPham ON GioHang.masp = SanPham.masanpham WHERE username = ?";
         return query(sql, new CartMapper(), username);
@@ -30,6 +34,7 @@ public class CartDAO extends AbstractDAO<CartModel> implements ICartDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 CartModel cart = new CartModel();
+                cart.setMaSanPham(rs.getString("masp"));
                 cart.setTenSP(rs.getString("tensanpham"));
                 cart.setSoLuong(soluong);
                 cart.setGia(rs.getInt("gia"));
