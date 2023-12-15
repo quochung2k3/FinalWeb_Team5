@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DBConnectionSQL {
-    private final String serverName = "DESKTOP-8C0E5N3";
+    private final String serverName = "MINHIEU";
     private final String dbName = "FinalWeb2";
     private final String portNumber = "1433";
     private final String instance = "";// MSSQLSERVER LEAVE THIS ONE
     private final String userID = "sa";
-    private final String password = "nnmvpqh<302";
+    private final String password = "hieu300303";
 
     public Connection getConnection() throws Exception {
         String url = "jdbc:sqlserver://" + serverName + ":" + portNumber + "\\" + instance + ";databaseName=" + dbName;
