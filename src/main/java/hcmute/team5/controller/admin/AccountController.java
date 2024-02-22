@@ -18,7 +18,7 @@ import java.util.List;
 public class AccountController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     IAccountService service = new AccountService();
-//    int pageSize = 5;
+    int pageSize = 5;
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURI();
         AccountModel account = (AccountModel) req.getSession(false).getAttribute("account");
